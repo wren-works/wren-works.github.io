@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Design Memory 功能原型：通过自然语言和语义检索，找回记得画面却忘记文件名的设计参考。">
+  <title>Design Memory · 王婉婷的产品作品集</title>
+  <link rel="stylesheet" href="../../src/case.css">
+</head>
+<body>
+
+  <!-- Sidebar Toggle -->
+  <button class="sidebar-toggle" id="sidebar-toggle" aria-label="Toggle sidebar">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+      <line x1="3" y1="5" x2="17" y2="5"/>
+      <line x1="3" y1="10" x2="17" y2="10"/>
+      <line x1="3" y1="15" x2="17" y2="15"/>
+    </svg>
+  </button>
+
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-inner">
+      <div class="sidebar-brand">
+        <a href="../../index.html">王婉婷 · Product Portfolio</a>
+      </div>
+      <nav class="sidebar-nav">
+        <a href="../../index.html" class="sidebar-link">首页</a>
+        <span class="sidebar-label">Cases</span>
+        <a href="../decisionhelp/index.html" class="sidebar-link">DecisionHelp</a>
+        <a href="../nomi/nomi.html" class="sidebar-link">NOMI AI Research</a>
+        <a href="index.html" class="sidebar-link active">Design Memory</a>
+      </nav>
+    </div>
+  </aside>
+
+  <div class="case-main">
+
+    <nav class="case-nav">
+      <a href="../../index.html" class="case-nav-back">Home</a>
+      <span class="case-nav-sep">/</span>
+      <span class="case-nav-current">Design Memory</span>
+    </nav>
+
+    <section class="case-hero">
+      <span class="case-hero-tag">Semantic Search · Functional Prototype</span>
+      <h1>Design Memory</h1>
+      <p class="case-hero-lead">
+        用自然语言找回“记得画面，却忘了文件名”的设计参考，验证语义检索是否比文件夹和关键词更符合设计师的记忆方式。
+      </p>
+      <div class="case-hero-meta">
+        <span>个人项目</span>
+        <span>阅读时间 3 min</span>
+        <span>功能原型已实现</span>
+      </div>
+    </section>
+
+    <!-- Prototype status -->
+    <section class="case-demo" id="demo-area">
+      <div class="case-demo-placeholder">
+        <p>已实现上传、素材浏览、语义检索、向量索引与图片详情。<br>当前完整原型依赖本地 Python API、SQLite 与 Chroma，作品集暂以案例说明为主。</p>
+      </div>
+    </section>
+
+    <section class="case-body">
+      <div class="md-content" id="case-content" data-md="overview.md"></div>
+    </section>
+
+    <div class="drawer-overlay" id="drawer-overlay"></div>
+    <aside class="drawer" id="drawer">
+      <button class="drawer-close" id="drawer-close">&times;</button>
+      <div class="drawer-title" id="drawer-title"></div>
+      <div class="drawer-body" id="drawer-body"></div>
+    </aside>
+
+    <footer class="case-footer">
+      <a href="../../index.html">← Back to Portfolio</a>
+    </footer>
+
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="../../src/render.js"></script>
+  <script>
+    Render.auto();
+
+    (function() {
+      var toggle = document.getElementById('sidebar-toggle');
+      var sidebar = document.getElementById('sidebar');
+      var overlay = document.getElementById('sidebar-overlay');
+      function open()  { sidebar.classList.add('open'); overlay.classList.add('open'); }
+      function close() { sidebar.classList.remove('open'); overlay.classList.remove('open'); }
+      toggle.addEventListener('click', function() { sidebar.classList.contains('open') ? close() : open(); });
+      overlay.addEventListener('click', close);
+      document.addEventListener('keydown', function(e) { if (e.key === 'Escape') close(); });
+    })();
+
+    (function() {
+      var overlay = document.getElementById('drawer-overlay');
+      var drawer = document.getElementById('drawer');
+      var titleEl = document.getElementById('drawer-title');
+      var bodyEl = document.getElementById('drawer-body');
+
+      function open(label, path) {
+        titleEl.textContent = label;
+        bodyEl.innerHTML = '<p class="render-muted">Loading…</p>';
+        overlay.classList.add('open');
+        drawer.classList.add('open');
+        fetch(path)
+          .then(function(r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.text(); })
+          .then(function(md) { bodyEl.innerHTML = marked.parse(md); })
+          .catch(function() { bodyEl.innerHTML = '<p class="render-error">Failed to load. Is the server running?</p>'; });
+      }
+
+      function close() {
+        overlay.classList.remove('open');
+        drawer.classList.remove('open');
+      }
+
+      document.querySelectorAll('[data-drawer]').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          open(btn.querySelector('.material-label').textContent, btn.dataset.drawer);
+        });
+      });
+
+      document.getElementById('drawer-close').addEventListener('click', close);
+      overlay.addEventListener('click', close);
+    })();
+  </script>
+</body>
+</html>

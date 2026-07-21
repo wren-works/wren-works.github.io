@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="王婉婷的 AI 产品经理作品集：记录产品项目、实验和思考。">
+  <meta name="theme-color" content="#FAFAF8">
+  <title>王婉婷 · AI 产品经理作品集</title>
+  <link rel="stylesheet" href="src/style.css">
+</head>
+<body>
+
+  <button class="sidebar-toggle" id="sidebar-toggle" aria-label="打开导航" aria-expanded="false" aria-controls="sidebar">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
+      <line x1="3" y1="5" x2="17" y2="5"/>
+      <line x1="3" y1="10" x2="17" y2="10"/>
+      <line x1="3" y1="15" x2="17" y2="15"/>
+    </svg>
+  </button>
+
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+  <aside class="sidebar" id="sidebar" aria-label="站点导航">
+    <div class="sidebar-inner">
+      <div class="sidebar-brand">
+        <a href="./index.html">personal lab</a>
+      </div>
+      <nav class="sidebar-nav">
+        <a href="./index.html" class="sidebar-link active">Home</a>
+        <span class="sidebar-label">Cases</span>
+        <a href="content/renovation-followup/index.html" class="sidebar-link">FollowUp Copilot</a>
+        <a href="content/decisionhelp/index.html" class="sidebar-link">DecisionHelp</a>
+        <a href="content/research-workflow/index.html" class="sidebar-link">AI Research Workflow</a>
+        <span class="sidebar-label">Contact</span>
+        <a href="mailto:wangwanting7@outlook.com" class="sidebar-link">Email</a>
+        <a href="assets/resume.pdf" target="_blank" rel="noreferrer" class="sidebar-link">简历 ↗</a>
+        <a href="https://github.com/Tom90603" target="_blank" rel="noreferrer" class="sidebar-link">GitHub ↗</a>
+      </nav>
+    </div>
+  </aside>
+
+  <main class="main-content">
+    <section class="hero" aria-labelledby="hero-title">
+      <p class="hero-identity">王婉婷 · AI 产品经理 / 产品经理 · 上海</p>
+      <h1 id="hero-title">一个记录项目、<br>实验和产品思考的个人实验室</h1>
+      <p class="hero-desc">
+        我关注 AI 如何进入真实工作流。<br>
+        从问题定义、产品决策到原型构建与实现验证，<br>
+        探索技术能力和用户控制感之间的平衡。
+      </p>
+      <div class="hero-links" aria-label="个人链接">
+        <a href="mailto:wangwanting7@outlook.com">Email</a>
+        <a href="assets/resume.pdf" target="_blank" rel="noreferrer">简历 ↗</a>
+        <a href="https://github.com/Tom90603" target="_blank" rel="noreferrer">GitHub ↗</a>
+      </div>
+    </section>
+
+    <section class="cases" aria-labelledby="cases-title">
+      <h2 class="section-title" id="cases-title">Selected Projects</h2>
+      <div class="cases-inner">
+
+        <article class="case-card">
+          <div class="case-meta">
+            <span class="case-tag">AI Product</span>
+            <span class="case-company">真实业务试用 · Web App</span>
+          </div>
+          <h3 class="case-name">
+            <a href="content/renovation-followup/index.html">FollowUp Copilot</a>
+          </h3>
+          <p class="case-desc">
+            把跨月的装修客户聊天整理成可追溯的状态卡，帮助负责人恢复上下文、识别待办并决定下一步；已从五组历史样本进入受控真实试用。
+          </p>
+          <p class="case-detail">问题定义 · 工作流设计 · 证据机制 · AI API · 隐私边界 · 真实试用</p>
+          <div class="case-footer">
+            <span class="case-time">阅读时间：8 min</span>
+            <a href="content/renovation-followup/index.html" class="case-link">View Case →</a>
+          </div>
+        </article>
+
+        <article class="case-card">
+          <div class="case-meta">
+            <span class="case-tag">AI Product</span>
+            <span class="case-company">独立产品 · Android App</span>
+          </div>
+          <h3 class="case-name">
+            <a href="content/decisionhelp/index.html">DecisionHelp</a>
+          </h3>
+          <p class="case-desc">
+            把散落在小红书和大众点评里的收藏截图，整理成可编辑、可比较、可删减的地点候选，帮助用户从“收藏很多”走向“留下 2–3 个”。
+          </p>
+          <p class="case-detail">产品定义 · 架构设计 · 实现验证 · 个人真实场景验证</p>
+          <div class="case-footer">
+            <span class="case-time">阅读时间：6 min</span>
+            <a href="content/decisionhelp/index.html" class="case-link">View Case →</a>
+          </div>
+        </article>
+
+        <article class="case-card">
+          <div class="case-meta">
+            <span class="case-tag">AI Workflow</span>
+            <span class="case-company">独立实验 · Skill</span>
+          </div>
+          <h3 class="case-name">
+            <a href="content/research-workflow/index.html">AI Research Workflow</a>
+          </h3>
+          <p class="case-desc">
+            从一次差点被早期假设带偏的研究出发，把开放探索与固定选项决策拆成两个 Skill，并用同模型对照实验检验价值与边界。
+          </p>
+          <p class="case-detail">问题路由 · Skill 设计 · 对照实验 · 证据与可更新性</p>
+          <div class="case-footer">
+            <span class="case-time">阅读时间：8 min</span>
+            <a href="content/research-workflow/index.html" class="case-link">View Case →</a>
+          </div>
+        </article>
+
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>王婉婷 · 上海 · <a href="mailto:wangwanting7@outlook.com">wangwanting7@outlook.com</a></p>
+  </footer>
+
+  <script>
+    const toggle = document.getElementById('sidebar-toggle');
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('sidebar-overlay');
+
+    function setSidebar(open) {
+      sidebar.classList.toggle('open', open);
+      overlay.classList.toggle('open', open);
+      toggle.setAttribute('aria-expanded', String(open));
+      toggle.setAttribute('aria-label', open ? '关闭导航' : '打开导航');
+    }
+
+    toggle.addEventListener('click', () => setSidebar(!sidebar.classList.contains('open')));
+    overlay.addEventListener('click', () => setSidebar(false));
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape') setSidebar(false);
+    });
+  </script>
+</body>
+</html>

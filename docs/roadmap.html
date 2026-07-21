@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>personal lab · Roadmap</title>
+  <link rel="stylesheet" href="../src/case.css">
+</head>
+<body>
+
+  <button class="sidebar-toggle" id="sidebar-toggle" aria-label="Toggle sidebar">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+      <line x1="3" y1="5" x2="17" y2="5"/>
+      <line x1="3" y1="10" x2="17" y2="10"/>
+      <line x1="3" y1="15" x2="17" y2="15"/>
+    </svg>
+  </button>
+
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-inner">
+      <div class="sidebar-brand">
+        <a href="../index.html">personal lab</a>
+      </div>
+      <nav class="sidebar-nav">
+        <a href="../index.html" class="sidebar-link">Home</a>
+        <span class="sidebar-label">Cases</span>
+        <a href="../content/nomi/nomi.html" class="sidebar-link">NOMI AI Research</a>
+        <a class="sidebar-link muted">Interview Study</a>
+        <span class="sidebar-label">Docs</span>
+        <a href="roadmap.html" class="sidebar-link active">Roadmap</a>
+      </nav>
+    </div>
+  </aside>
+
+  <div class="case-main">
+    <nav class="case-nav">
+      <a href="../index.html" class="case-nav-back">Home</a>
+      <span class="case-nav-sep">/</span>
+      <span class="case-nav-current">路线图</span>
+    </nav>
+
+    <div class="case-section" style="padding-top:48px;">
+      <div class="md-content" id="content" data-md="roadmap.md"></div>
+    </div>
+
+    <footer class="case-footer">
+      <a href="../index.html">← Back to Portfolio</a>
+    </footer>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="../src/render.js"></script>
+  <script>
+    Render.auto();
+
+    (function() {
+      const toggle = document.getElementById('sidebar-toggle');
+      const sidebar = document.getElementById('sidebar');
+      const overlay = document.getElementById('sidebar-overlay');
+      function open()  { sidebar.classList.add('open'); overlay.classList.add('open'); }
+      function close() { sidebar.classList.remove('open'); overlay.classList.remove('open'); }
+      toggle.addEventListener('click', () => sidebar.classList.contains('open') ? close() : open());
+      overlay.addEventListener('click', close);
+      document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+    })();
+  </script>
+</body>
+</html>

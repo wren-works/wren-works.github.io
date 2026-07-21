@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="NOMI 具身 AI Agent 独立研究：当车载 AI 从回答问题走向影响行动，如何设计授权边界、状态可见性与恢复机制。">
+  <meta name="theme-color" content="#FAFAF8">
+  <title>NOMI AI Research · 王婉婷的产品作品集</title>
+  <link rel="stylesheet" href="../decisionhelp/decision.css">
+  <link rel="stylesheet" href="nomi.css">
+</head>
+<body>
+  <header class="case-header">
+    <a class="case-brand" href="../../index.html"><span>WW</span> 王婉婷</a>
+    <nav aria-label="案例导航">
+      <a href="../../index.html#cases-title">全部项目</a>
+      <a href="../../assets/resume.pdf" target="_blank" rel="noreferrer">简历</a>
+      <a href="mailto:wangwanting7@outlook.com">联系我</a>
+    </nav>
+  </header>
+
+  <main>
+    <nav class="breadcrumb" aria-label="面包屑">
+      <a href="../../index.html">首页</a><span>/</span><span>NOMI AI Research</span>
+    </nav>
+
+    <section class="case-hero">
+      <div class="case-kicker">INDEPENDENT RESEARCH · AI PRODUCT STRATEGY</div>
+      <h1>NOMI AI Research</h1>
+      <p class="case-thesis">当 AI 开始影响行动，<br>谁在授权它？</p>
+      <p class="case-lead">NOMI 正从语音入口走向能理解上下文、综合多项因素给出建议的具身 AI。能力越强，产品问题越不只是“有没有听懂”，而是：在多人座舱中，用户如何知道它听见了谁、准备做什么，以及一次行动是否真的获得了授权。</p>
+      <dl class="case-facts">
+        <div><dt>类型</dt><dd>独立产品研究</dd></div>
+        <div><dt>更新</dt><dd>2026.07</dd></div>
+        <div><dt>方法</dt><dd>能力演进 · 风险建模</dd></div>
+        <div><dt>产出</dt><dd>授权框架 · 概念方案</dd></div>
+      </dl>
+      <div class="case-note">非蔚来官方项目，与蔚来不存在任职、合作或委托关系。本页基于研究截点可访问的官方资料提出概念方案；未进行实车测试、用户访谈或内部数据验证。</div>
+    </section>
+
+    <section class="case-section" id="shift">
+      <div class="section-label">01 · SHIFT</div>
+      <div class="section-content">
+        <h2>旧问题已经失效，风险正在迁移</h2>
+        <p class="section-intro">早期研究关注免唤醒是否默认开放。但最新官方资料已经把全舱免唤醒、端到端架构、强化学习优化和多因素补能建议放进同一条能力演进中。继续讨论“要不要免唤醒”，会错过更重要的变化。</p>
+        <div class="research-summary">
+          <article><span>语音助手</span><h3>它有没有听懂？</h3><p>核心对象是单条指令；主要风险是误唤醒、误识别和任务失败。</p></article>
+          <article><span>智能建议</span><h3>它为什么这样建议？</h3><p>系统开始综合路线、车辆状态、权益和用户习惯，影响用户决策路径。</p></article>
+          <article><span>具身 Agent</span><h3>谁允许它行动？</h3><p>多人共享空间里，注意对象、行动意图和授权状态都需要对所有人可见。</p></article>
+        </div>
+        <div class="loop-timeline" aria-label="NOMI 能力演进与研究问题变化">
+          <article><b>2024</b><div><strong>全舱免唤醒进入量产体验</strong><p>车控、导航和媒体等场景可以跳过唤醒词。原研究的“能力是否存在”问题到这里已经失去价值。</p></div></article>
+          <article><b>2025</b><div><strong>物理交互与推理能力同时增强</strong><p>NOMI Mate 3.0 支持 340° 转向与头部触摸反馈；补能助手可综合 21 项因素形成个性化建议。</p></div></article>
+          <article><b>2026</b><div><strong>端到端架构强化连续理解</strong><p>NOMI Intelligence 4.0 引入升级后的端到端架构，并以真实与仿真用户数据进行强化学习优化。</p></div></article>
+          <article><b>NOW</b><div><strong>研究目标转向授权与可恢复性</strong><p>本案例不再评价谁的语音能力更强，而是设计能力升级后仍然成立的行动边界。</p></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section" id="evidence">
+      <div class="section-label">02 · EVIDENCE</div>
+      <div class="section-content">
+        <h2>公开事实只能证明能力变化，不能替代用户证据</h2>
+        <p class="section-intro">我把材料限制在官方产品页、发布信息和用户手册。它们可以证明“产品公开承诺了什么”，但不能证明真实使用率、准确率、用户感受或团队动机。</p>
+        <div class="evidence-table" role="table" aria-label="研究证据分层">
+          <div class="evidence-row evidence-head" role="row"><span>材料</span><span>支持什么</span><span>判断类型</span></div>
+          <div class="evidence-row" role="row"><strong>NIO Full Stack</strong><span>NOMI Intelligence 4.0 采用升级后的端到端架构，并使用真实与仿真用户数据做强化学习优化。</span><i class="fact">公开事实</i></div>
+          <div class="evidence-row" role="row"><strong>2025 款 ET5 / ET5T</strong><span>NOMI Mate 3.0 提供 340° 转向和触摸反馈；补能助手可分析 21 项因素并给出建议。</span><i class="fact">公开事实</i></div>
+          <div class="evidence-row" role="row"><strong>ES7 用户手册</strong><span>全舱免唤醒已覆盖车控、导航与媒体等场景，证明研究不应继续停留在唤醒入口。</span><i class="fact">公开事实</i></div>
+          <div class="evidence-row" role="row"><strong>风险从识别转向授权</strong><span>当系统开始影响决策与行动，错误成本取决于后果和可逆性，而不只取决于识别准确率。</span><i class="inference">产品推断</i></div>
+          <div class="evidence-row" role="row"><strong>实体可承载 Agent 状态</strong><span>利用朝向、动作和屏幕反馈，让注意对象、行动意图与授权状态在多人空间中可见。</span><i class="hypothesis">设计假设</i></div>
+        </div>
+        <p class="research-cutoff">研究截点：2026.07。旧版本资料仅用于描述能力演进，不用于判断当前体验水平。</p>
+      </div>
+    </section>
+
+    <section class="case-section" id="insight">
+      <div class="section-label">03 · INSIGHT</div>
+      <div class="section-content">
+        <h2>同样一次“理解正确”，可能对应完全不同的产品风险</h2>
+        <p class="section-intro">传统语音评估把结果压缩成识别准确率或任务成功率。但 Agent 的输出开始影响现实状态后，真正决定交互策略的是行动后果、可逆性和授权歧义。</p>
+        <div class="comparison-grid">
+          <article><span>回答</span><h3>信息可以被质疑</h3><p>天气、知识问答或闲聊答错，通常不会直接改变车辆或账户状态。</p><small>设计重点：来源、置信度与纠错</small></article>
+          <article><span>建议</span><h3>选择路径被改变</h3><p>补能和路线建议会影响时间、费用与后续安排，需要说明依据并允许比较。</p><small>设计重点：理由、选项与偏好</small></article>
+          <article><span>执行</span><h3>现实状态被改变</h3><p>车控、导航或跨服务操作一旦执行，必须确认授权对象，并提供低成本恢复路径。</p><small>设计重点：权限、确认与撤销</small></article>
+        </div>
+        <blockquote>核心判断：Agent 的自主性不应跟随“模型能力”统一升级，而应跟随每次行动的后果、可逆性、身份歧义和上下文置信度动态变化。</blockquote>
+      </div>
+    </section>
+
+    <section class="case-section" id="framework">
+      <div class="section-label">04 · FRAMEWORK</div>
+      <div class="section-content">
+        <h2>把“更聪明”拆成四级自主性</h2>
+        <p class="section-intro">不是每个任务都需要同等确认，也不能让模型自行决定是否越过用户。授权策略应先由产品规则限定，再让模型在边界内判断。</p>
+        <div class="strategy-stack">
+          <article><b>A0</b><div><span>感知 · 不打扰</span><h3>只更新上下文，不主动输出</h3><p>环境信息不明确、多人闲聊或与当前任务无关时保持沉默；不得因为“可能有帮助”就插入对话。</p></div></article>
+          <article><b>A1</b><div><span>建议 · 不执行</span><h3>说明理由，并保留备选方案</h3><p>适用于补能、路线与内容推荐。建议需要暴露关键依据，用户可以忽略或改选。</p></div></article>
+          <article><b>A2</b><div><span>确认 · 再执行</span><h3>高后果或身份不明确时显式授权</h3><p>当操作影响费用、隐私、其他乘员或难以撤销时，明确复述动作、对象和后果。</p></div></article>
+          <article><b>A3</b><div><span>低风险 · 自动执行</span><h3>仅限高置信、可逆且已授权的任务</h3><p>例如用户已建立偏好且能即时撤销的低风险操作；连续失败后自动降回 A2。</p></div></article>
+          <article class="fallback"><b>ESC</b><div><span>恢复机制 · 所有层级共用</span><h3>可取消、可撤销、可追溯</h3><p>用户需要知道刚才发生了什么、由谁触发、如何恢复。撤销不是异常流程，而是 Agent 体验的基础能力。</p></div></article>
+        </div>
+        <div class="method-rule"><strong>自主性判定</strong><span>行动后果 × 可逆性 × 身份歧义 × 上下文置信度。任一维度进入高风险，就不能仅凭模型“很确定”自动执行。</span></div>
+      </div>
+    </section>
+
+    <section class="case-section" id="embodiment">
+      <div class="section-label">05 · EMBODIMENT</div>
+      <div class="section-content">
+        <h2>让 NOMI 的身体成为共享的 Agent 状态界面</h2>
+        <p class="section-intro">屏幕只服务正在看屏幕的人；声音又会占用全舱注意力。NOMI 的实体朝向和动作可以提供一种低打扰、可扫视的公共反馈，但高风险授权仍需语音、屏幕或方向盘控制共同完成。</p>
+        <div class="strategy-stack state-stack">
+          <article><b>01</b><div><span>LISTENING</span><h3>朝向说话者，标明当前注意对象</h3><p>让主驾和其他乘员都能看出 NOMI 正在听谁，降低多人同时说话时的身份歧义。</p></div></article>
+          <article><b>02</b><div><span>INTERPRETING</span><h3>用短动作表示正在理解，而不是已经执行</h3><p>把“收到输入”和“接受行动”分成两个状态，避免用户把礼貌回应误解为操作已完成。</p></div></article>
+          <article><b>03</b><div><span>AWAITING APPROVAL</span><h3>面向授权者，并在屏幕展示动作摘要</h3><p>高风险任务同时说明动作、对象和后果；行驶中优先使用方向盘按键或简短语音确认。</p></div></article>
+          <article><b>04</b><div><span>DONE / UNDONE</span><h3>明确完成结果，并保留短时撤销入口</h3><p>反馈必须区分“建议已生成”“操作已提交”和“结果已生效”，失败时直接给出恢复路径。</p></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section" id="evaluation">
+      <div class="section-label">06 · VALIDATION</div>
+      <div class="section-content">
+        <h2>先验证用户是否看得懂，再验证系统是否更聪明</h2>
+        <p class="section-intro">本方案尚未经过用户测试。下一步不是先训练更复杂的模型，而是用低成本原型验证状态表达和授权规则是否真的减少歧义。</p>
+        <div class="metric-map">
+          <div class="metric-row metric-head"><span>指标</span><span>回答的问题</span><span>验证方式</span></div>
+          <div class="metric-row"><strong>授权对象判断正确率</strong><span>乘员能否判断 NOMI 正在等待谁确认？</span><span>多人场景视频测试</span></div>
+          <div class="metric-row"><strong>状态理解率</strong><span>用户能否区分聆听、建议、待确认与已执行？</span><span>无说明原型理解测试</span></div>
+          <div class="metric-row"><strong>非预期执行率</strong><span>自主性规则是否阻止了错误行动？</span><span>脚本任务 + 实车日志</span></div>
+          <div class="metric-row"><strong>确认负担</strong><span>安全边界是否造成过多打断？</span><span>每任务确认次数 + 完成时长</span></div>
+          <div class="metric-row"><strong>恢复成功率</strong><span>误操作后能否一次取消或撤销？</span><span>异常任务测试</span></div>
+        </div>
+        <div class="validation-path" aria-label="验证路径">
+          <article><span>01</span><strong>能力拆解</strong><p>按回答、建议和执行建立当前任务清单。</p></article>
+          <i>→</i>
+          <article><span>02</span><strong>视频原型</strong><p>制作朝向、状态动作与确认界面的组合。</p></article>
+          <i>→</i>
+          <article><span>03</span><strong>理解测试</strong><p>观察用户能否在无讲解下判断状态与授权对象。</p></article>
+          <i>→</i>
+          <article><span>04</span><strong>实车验证</strong><p>覆盖多人、噪声、行驶和异常恢复场景。</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section" id="limits">
+      <div class="section-label">07 · LIMITS</div>
+      <div class="section-content">
+        <h2>这是一套待验证的产品假设，不是体验结论</h2>
+        <div class="boundary-grid">
+          <article><span>无实车测试</span><p>无法判断当前 NOMI 的真实状态反馈、多人识别准确率和恢复体验。</p></article>
+          <article><span>无用户研究</span><p>尚未证明实体朝向能提升状态理解，也未比较不同乘员和驾驶情境的差异。</p></article>
+          <article><span>无内部任务清单</span><p>无法准确划分当前功能的风险等级、权限边界和系统可撤销能力。</p></article>
+          <article><span>公开资料偏向能力展示</span><p>官方材料可以证明公开功能与定位，不能证明日常使用质量和用户价值。</p></article>
+        </div>
+
+        <h3 class="sources-heading">核心公开来源</h3>
+        <ol class="source-list">
+          <li><a href="https://www.nio.com/innovation" target="_blank" rel="noreferrer"><strong>NIO</strong><span>NIO Full Stack · NOMI Intelligence 4.0 架构与能力</span><i>↗</i></a></li>
+          <li><a href="https://www.nio.com/news/20250525001" target="_blank" rel="noreferrer"><strong>NIO · 2025</strong><span>新 ET5 / ET5T · NOMI Mate 3.0 与补能助手</span><i>↗</i></a></li>
+          <li><a href="https://www.nio.com/news/20250516001" target="_blank" rel="noreferrer"><strong>NIO · 2025</strong><span>新 ES6 / EC6 · NOMI Mate 3.0 物理交互</span><i>↗</i></a></li>
+          <li><a href="https://cdn-public.nio.com/www-nio-cn/user-instructions/ES7/index.html" target="_blank" rel="noreferrer"><strong>NIO 手册</strong><span>ES7 用户手册 · 全舱免唤醒的适用场景</span><i>↗</i></a></li>
+          <li><a href="https://www.nio.cn/smart-technology/20241121003" target="_blank" rel="noreferrer"><strong>NIO · 历史</strong><span>Banyan 3.0.0 · 能力演进的历史节点</span><i>↗</i></a></li>
+        </ol>
+        <blockquote class="reflection">这次改写不再试图从公开网页猜测团队为什么做出某个决定，而是用公开能力变化找到一个可以被原型和用户测试推翻的产品问题。</blockquote>
+      </div>
+    </section>
+
+    <nav class="case-next" aria-label="下一项目">
+      <span>下一个项目</span>
+      <a href="../renovation-followup/index.html"><strong>FollowUp Copilot</strong><i>→</i></a>
+    </nav>
+  </main>
+
+  <footer class="case-footer">
+    <span>王婉婷 · AI Product Portfolio</span>
+    <a href="mailto:wangwanting7@outlook.com">wangwanting7@outlook.com</a>
+  </footer>
+</body>
+</html>

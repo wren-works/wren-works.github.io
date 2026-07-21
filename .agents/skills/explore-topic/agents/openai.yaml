@@ -1,0 +1,4 @@
+interface:
+  display_name: "探索研究"
+  short_description: "用动态视角探索开放主题，发现矛盾、异常、未知方向并延迟收敛"
+  default_prompt: "Use $explore-topic to explore this topic broadly, build an evidence-led issue map, challenge the first frame, and synthesize only after the landscape is mapped."

@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="AI Research Workflow 产品案例：把研究 Skill 是否有用，从主观感受变成可以失败、比较和更新的实验问题。">
+  <meta name="theme-color" content="#FAFAF8">
+  <title>AI Research Workflow · 王婉婷的产品作品集</title>
+  <link rel="stylesheet" href="../decisionhelp/decision.css">
+  <link rel="stylesheet" href="research.css">
+</head>
+<body>
+  <header class="case-header">
+    <a class="case-brand" href="../../index.html"><span>WW</span> 王婉婷</a>
+    <nav aria-label="案例导航">
+      <a href="../../index.html#cases-title">全部项目</a>
+      <a href="../../assets/resume.pdf" target="_blank" rel="noreferrer">简历</a>
+      <a href="mailto:wangwanting7@outlook.com">联系我</a>
+    </nav>
+  </header>
+
+  <main>
+    <nav class="breadcrumb" aria-label="面包屑">
+      <a href="../../index.html">首页</a><span>/</span><span>AI Research Workflow</span>
+    </nav>
+
+    <section class="case-hero">
+      <div class="case-kicker">AI WORKFLOW · SKILL EVALUATION</div>
+      <h1>AI Research<br>Workflow</h1>
+      <p class="case-thesis">我没有把“报告看起来更专业”<br>当作 Skill 有用。</p>
+      <p class="case-lead">我把它变成一个可以失败、比较和更新的实验问题：同一个模型使用研究 Skill 后，究竟发现了更多，还是只把同样的内容写得更长？</p>
+      <dl class="case-facts">
+        <div><dt>角色</dt><dd>独立设计与评估</dd></div>
+        <div><dt>周期</dt><dd>2026.07</dd></div>
+        <div><dt>方法</dt><dd>同模型对照</dd></div>
+        <div><dt>状态</dt><dd>开发集验证</dd></div>
+      </dl>
+      <div class="case-note">AI 辅助研究执行与代码工作；问题定义、Skill 设计、对照方案、评估规则和结果判断由本人完成。当前只有开发集单次运行，不主张普遍优于默认模型。</div>
+    </section>
+
+    <section class="case-section story-section" id="origin">
+      <div class="section-label">01 · ORIGIN</div>
+      <div class="section-content prose">
+        <h2>事情从一次差点跑偏的研究开始</h2>
+        <p>最开始，我只是想把 NOMI 的一次独立研究整理进作品集。</p>
+        <p>研究一共跑了六轮。资料越来越多，结论也越来越完整，但有个问题一直让我不太舒服：最初那句“NOMI 可能缺少免唤醒能力”，差点决定了后面所有搜索的方向。</p>
+        <p>后来找到官方版本资料，我才把判断修正过来。问题不只是一条资料过期，而是 AI 很容易沿着第一个看起来合理的解释继续深挖。它可以把一条路走得很远，却不一定会主动问：</p>
+        <p class="turning-question">有没有另一条路？</p>
+        <p>我当时想到的办法，是给研究过程做一个 Skill——一份会被模型自动调用的工作说明书，规定何时探索、何时比较选项、哪些结论需要直接证据，以及什么时候该停止继续搜索。</p>
+        <p>听上去挺合理。</p>
+        <p><strong>但“多了一套流程”和“研究真的变好”，是两回事。</strong></p>
+        <a class="context-link" href="../nomi/nomi.html">查看最初的 NOMI 独立研究 ↗</a>
+      </div>
+    </section>
+
+    <section class="case-section" id="definition">
+      <div class="section-label">02 · DEFINITION</div>
+      <div class="section-content prose">
+        <h2>一份更像报告的报告，不一定更有用</h2>
+        <p>研究类输出很容易制造一种错觉：引用更多、表格更全、章节更完整，质量自然就更高。</p>
+        <p>可如果它只是把同一个判断写得更长呢？如果模型为了填满 Decision Brief，反而提前决定了问题该往哪里收敛呢？</p>
+        <p>所以我没有用篇幅和引用数量直接代表质量，而是先定义“强洞察”：它至少要解释可能的机制，并改变产品理解或下一步行动；如果还能给出区分竞争解释的测试和推翻条件，才算最高一级。</p>
+        <div class="definition-grid" aria-label="评估定义">
+          <article><span>QUALITY</span><h3>行动价值</h3><p>是否改变产品理解、优先级或下一步行动，而不只是补充背景。</p></article>
+          <article><span>DEPTH</span><h3>机制与反证</h3><p>是否解释为什么，并给出能区分其他解释的测试或翻转条件。</p></article>
+          <article><span>GATE</span><h3>事实门槛</h3><p>事实错误、引用不支持、版本或地区错配，不被其他高分平均掉。</p></article>
+        </div>
+        <blockquote>这一步让“我觉得这篇更好”，第一次变成了可以复核的问题。</blockquote>
+      </div>
+    </section>
+
+    <section class="case-section" id="failure">
+      <div class="section-label">03 · FIRST FAILURE</div>
+      <div class="section-content prose">
+        <h2>第一轮，Skill 失败得很有价值</h2>
+        <p>我先让同一个模型研究 AI 会议助手。提示词和工具尽量保持一致，一组使用默认研究方式，另一组调用第一版 Decision Research Skill。</p>
+        <p>结果有点尴尬。</p>
+        <div class="metric-compare" role="table" aria-label="AI 会议助手任务对照结果">
+          <div class="metric-row metric-head" role="row"><span>指标</span><span>默认研究</span><span>第一版 Skill</span></div>
+          <div class="metric-row" role="row"><strong>强洞察</strong><span>4 条</span><span>4 条</span></div>
+
+          <div class="metric-row" role="row"><strong>耗时</strong><span>约 3 分钟</span><span>约 9 分钟</span></div>
+
+
+        </div>
+        <p>Skill 版本更擅长补充反证、验证条件和更新路径，但没有发现更多。更麻烦的是，这本来是一道开放研究题，没有明确负责人、选项和截止日期，Skill 却强行把它写成了 Decision Brief。</p>
+        <p class="turning-question">结构没有服务问题，反而开始替研究定义问题。</p>
+        <div class="judgment-change"><span>判断变化</span><p>厚 Skill 更像一个“把洞察变得可审计”的收敛工具，不是更强的自由发现器。</p></div>
+      </div>
+    </section>
+
+    <section class="case-section" id="discipline">
+      <div class="section-label">04 · DISCIPLINE</div>
+      <div class="section-content prose">
+        <h2>第二轮暴露的，不只是写作问题</h2>
+        <p>智能手环任务中，有一次 Skill 运行读取并修订了工作区里的既有产出。</p>
+        <p>如果只看最终文本，它可能仍然是一篇不错的报告。但它已经不能和默认条件公平比较，因为它提前看过答案的一部分。</p>
+        <p>我保留这份产出，并把它标记为污染样本，不计入正式结果。后面的任务开始使用隔离工作区、唯一输出路径和统一保存的实际提示词。</p>
+        <blockquote>如果工作流本身无法被审计，它写多少“可追溯性”都没有用。</blockquote>
+      </div>
+    </section>
+
+    <section class="case-section" id="split">
+      <div class="section-label">05 · PRODUCT DECISION</div>
+      <div class="section-content prose">
+        <h2>我没有继续加模板，而是把问题拆开</h2>
+        <p>前两轮已经说明，开放探索和固定选项决策不是同一个优化问题。</p>
+        <p>Discovery 要理解变化、矛盾、机制和机会；Decision 要比较真实选项，保留证据台账、最高风险假设和翻转条件。把二者塞进同一份厚模板，只会让探索题过早收敛。</p>
+        <div class="skill-split">
+          <article>
+            <span>EXPLORE-TOPIC</span>
+            <h3>先扩大问题空间</h3>
+            <p>先侦察，再综合；主动检查相邻形态、被忽略角色、竞争解释和反证分支。</p>
+            <small>优化：视角广度与打破首个框架</small>
+          </article>
+          <i aria-hidden="true">≠</i>
+          <article>
+            <span>DECISION-RESEARCH</span>
+            <h3>再收敛成可更新决策</h3>
+            <p>比较固定选项，记录主张—证据映射、风险假设、翻转条件和停止规则。</p>
+            <small>优化：可审计性与可更新性</small>
+          </article>
+        </div>
+        <p><strong>它们不是基础版和专业版，而是优化两种不同的认知动作。</strong></p>
+      </div>
+    </section>
+
+    <section class="case-section" id="discovery-result">
+      <div class="section-label">06 · DISCOVERY</div>
+      <div class="section-content prose">
+        <h2>薄 Skill 没有凭空制造更多观点</h2>
+        <p>我用同一组具身智能题，比较默认研究、厚 Decision Research 和薄 Explore Topic。三份报告都收敛到了相似主干：真实工位、异常运营、数据闭环和形态选择。</p>
+        <p>薄 Skill 真正增加或显著强化的是 2–3 个分支：经营高价值失败数据；把人机协作的可预期性与成功率分开测试；以及先证明什么时候不该使用人形机器人，再决定形态。</p>
+        <div class="judgment-change"><span>判断变化</span><p>薄 Skill 的价值更接近“重新组织问题地图”，而不是“生成更多观点”。这只是一道开发题，支持继续测试，不支持宣布胜利。</p></div>
+      </div>
+    </section>
+
+    <section class="case-section" id="decision-result">
+      <div class="section-label">07 · DECISION</div>
+      <div class="section-content prose">
+        <h2>厚 Skill 回到决策题，价值才更清楚</h2>
+        <p>最后一轮，我给两个条件同一个实际决策：一家 15 人中国团队，要为面向欧盟的英德语会议助手，在云端优先、端侧优先和混合架构之间选择 MVP 默认方案。</p>
+        <p>评分前，两份报告被隐藏了条件标签。</p>
+        <p>两份报告的盲审结果几乎持平。Skill 版本只在可更新性上多出 1 分，来自更完整的主张—证据映射、最高风险假设、翻转条件和局部更新路径；代价是更长的输出和更高的耗时。</p>
+        <p>更有意思的是，两份报告给出了相反推荐。一份选受控的 EU 云端优先，一份选端侧优先。</p>
+        <p>这不是评估失效。它暴露了公开网页回答不了的变量：目标硬件上的英德语效果、真实会议声学、客户采购政策，以及客户是否接受原始音频离开设备。</p>
+        <p class="turning-question">继续搜索不会自动产生正确答案。更有价值的是，指出哪组测试能区分它们。</p>
+      </div>
+    </section>
+
+    <section class="case-section" id="limits">
+      <div class="section-label">08 · LIMITS</div>
+      <div class="section-content prose">
+        <h2>现在，我能说到哪里</h2>
+        <div class="boundary-grid">
+          <article>
+            <span>目前支持</span>
+            <h3>两个早期信号</h3>
+            <ul>
+              <li>厚 Skill 的主要价值是可审计性、反证和更新能力，不是开放题中的更多发现。</li>
+              <li>薄 Skill 在一个开发题里扩大了视角，并强化了探索分支。</li>
+            </ul>
+          </article>
+          <article class="boundary-muted">
+            <span>目前不支持</span>
+            <h3>普遍优于默认模型</h3>
+            <ul>
+              <li>所有任务都参与过流程设计，属于开发数据。</li>
+              <li>每个条件只有一次运行，没有 token、成本和人工审阅时间。</li>
+              <li>NOMI 没有使用新版 Skill 重跑，不能声称研究质量因此提升。</li>
+            </ul>
+          </article>
+        </div>
+        <h3 class="next-heading">下一轮真正要回答的问题</h3>
+        <ol class="next-list">
+          <li><span>01</span><div><strong>换成未见行业任务</strong><p>把开发题和评估题分开，降低针对题目优化流程的风险。</p></div></li>
+          <li><span>02</span><div><strong>每个条件至少运行三次</strong><p>先观察结果是否稳定，再讨论平均收益和失败模式。</p></div></li>
+          <li><span>03</span><div><strong>加入小模型对照</strong><p>检验合适的流程能否让更小模型，以更低成本接近大模型默认研究的可靠性与行动价值。</p></div></li>
+        </ol>
+        <p class="closing-line">我最开始只是想让 NOMI 的研究写得更完整。最后得到的不是一篇“更厉害的 NOMI 报告”，而是一套会承认自己可能没用、也知道下一步该怎样证明的研究工作流。</p>
+      </div>
+    </section>
+
+    <nav class="case-next" aria-label="下一项目">
+      <span>回到更接近真实使用的项目</span>
+      <a href="../renovation-followup/index.html"><strong>FollowUp Copilot</strong><i>→</i></a>
+    </nav>
+  </main>
+
+  <footer class="case-footer">
+    <span>王婉婷 · AI Product Portfolio</span>
+    <a href="mailto:wangwanting7@outlook.com">wangwanting7@outlook.com</a>
+  </footer>
+</body>
+</html>

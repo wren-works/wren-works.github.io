@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="DecisionHelp 产品案例：把小红书和大众点评收藏截图整理成可编辑、可比较的地点候选。">
+  <meta name="theme-color" content="#FAFAF8">
+  <title>DecisionHelp · 王婉婷的产品作品集</title>
+  <link rel="stylesheet" href="decision.css">
+</head>
+<body>
+  <header class="case-header">
+    <a class="case-brand" href="../../index.html"><span>WW</span> 王婉婷</a>
+    <nav aria-label="案例导航">
+      <a href="../../index.html#cases-title">全部项目</a>
+      <a href="../../assets/resume.pdf" target="_blank" rel="noreferrer">简历</a>
+      <a href="mailto:wangwanting7@outlook.com">联系我</a>
+    </nav>
+  </header>
+
+  <main>
+    <nav class="breadcrumb" aria-label="面包屑">
+      <a href="../../index.html">首页</a><span>/</span><span>DecisionHelp</span>
+    </nav>
+
+    <section class="case-hero">
+      <div class="case-kicker">0→1 PRODUCT · AI WORKFLOW</div>
+      <h1>DecisionHelp</h1>
+      <p class="case-thesis">把收藏截图，<br>变成真正可比较的地点候选。</p>
+      <p class="case-lead">在一次真实选址任务中，我导入了 4 张来自小红书和大众点评的收藏截图。系统识别来源与地点信息、提示并合并重复地点，最终生成 3 张包含营业时间与出行时长的候选卡片，并缩小到 2 个候选。</p>
+      <dl class="case-facts">
+        <div><dt>角色</dt><dd>独立产品设计与实现</dd></div>
+        <div><dt>周期</dt><dd>2026.06 — 现在</dd></div>
+        <div><dt>状态</dt><dd>Android 可运行原型</dd></div>
+        <div><dt>验证</dt><dd>个人真实场景</dd></div>
+      </dl>
+      <div class="case-note">职责包括产品定义、交互设计、解析策略、架构设计与实现验证。AI 辅助代码生成与调试，产品决策与验证由本人完成。</div>
+    </section>
+
+    <section class="demo-section" id="demo">
+      <div class="demo-copy">
+        <span class="section-label">FUNCTIONAL PROTOTYPE</span>
+        <h2>4 张截图，整理成 3 个地点，再留下 2 个候选</h2>
+        <p>演示覆盖批量导入、OCR 与字段解析、重复地点确认、同一起点的出行时间、候选标记和地图跳转。它证明的是核心任务链路可以运行，而不是识别已经适用于所有内容。</p>
+        <div class="demo-result" aria-label="演示结果">
+          <div><b>4</b><span>截图输入</span></div>
+          <div><b>1</b><span>组重复</span></div>
+          <div><b>3</b><span>地点卡片</span></div>
+          <div><b>2</b><span>最终候选</span></div>
+        </div>
+        <p class="media-note">出行时间根据录制时的实时路线估算，结果会随路况变化。</p>
+      </div>
+      <figure class="phone-demo">
+        <div class="phone-shell">
+          <video controls muted playsinline preload="metadata" poster="../../assets/decisionhelp-demo/decisionhelp-poster.jpg" aria-label="DecisionHelp 35 秒核心流程演示">
+            <source src="../../assets/decisionhelp-demo/decisionhelp-demo.mp4" type="video/mp4">
+            当前浏览器不支持视频播放。
+          </video>
+        </div>
+        <figcaption>35 秒核心流程 · 真实 Android 原型</figcaption>
+      </figure>
+    </section>
+
+    <section class="case-section" id="problem">
+      <div class="section-label">01 · PROBLEM</div>
+      <div class="section-content">
+        <h2>收藏很多，但决定仍然靠来回切换</h2>
+        <p class="section-intro">准备周末出行或选择餐厅时，我已经在小红书和大众点评收藏了足够多的候选。真正开始选择后，仍需要反复确认地址、人均、营业时间和路程。</p>
+        <div class="problem-story">
+          <p>不同平台提供的信息各有侧重：小红书更接近推荐理由和体验，大众点评包含较完整的商户信息，地图才能回答“从这里过去要多久”。这些信息没有进入同一个比较界面。</p>
+          <p>现有产品持续帮助用户发现更多地点，但收藏不会自动变成决定。问题不是候选太少，而是用户无法低成本地整理已有内容，再逐步删减。</p>
+        </div>
+        <blockquote>收藏解决的是 FOMO，比较才解决选择。</blockquote>
+      </div>
+    </section>
+
+    <section class="case-section" id="goal">
+      <div class="section-label">02 · MVP GOAL</div>
+      <div class="section-content">
+        <h2>先验证“截图能否进入决策流程”</h2>
+        <p class="section-intro">这一轮不验证推荐算法，也不试图一次覆盖所有截图版式，而是回答三个更基础的问题。</p>
+        <div class="goal-grid">
+          <article><span>01</span><h3>低成本输入</h3><p>用户能否直接使用已有截图，而不是重新手动录入收藏？</p></article>
+          <article><span>02</span><h3>统一整理</h3><p>不同来源、不完整的内容，能否形成可编辑的地点卡片？</p></article>
+          <article><span>03</span><h3>继续做决定</h3><p>卡片能否支持去重、比较、缩减候选并发起导航？</p></article>
+        </div>
+        <div class="acceptance-line"><strong>本次完成标准</strong><span>批量导入 → 结构化卡片 → 确认重复 → 同起点比较 → 留下 2–3 个 → 地图导航</span></div>
+      </div>
+    </section>
+
+    <section class="case-section flow-section" id="flow">
+      <div class="section-label">03 · CORE FLOW</div>
+      <div class="section-content">
+        <h2>从 4 张截图到 2 个候选</h2>
+        <p class="section-intro">流程没有要求 AI 一次给出完美答案，而是把自动提取、用户确认和后续行动连接起来。</p>
+        <div class="flow-gallery">
+          <figure class="flow-shot">
+            <div class="shot-frame"><img src="../../assets/decisionhelp-demo/flow/01-import.jpg" alt="DecisionHelp 批量导入四张截图" loading="lazy"></div>
+            <figcaption><span>01 · 输入</span><strong>批量选择 4 张收藏截图</strong><p>保留用户已有的保存习惯，不要求迁移收藏夹。</p></figcaption>
+          </figure>
+          <figure class="flow-shot">
+            <div class="shot-frame"><img src="../../assets/decisionhelp-demo/flow/02-merge.jpg" alt="DecisionHelp 展示浦东美术馆重复地点确认" loading="lazy"></div>
+            <figcaption><span>02 · 整理</span><strong>提示重复，由用户确认合并</strong><p>系统展示两侧信息与匹配理由，不直接替用户决定。</p></figcaption>
+          </figure>
+          <figure class="flow-shot">
+            <div class="shot-frame"><img src="../../assets/decisionhelp-demo/flow/03-shortlist.jpg" alt="DecisionHelp 将三个地点缩小为两个候选" loading="lazy"></div>
+            <figcaption><span>03 · 决策</span><strong>比较路程并留下 2 个候选</strong><p>地址、营业时间和两种出行方式在同屏卡片中完成初步比较。</p></figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section decision-section" id="decisions">
+      <div class="section-label">04 · DECISIONS</div>
+      <div class="section-content">
+        <h2>四个关键产品决策</h2>
+        <div class="decision-list">
+          <article>
+            <span class="decision-index">01</span>
+            <div><h3>选择截图，而不是平台数据同步</h3><p>截图已经是用户保存和分享信息的自然方式，也不依赖平台开放收藏接口。代价是信息不完整，因此产品必须允许缺失、修正和回溯。</p></div>
+          </article>
+          <article>
+            <span class="decision-index">02</span>
+            <div><h3>识别失败不能阻断整理</h3><p>在这个任务里，先得到一个可编辑候选比一次识别全部字段更重要。OCR 或解析失败时仍生成卡片，低置信字段可以留空或由用户补全。</p></div>
+          </article>
+          <article>
+            <span class="decision-index">03</span>
+            <div><h3>稳定信息用规则，模糊内容再考虑 LLM</h3><p>大众点评页面结构相对稳定，规则解析更快且可回归验证；小红书长文本、多地点笔记和模糊描述，才是后续 LLM 应介入的部分。</p></div>
+          </article>
+          <article>
+            <span class="decision-index">04</span>
+            <div><h3>自动发现重复，合并权交给用户</h3><p>同名门店可能属于不同分店。系统负责计算相似度、展示字段差异和来源，最终由用户确认，在效率和控制权之间保持平衡。</p></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section architecture-section" id="ai-ux">
+      <div class="section-label">05 · AI UX</div>
+      <div class="section-content">
+        <h2>把不确定性变成可操作状态</h2>
+        <p class="section-intro">AI 输出不应该只有“成功”和“失败”。DecisionHelp 记录字段来源与置信度，并为不同状态提供对应的用户动作。</p>
+        <div class="confidence-table" role="table" aria-label="置信度处理策略">
+          <div class="table-row table-head" role="row"><span>状态</span><span>系统行为</span><span>用户动作</span></div>
+          <div class="table-row" role="row"><strong>高置信</strong><span>直接写入地点卡片</span><span>浏览时快速确认</span></div>
+          <div class="table-row" role="row"><strong>低置信</strong><span>保留候选并标记</span><span>查看原文、选择文字补全</span></div>
+          <div class="table-row" role="row"><strong>识别失败</strong><span>生成空字段卡片</span><span>手动输入，不丢失导入任务</span></div>
+          <div class="table-row" role="row"><strong>疑似重复</strong><span>展示相似项与差异</span><span>确认保持分开或合并</span></div>
+        </div>
+        <div class="pipeline" aria-label="实现链路">
+          <span>图片选择</span><i>→</i><span>本地 OCR</span><i>→</i><span>来源判断</span><i>→</i><span>规则解析</span><i>→</i><span>卡片与用户确认</span><i>→</i><span>路线估算</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section iteration-section" id="iterations">
+      <div class="section-label">06 · ITERATIONS</div>
+      <div class="section-content">
+        <h2>真实截图暴露了哪些边界</h2>
+        <div class="iteration-grid">
+          <article><span>01</span><h3>多地点笔记不是稳定字段</h3><p>小红书多地点内容容易产生错误归属。继续堆叠脆弱规则的收益有限，因此当前聚焦单地点线索，后续只对低置信和多地点内容引入 LLM。</p></article>
+          <article><span>02</span><h3>跨来源合并需要字段策略</h3><p>同一个地点在两个平台上的信息侧重不同。合并时优先使用大众点评的地址、时间等事实字段，同时保留小红书的推荐理由和原始截图。</p></article>
+          <article><span>03</span><h3>路线结果必须可以校验</h3><p>测试中发现仅使用地址文本会导致路线时间漂移，因此保留地图 POI 标识，并采用与高德默认驾车策略更接近的路线接口；地图详情仍交给外部 App。</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section validation-section" id="validation">
+      <div class="section-label">07 · VALIDATION</div>
+      <div class="section-content">
+        <h2>已证明核心链路可运行，尚未证明普适价值</h2>
+        <div class="evidence-grid">
+          <article>
+            <span>已验证</span>
+            <h3>功能与场景可行性</h3>
+            <ul>
+              <li>4 张跨平台截图整理为 3 个地点</li>
+              <li>识别并确认合并 1 组重复地点</li>
+              <li>在同一页面比较信息与出行时间</li>
+              <li>缩小到 2 个候选并继续地图导航</li>
+              <li>固定 OCR 样例覆盖餐厅、场馆与小红书线索</li>
+            </ul>
+          </article>
+          <article class="evidence-muted">
+            <span>尚未验证</span>
+            <h3>真实用户价值</h3>
+            <ul>
+              <li>尚未进行公开用户测试</li>
+              <li>尚无任务耗时、完成率或留存数据</li>
+              <li>复杂笔记和更多截图版式仍需验证</li>
+              <li>当前结论来自个人真实场景，不代表普遍需求</li>
+            </ul>
+          </article>
+        </div>
+        <h3 class="next-heading">下一步优先级</h3>
+        <ol class="next-list">
+          <li><span>01</span><div><strong>先做 3–5 位用户的任务测试</strong><p>观察用户能否从 6–10 张截图完成导入、修正、去重和缩减候选。</p></div></li>
+          <li><span>02</span><div><strong>记录真实的修正与决策成本</strong><p>关注任务完成率、字段修改率、重复判断和从导入到留下候选的耗时。</p></div></li>
+          <li><span>03</span><div><strong>再决定 LLM 与比较视图的投入</strong><p>只为低置信内容引入模型，并根据测试判断是否需要独立的并排比较页。</p></div></li>
+        </ol>
+        <blockquote class="reflection">这次原型让我确认：AI 产品的交付不是“调用模型得到答案”，而是让不确定结果可以被理解、修正和继续使用。</blockquote>
+      </div>
+    </section>
+
+    <nav class="case-next" aria-label="下一项目">
+      <span>下一个项目</span>
+      <a href="../research-workflow/index.html"><strong>AI Research Workflow</strong><i>→</i></a>
+    </nav>
+  </main>
+
+  <footer class="case-footer">
+    <span>王婉婷 · AI Product Portfolio</span>
+    <a href="mailto:wangwanting7@outlook.com">wangwanting7@outlook.com</a>
+  </footer>
+</body>
+</html>

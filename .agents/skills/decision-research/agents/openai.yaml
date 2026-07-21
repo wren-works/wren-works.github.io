@@ -1,0 +1,4 @@
+interface:
+  display_name: "Decision Research"
+  short_description: "把开放研究转化为可追溯洞察或可反证的决策输入"
+  default_prompt: "使用 $decision-research，以适合问题的发现或决策模式研究这个主题，并提供可追溯的当前证据。"

@@ -1,0 +1,33 @@
+# Local configuration and secrets
+.env
+.env.*
+!.env.example
+*.local
+
+# Local scratch files and redundant source material
+tmp/
+流程截图/
+before-redesign/
+case-page/
+assets/decisionhelp-demo/sources/
+assets/*.pdf
+!assets/resume.pdf
+*.private.md
+
+# Editor and operating-system files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Logs and generated caches
+*.log
+__pycache__/
+*.py[cod]
+node_modules/
+dist/
+build/
+coverage/
+
+experiments/decision-research-l1-pilot/workspaces/
