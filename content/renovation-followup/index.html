@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="FollowUp Copilot 产品案例：把跨月的装修客户聊天整理成可追溯状态卡，并推进到负责人受控真实试用。">
+  <meta name="description" content="FollowUp Copilot 产品案例：帮助装修负责人从跨月聊天中快速恢复客户上下文，生成可追溯、可补充的客户状态卡。">
   <meta name="theme-color" content="#FAFAF8">
   <title>FollowUp Copilot · 王婉婷的产品作品集</title>
   <link rel="stylesheet" href="../decisionhelp/decision.css">
@@ -27,71 +27,71 @@
     <section class="case-hero">
       <div class="case-kicker">AI PRODUCT · REAL-WORLD PILOT</div>
       <h1>FollowUp<br>Copilot</h1>
-      <p class="case-thesis">不是替负责人自动追客户，<br>而是让每次跟进重新建立在上下文上。</p>
-      <p class="case-lead">我把五组真实装修客户聊天整理成带证据的客户状态卡，并进一步拆出私有使用版。它刚进入负责人受控试用：首轮识别结果较准，字段几乎不需要修改；同时也暴露出操作步骤偏多的问题。</p>
+      <p class="case-thesis">把跨月的客户聊天，<br>整理成一张能继续跟进的状态卡。</p>
+      <p class="case-lead">负责人不需要重新翻完聊天，就能看到客户目前的进展、缺失信息和下一步。首轮真实试用中，核心字段已经基本可用，接下来要解决的是操作步骤太多。</p>
       <dl class="case-facts">
         <div><dt>角色</dt><dd>独立产品设计与实现</dd></div>
         <div><dt>周期</dt><dd>2026.07 — 现在</dd></div>
-        <div><dt>状态</dt><dd>负责人受控试用中</dd></div>
+        <div><dt>状态</dt><dd>真实工作流试用中</dd></div>
         <div><dt>形态</dt><dd>桌面 Web App</dd></div>
       </dl>
-      <div class="case-note">产品决策、工作流、数据结构与验证由本人完成；AI 辅助代码生成与调试。展示内容为脱敏重构，不包含真实客户身份、地址、报价或聊天原文。</div>
+      <div class="case-note">我独立完成产品定义、工作流、数据结构和验证，使用 AI 辅助代码生成与调试。页面内容均为脱敏重构，不包含真实客户身份、地址、报价或聊天原文。</div>
     </section>
 
     <section class="pilot-section" aria-labelledby="pilot-title">
       <div class="pilot-copy">
-        <span class="section-label">CURRENT SIGNAL</span>
-        <h2 id="pilot-title">链路已经跑进真实工作流，<br>效果结论还没有。</h2>
-        <p>五组历史案例帮助我定义字段、风险和第一轮评测；负责人确认了第一份 Gold 标准答案后，私有版本开始处理真实客户工作区。当前最有价值的反馈不是“AI 很厉害”，而是两个方向同时成立：提取准确，但操作仍可以更简单。</p>
+        <span class="section-label">EARLY RESULT</span>
+        <h2 id="pilot-title">信息已经能用，<br>流程还不够顺。</h2>
+        <p>我先用五组历史案例确定状态卡需要记录什么，再让负责人确认第一份人工标准卡。私有版本进入真实客户工作区后，核心字段基本不用修改；但导入、检查、生成和保存之间的步骤还不够直观。</p>
         <div class="signal-pair">
-          <article class="signal-positive"><span>首轮信号</span><strong>字段几乎不用改</strong><p>识别结果能够作为工作起点，负责人不需要重新整理一次聊天。</p></article>
-          <article><span>当前阻力</span><strong>使用流程稍复杂</strong><p>下一轮优先压缩导入、确认与保存的步骤，而不是继续增加字段。</p></article>
+          <article class="signal-positive"><span>已经成立</span><strong>核心字段基本不用改</strong><p>负责人可以直接从卡片开始核对，不必重新整理一遍聊天。</p></article>
+          <article><span>当前问题</span><strong>完成一次更新还不够轻松</strong><p>下一轮先减少步骤和选择，不急着继续增加字段与自动化。</p></article>
         </div>
       </div>
       <div class="pilot-metrics" aria-label="项目数据范围">
         <div><b>5</b><span>历史客户案例</span></div>
-        <div><b>23</b><span>原始聊天截图</span></div>
+        <div><b>23</b><span>聊天截图</span></div>
         <div><b>193</b><span>可见消息</span></div>
-        <div><b>1</b><span>已确认 Gold</span></div>
+        <div><b>1</b><span>已确认人工标准卡</span></div>
       </div>
     </section>
 
     <section class="case-section" id="problem">
       <div class="section-label">01 · PROBLEM</div>
       <div class="section-content">
-        <h2>长周期客户跟进，不是缺一句更好的销售话术</h2>
-        <p class="section-intro">装修客户从了解、量房、方案到签约，可能持续数周甚至一年。信息散在微信聊天、图片、附件和线下沟通里，负责人重新联系客户时，往往要先重新翻一遍过去发生了什么。</p>
+        <h2>真正耗时间的，是每次联系前都要重新进入上下文</h2>
+        <p class="section-intro">装修客户从第一次咨询到量房、方案、报价和签约，可能持续几周，也可能拖上几个月。信息散在微信聊天、图片、附件、电话和线下沟通里，负责人重新联系客户前，往往得先翻一遍过去发生了什么。</p>
         <div class="problem-story">
-          <p>负责人提到，一些客户跟进到中途就不再回复。但“不回复”可能代表预算比较、工期未到、需求不成熟、近期繁忙，或已经选择其他公司。继续发送通用问候，只会增加打扰。</p>
-          <p>因此产品真正要回答的不是“怎么让客户回复”，而是：现在处于什么阶段、还有什么没完成、这次是否值得联系，以及联系应该达到什么目的。</p>
+          <p>负责人最先提到的困扰是，有些客户跟着跟着就不回复了。但“不回复”可能意味着正在比价、工期还没到、需求还不明确、最近太忙，也可能已经选了别家。只看最后一条消息，很难判断现在该不该继续联系。</p>
+          <p>因此，这个工具需要先帮负责人回答四件事：客户现在在哪个阶段、已经确认了什么、还有什么没完成，以及这次联系希望推进到哪一步。</p>
         </div>
-        <blockquote>先恢复上下文，再决定要不要跟进。</blockquote>
+        <blockquote>负责人先知道现在发生了什么，才知道下一条消息该不该发。</blockquote>
       </div>
     </section>
 
     <section class="case-section" id="reframe">
       <div class="section-label">02 · REFRAME</div>
       <div class="section-content">
-        <h2>从生成设计 Brief，转向持续维护客户状态</h2>
-        <p class="section-intro">项目最初想把聊天归纳成装修需求 Brief。检查五组历史案例后，我发现一次性总结并不是最稳定的问题：同一客户的面积、报价和服务范围会变化，真正困难的是跨时间维护状态。</p>
+        <h2>一次性 Brief 不够，客户状态需要持续更新</h2>
+        <p class="section-intro">项目最初的方向是把聊天整理成装修需求 Brief。检查五组历史案例后，我发现 Brief 很快就会过时：面积、预算、服务范围和时间安排都可能在后续沟通中改变，聊天记录也无法覆盖电话和线下信息。</p>
         <div class="reframe-grid">
-          <article><span>最初方向</span><h3>一次性需求归纳</h3><p>聊天 → 设计 Brief。适合进入深度设计后的交接，但不能解释客户为什么停在当前阶段。</p></article>
-          <article><span>实际方向</span><h3>持续更新的状态卡</h3><p>保留阶段、时间线、冲突、待办和下一步，并让重要判断能够回到原消息。</p></article>
+          <article><span>最初方向</span><h3>一次性需求归纳</h3><p>把聊天整理成一份设计 Brief，方便进入深度设计后的交接，但无法说明客户为什么停在当前阶段。</p></article>
+          <article><span>调整之后</span><h3>持续更新的客户状态卡</h3><p>记录当前阶段、关键时间线、信息冲突、待办和下一步，重要判断都可以回到原消息核对。</p></article>
         </div>
-        <div class="scope-line"><strong>第一版明确不做</strong><span>个人微信自动读取 · 自动发送 · 成交概率预测 · 完整 CRM · 本地大模型</span></div>
+        <div class="scope-line"><strong>第一版暂不处理</strong><span>自动读取个人微信 · 自动发送消息 · 成交概率预测 · 完整 CRM · 本地大模型</span></div>
       </div>
     </section>
 
     <section class="case-section" id="flow">
       <div class="section-label">03 · WORKFLOW</div>
       <div class="section-content">
-        <h2>把模型输出放进一个可检查、可修改的流程</h2>
-        <p class="section-intro">负责人可以上传聊天截图或粘贴文本，先检查转写，再生成状态卡。系统显示事实来源、冲突和未知项，跟进草稿只作为建议，不会自动发送。</p>
+        <h2>从聊天到状态卡，每一步都能检查和修改</h2>
+        <p class="section-intro">负责人上传聊天截图或粘贴文本，先核对转写结果，再生成状态卡。系统会标出信息来源、冲突和缺失项；下一步建议只是一份草稿，是否联系客户仍由负责人决定。</p>
         <div class="product-flow" aria-label="产品流程">
-          <article><b>01</b><strong>导入</strong><span>截图或聊天文本</span></article><i>→</i>
-          <article><b>02</b><strong>转写</strong><span>人工检查说话人与时间</span></article><i>→</i>
-          <article><b>03</b><strong>状态卡</strong><span>阶段、冲突与待办</span></article><i>→</i>
-          <article><b>04</b><strong>行动</strong><span>人工确认后自行发送</span></article>
+          <article><b>01</b><strong>导入</strong><span>上传截图或粘贴文本</span></article><i>→</i>
+          <article><b>02</b><strong>核对</strong><span>检查说话人、时间与识别结果</span></article><i>→</i>
+          <article><b>03</b><strong>整理</strong><span>生成阶段、事实、冲突与待办</span></article><i>→</i>
+          <article><b>04</b><strong>决定</strong><span>人工补充并选择是否跟进</span></article>
         </div>
 
         <div class="app-reconstruction" aria-label="脱敏客户状态卡界面重构示意">
@@ -110,7 +110,7 @@
                 <div><span>线索来源</span><strong>朋友转介绍</strong><small>S01-M001 · M003</small></div>
                 <div><span>房屋面积</span><strong>输入未出现</strong><small>等待负责人补充</small></div>
               </div>
-              <div class="preview-action"><span>建议下一步</span><strong>确认量房节点并补齐需求</strong><p>最后明确节点是量房预约，但当前材料没有量房结果。</p></div>
+              <div class="preview-action"><span>建议下一步</span><strong>确认量房结果并补齐需求</strong><p>聊天中最后确认的是量房预约，但当前材料里还没有量房结果。</p></div>
             </div>
           </div>
           <p>脱敏界面重构示意 · 实际操作界面仍根据试用反馈迭代</p>
@@ -121,12 +121,12 @@
     <section class="case-section" id="decisions">
       <div class="section-label">04 · DECISIONS</div>
       <div class="section-content">
-        <h2>四个决定比功能数量更重要</h2>
+        <h2>用四条规则限制 AI 在流程里的作用</h2>
         <div class="decision-list">
-          <article><span class="decision-index">01</span><div><h3>证据优先，而不是生成一段流畅总结</h3><p>阶段、报价和需求都保留消息 ID；字段区分聊天确认、人工补充、模型推断、输入未出现和信息冲突。流畅不等于可信。</p></div></article>
-          <article><span class="decision-index">02</span><div><h3>规则与模型分层</h3><p>规则负责消息格式、明确金额与面积、附件、事件信号和证据校验；模型 API 负责语义归纳与建议，避免系统能力完全取决于单一模型。</p></div></article>
-          <article><span class="decision-index">03</span><div><h3>公开展示与真实使用分开</h3><p>作品集 prototype 只使用脱敏样本；真实客户资料进入带登录、本机数据库和临时访问链接的私有版本，不能复制回公开仓库。</p></div></article>
-          <article><span class="decision-index">04</span><div><h3>不自动发送，也允许停止跟进</h3><p>装修是高客单、长周期决策。错误报价或过度追问的成本很高，因此 AI 只建议动作，并保留暂停与礼貌收口选项。</p></div></article>
+          <article><span class="decision-index">01</span><div><h3>重要判断必须能找到原消息</h3><p>阶段、报价和需求都保留消息 ID。字段会区分聊天确认、人工补充、模型推断、输入未出现和信息冲突，避免把一段流畅总结当成事实。</p></div></article>
+          <article><span class="decision-index">02</span><div><h3>聊天之外的信息允许负责人补充</h3><p>电话和线下沟通本来就不会出现在聊天里。人工补充是正常流程的一部分，系统不能把“没有输入”直接理解成“没有发生”。</p></div></article>
+          <article><span class="decision-index">03</span><div><h3>明确内容交给规则，语义判断交给模型</h3><p>消息格式、金额、面积、附件和证据检查由规则处理；阶段归纳和下一步建议由模型 API 处理，避免所有能力都依赖一次生成。</p></div></article>
+          <article><span class="decision-index">04</span><div><h3>真实资料留在私有版本，消息也不会自动发送</h3><p>作品集只展示脱敏样本。真实客户资料进入带登录和本机数据库的私有版本；AI 只提供建议，也允许负责人暂停跟进或礼貌收口。</p></div></article>
         </div>
       </div>
     </section>
@@ -134,27 +134,26 @@
     <section class="case-section" id="validation">
       <div class="section-label">05 · VALIDATION</div>
       <div class="section-content">
-        <h2>当前结论：提取可用，交互仍需收敛</h2>
-        <p class="section-intro">这一轮只能形成早期信号，不能证明提高了回复率、成交率或工作效率。我把“系统已经做到什么”和“仍待验证什么”分开记录。</p>
+        <h2>目前能下的结论：整理结果可用，持续使用价值还没有证明</h2>
+        <p class="section-intro">这轮试用只能说明状态卡已经能作为工作起点，不能证明它提高了回复率、成交率或整体效率。因此我把已经观察到的结果和仍待验证的问题分开记录。</p>
         <div class="validation-columns">
-          <article><span>已经观察到</span><h3>识别准确，字段修改很少</h3><ul><li>五组历史样本可生成统一结构客户卡</li><li>负责人确认第一份 Gold 标准答案</li><li>私有版本已创建并保存真实工作区</li><li>首轮使用中，卡片字段几乎不需要修改</li></ul></article>
-          <article class="validation-muted"><span>仍待验证</span><h3>是否值得持续维护</h3><ul><li>操作步骤偏多是否影响重复使用</li><li>恢复上下文相对翻聊天节省多少时间</li><li>负责人是否采用或修改跟进建议</li><li>人工导入成本能否被实际价值抵消</li></ul></article>
+          <article><span>已经观察到</span><h3>核心信息基本可直接使用</h3><ul><li>五组历史样本可以生成统一结构的客户卡</li><li>负责人确认了第一份人工标准卡</li><li>私有版本能够创建并保存真实客户工作区</li><li>首轮试用中，核心字段基本不需要修改</li></ul></article>
+          <article class="validation-muted"><span>仍待验证</span><h3>负责人会不会愿意持续维护</h3><ul><li>操作步骤偏多是否影响重复使用</li><li>相比重新翻聊天，状态卡能节省多少时间</li><li>负责人是否会采用或修改下一步建议</li><li>人工导入和确认的成本是否值得</li></ul></article>
         </div>
-        <blockquote class="reflection">首轮反馈让我把下一阶段从“继续提高识别率”改成“降低负责人完成一次更新的操作成本”。</blockquote>
+        <blockquote class="reflection">首轮反馈改变了下一阶段的重点：先把一次更新做得更简单，再继续调整模型。</blockquote>
       </div>
     </section>
 
     <section class="case-section" id="next">
       <div class="section-label">06 · NEXT</div>
       <div class="section-content">
-        <h2>下一轮先删步骤，再谈更多自动化</h2>
+        <h2>下一轮先把一次更新做得更顺</h2>
         <ol class="next-list">
-          <li><span>01</span><div><strong>压缩首次使用路径</strong><p>减少需要理解的选项，把脱敏确认、转写检查和状态卡生成组织成更明确的顺序。</p></div></li>
-          <li><span>02</span><div><strong>记录高影响修改</strong><p>不只统计字段修改率，重点观察阶段、报价、承诺、结果和下一步是否被负责人改写。</p></div></li>
-          <li><span>03</span><div><strong>比较真实任务耗时</strong><p>让负责人分别使用原聊天和客户卡恢复同一位客户上下文，记录时间、遗漏和主观负担。</p></div></li>
-          <li><span>04</span><div><strong>再决定接入成本</strong><p>只有持续使用价值成立，才评估企业微信、托管数据库和多人权限，不把技术接入当成验证前提。</p></div></li>
+          <li><span>01</span><div><strong>压缩首次使用路径</strong><p>减少需要理解的选项，让导入、核对、生成和保存的先后关系更明确。</p></div></li>
+          <li><span>02</span><div><strong>记录真正重要的修改</strong><p>重点观察阶段、报价、承诺、结果和下一步是否被负责人改写，而不只统计总修改数量。</p></div></li>
+          <li><span>03</span><div><strong>做一次真实任务对照</strong><p>分别使用原聊天和客户卡恢复同一位客户的上下文，对比耗时、遗漏和使用负担。</p></div></li>
         </ol>
-        <div class="privacy-boundary"><strong>公开边界</strong><p>本页没有真实聊天、姓名、地址、金额、私有应用链接或 API Key。客户回复与成交也不会被归因于系统。</p></div>
+        <div class="privacy-boundary"><strong>公开边界</strong><p>本页不展示真实聊天、姓名、地址、金额、私有应用链接或 API Key。客户后续是否回复或成交，也不会被直接归因于系统。</p></div>
       </div>
     </section>
 

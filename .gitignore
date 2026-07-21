@@ -31,3 +31,9 @@ build/
 coverage/
 
 experiments/decision-research-l1-pilot/workspaces/
+
+# Local drafts and temporary files
+content/zanshi/
+content/renovation-followup/FollowUp-Copilot-case.md
+content/renovation-followup/_write_index.py
+content/renovation-followup/portfolio-plan.md
