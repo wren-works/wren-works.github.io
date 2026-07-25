@@ -5,6 +5,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="FollowUp Copilot 产品案例：帮助装修负责人从跨月聊天中快速恢复客户上下文，生成可追溯、可补充的客户状态卡。">
   <meta name="theme-color" content="#FAFAF8">
+  <link rel="canonical" href="https://wren-works.github.io/content/renovation-followup/">
+  <link rel="icon" href="/assets/meta/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/assets/meta/favicon-32.png" type="image/png" sizes="32x32">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="王婉婷的产品作品集">
+  <meta property="og:title" content="FollowUp Copilot · 王婉婷">
+  <meta property="og:description" content="把跨月的客户聊天，整理成一张能继续跟进的状态卡。">
+  <meta property="og:url" content="https://wren-works.github.io/content/renovation-followup/">
+  <meta property="og:image" content="https://wren-works.github.io/assets/meta/portfolio-og.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="王婉婷 AI 产品经理作品集">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="FollowUp Copilot · 王婉婷">
+  <meta name="twitter:description" content="把跨月的客户聊天，整理成一张能继续跟进的状态卡。">
+  <meta name="twitter:image" content="https://wren-works.github.io/assets/meta/portfolio-og.png">
+  <meta name="twitter:image:alt" content="王婉婷 AI 产品经理作品集">
   <title>FollowUp Copilot · 王婉婷的产品作品集</title>
   <link rel="stylesheet" href="../decisionhelp/decision.css">
   <link rel="stylesheet" href="followup.css">
@@ -28,7 +47,7 @@
       <div class="case-kicker">AI PRODUCT · REAL-WORLD PILOT</div>
       <h1>FollowUp<br>Copilot</h1>
       <p class="case-thesis">把跨月的客户聊天，<br>整理成一张能继续跟进的状态卡。</p>
-      <p class="case-lead">负责人不需要重新翻完聊天，就能看到客户目前的进展、缺失信息和下一步。首轮真实试用中，核心字段已经基本可用，接下来要解决的是操作步骤太多。</p>
+      <p class="case-lead">负责人不必重新翻完跨月聊天，就能从一张可追溯的状态卡继续跟进。首轮试用也把下一阶段的重点从“继续增加能力”转向了“减少操作负担”。</p>
       <dl class="case-facts">
         <div><dt>角色</dt><dd>独立产品设计与实现</dd></div>
         <div><dt>周期</dt><dd>2026.07 — 现在</dd></div>
@@ -44,7 +63,7 @@
         <h2 id="pilot-title">信息已经能用，<br>流程还不够顺。</h2>
         <p>我先用五组历史案例确定状态卡需要记录什么，再让负责人确认第一份人工标准卡。私有版本进入真实客户工作区后，核心字段基本不用修改；但导入、检查、生成和保存之间的步骤还不够直观。</p>
         <div class="signal-pair">
-          <article class="signal-positive"><span>已经成立</span><strong>核心字段基本不用改</strong><p>负责人可以直接从卡片开始核对，不必重新整理一遍聊天。</p></article>
+          <article class="signal-positive"><span>首轮信号</span><strong>负责人首轮核对时，核心字段基本无需修改</strong><p>负责人可以直接从卡片开始核对，不必重新整理一遍聊天。</p></article>
           <article><span>当前问题</span><strong>完成一次更新还不够轻松</strong><p>下一轮先减少步骤和选择，不急着继续增加字段与自动化。</p></article>
         </div>
       </div>
@@ -125,7 +144,7 @@
         <div class="decision-list">
           <article><span class="decision-index">01</span><div><h3>重要判断必须能找到原消息</h3><p>阶段、报价和需求都保留消息 ID。字段会区分聊天确认、人工补充、模型推断、输入未出现和信息冲突，避免把一段流畅总结当成事实。</p></div></article>
           <article><span class="decision-index">02</span><div><h3>聊天之外的信息允许负责人补充</h3><p>电话和线下沟通本来就不会出现在聊天里。人工补充是正常流程的一部分，系统不能把“没有输入”直接理解成“没有发生”。</p></div></article>
-          <article><span class="decision-index">03</span><div><h3>明确内容交给规则，语义判断交给模型</h3><p>消息格式、金额、面积、附件和证据检查由规则处理；阶段归纳和下一步建议由模型 API 处理，避免所有能力都依赖一次生成。</p></div></article>
+          <article><span class="decision-index">03</span><div><h3>确定性任务交给规则，语义判断交给模型</h3><p>消息格式、金额、面积、附件和证据检查由规则处理；阶段归纳和下一步建议由模型 API 处理，避免所有能力都依赖一次生成。</p></div></article>
           <article><span class="decision-index">04</span><div><h3>真实资料留在私有版本，消息也不会自动发送</h3><p>作品集只展示脱敏样本。真实客户资料进入带登录和本机数据库的私有版本；AI 只提供建议，也允许负责人暂停跟进或礼貌收口。</p></div></article>
         </div>
       </div>

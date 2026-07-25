@@ -5,6 +5,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="DecisionHelp 产品案例：把小红书和大众点评收藏截图整理成可编辑、可比较的地点候选。">
   <meta name="theme-color" content="#FAFAF8">
+  <link rel="canonical" href="https://wren-works.github.io/content/decisionhelp/">
+  <link rel="icon" href="/assets/meta/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/assets/meta/favicon-32.png" type="image/png" sizes="32x32">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="王婉婷的产品作品集">
+  <meta property="og:title" content="DecisionHelp · 王婉婷">
+  <meta property="og:description" content="把收藏截图变成真正可比较的地点候选。">
+  <meta property="og:url" content="https://wren-works.github.io/content/decisionhelp/">
+  <meta property="og:image" content="https://wren-works.github.io/assets/meta/portfolio-og.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="王婉婷 AI 产品经理作品集">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="DecisionHelp · 王婉婷">
+  <meta name="twitter:description" content="把收藏截图变成真正可比较的地点候选。">
+  <meta name="twitter:image" content="https://wren-works.github.io/assets/meta/portfolio-og.png">
+  <meta name="twitter:image:alt" content="王婉婷 AI 产品经理作品集">
   <title>DecisionHelp · 王婉婷的产品作品集</title>
   <link rel="stylesheet" href="decision.css">
 </head>
@@ -26,15 +45,15 @@
     <section class="case-hero">
       <div class="case-kicker">0→1 PRODUCT · AI WORKFLOW</div>
       <h1>DecisionHelp</h1>
-      <p class="case-thesis">把收藏截图，<br>变成真正可比较的地点候选。</p>
-      <p class="case-lead">在一次真实选址任务中，我导入了 4 张来自小红书和大众点评的收藏截图。系统识别来源与地点信息、提示并合并重复地点，最终生成 3 张包含营业时间与出行时长的候选卡片，并缩小到 2 个候选。</p>
+      <p class="case-thesis">把收藏截图，<br>变成真正可比较的<span class="nowrap">地点候选。</span></p>
+      <p class="case-lead">它不再帮助用户发现更多地点，而是把散落在不同平台里的已有收藏，变成一条可以修正、比较和逐步删减的决策流程。</p>
       <dl class="case-facts">
         <div><dt>角色</dt><dd>独立产品设计与实现</dd></div>
         <div><dt>周期</dt><dd>2026.06 — 现在</dd></div>
         <div><dt>状态</dt><dd>Android 可运行原型</dd></div>
         <div><dt>验证</dt><dd>个人真实场景</dd></div>
       </dl>
-      <div class="case-note">职责包括产品定义、交互设计、解析策略、架构设计与实现验证。AI 辅助代码生成与调试，产品决策与验证由本人完成。</div>
+      <div class="case-note">职责包括产品定义、交互设计、解析策略、架构设计与实现验证。当前原型的自动化主要来自本地 OCR 与规则解析；LLM 只计划用于低置信和复杂内容。AI 辅助代码生成与调试，产品决策与验证由本人完成。</div>
     </section>
 
     <section class="demo-section" id="demo">
@@ -178,7 +197,7 @@
               <li>识别并确认合并 1 组重复地点</li>
               <li>在同一页面比较信息与出行时间</li>
               <li>缩小到 2 个候选并继续地图导航</li>
-              <li>固定 OCR 样例覆盖餐厅、场馆与小红书线索</li>
+              <li>固定 OCR 样例覆盖餐厅、场馆，以及小红书和大众点评两类来源</li>
             </ul>
           </article>
           <article class="evidence-muted">
@@ -198,7 +217,7 @@
           <li><span>02</span><div><strong>记录真实的修正与决策成本</strong><p>关注任务完成率、字段修改率、重复判断和从导入到留下候选的耗时。</p></div></li>
           <li><span>03</span><div><strong>再决定 LLM 与比较视图的投入</strong><p>只为低置信内容引入模型，并根据测试判断是否需要独立的并排比较页。</p></div></li>
         </ol>
-        <blockquote class="reflection">这次原型让我确认：AI 产品的交付不是“调用模型得到答案”，而是让不确定结果可以被理解、修正和继续使用。</blockquote>
+        <blockquote class="reflection">这次原型让我确认：识别结果只有进入“可查看来源、可修正、可继续比较”的流程，才真正有用。</blockquote>
       </div>
     </section>
 

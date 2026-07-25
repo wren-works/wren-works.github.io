@@ -90,7 +90,7 @@ button:focus-visible { outline: 2px solid #1A3B5C; outline-offset: 3px; }
   display: block;
   font-size: 11px;
   font-weight: 600;
-  color: #AAA;
+  color: #7A7A76;
   text-transform: uppercase;
   letter-spacing: 0.8px;
   margin: 24px 0 8px;
@@ -167,7 +167,7 @@ button:focus-visible { outline: 2px solid #1A3B5C; outline-offset: 3px; }
   margin-bottom: 14px;
   font-size: 11px;
   font-weight: 600;
-  color: #AAA;
+  color: #7A7A76;
   text-transform: uppercase;
   letter-spacing: 0.8px;
 }
@@ -231,7 +231,7 @@ button:focus-visible { outline: 2px solid #1A3B5C; outline-offset: 3px; }
 
 .case-time {
   font-size: 12.5px;
-  color: #AAA;
+  color: #74746F;
 }
 
 .case-link {
@@ -244,7 +244,7 @@ button:focus-visible { outline: 2px solid #1A3B5C; outline-offset: 3px; }
   margin: 0 auto;
   padding: 0 32px 60px;
   font-size: 13px;
-  color: #AAA;
+  color: #74746F;
 }
 
 .footer a {

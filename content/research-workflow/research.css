@@ -23,12 +23,14 @@
   margin-top: 24px;
 }
 
-.turning-question {
-  margin: 32px 0 30px;
-  color: var(--ink) !important;
-  font-size: 21px !important;
-  font-weight: 650;
-  line-height: 1.55 !important;
+.test-context {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 18px;
+  margin-top: 18px;
+  color: var(--faint-text);
+  font: 11px "SFMono-Regular", Consolas, monospace;
+  letter-spacing: .06em;
 }
 
 .context-link {
@@ -56,7 +58,6 @@
 .definition-grid span,
 .skill-split article > span,
 .boundary-grid article > span,
-.judgment-change > span,
 .result-card span,
 .decision-score article > span {
   font: 10px "SFMono-Regular", Consolas, monospace;
@@ -106,28 +107,12 @@
 
 .metric-compare .metric-head {
   background: #F3F3EC;
-  color: var(--faint);
+  color: var(--faint-text);
   font: 10px "SFMono-Regular", Consolas, monospace;
 }
 
 .metric-compare strong {
   color: var(--accent);
-}
-
-.judgment-change {
-  display: grid;
-  grid-template-columns: 110px 1fr;
-  gap: 22px;
-  margin-top: 34px;
-  padding: 22px 24px;
-  background: var(--accent-soft);
-  border-left: 3px solid var(--accent);
-}
-
-.judgment-change p {
-  color: var(--accent);
-  font-size: 14px;
-  font-weight: 600;
 }
 
 .run-strip {
@@ -157,7 +142,7 @@
 .run-strip span {
   display: block;
   margin-top: 9px;
-  color: var(--faint);
+  color: var(--faint-text);
   font-size: 10px;
 }
 
@@ -186,7 +171,7 @@
   margin-top: 30px;
   padding-top: 14px;
   border-top: 1px solid var(--line);
-  color: var(--faint);
+  color: var(--faint-text);
   font-size: 10px;
 }
 
@@ -215,7 +200,7 @@
 }
 
 .result-card small {
-  color: var(--faint);
+  color: var(--faint-text);
   font-size: 10px;
   font-weight: 500;
 }
@@ -247,7 +232,7 @@
 }
 
 .decision-score strong small {
-  color: var(--faint);
+  color: var(--faint-text);
   font-size: 16px;
 }
 
@@ -292,12 +277,8 @@
 
 .closing-line {
   margin-top: 48px !important;
-  padding: 28px 30px;
-  background: var(--accent);
-  color: #F8FAF8 !important;
-  font-size: 18px !important;
-  font-weight: 600;
-  line-height: 1.75 !important;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
 }
 
 @media (max-width: 800px) {
@@ -342,21 +323,19 @@
     border-top: 1px solid var(--line);
   }
 
-  .metric-compare {
-    overflow-x: auto;
-  }
-
   .metric-compare .metric-row {
-    min-width: 520px;
+    min-width: 0;
+    grid-template-columns: minmax(74px, 1.15fr) minmax(0, .9fr) minmax(0, 1fr);
   }
 
-  .judgment-change {
-    grid-template-columns: 1fr;
-    gap: 10px;
+  .metric-compare .metric-row > * {
+    min-width: 0;
+    padding: 12px 8px;
+    font-size: 11px;
+    overflow-wrap: anywhere;
   }
 
   .closing-line {
-    padding: 24px;
-    font-size: 16px !important;
+    padding-top: 20px;
   }
 }
