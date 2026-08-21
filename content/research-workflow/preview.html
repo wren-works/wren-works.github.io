@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="AI Research Workflow 产品案例：用同模型对照验证研究 Skill，识别探索、决策与停止搜索的边界。" name="description"/>
+<meta content="#FAFAF8" name="theme-color"/>
+<title>AI Research Workflow · 王婉婷的产品作品集</title>
+<link href="../decisionhelp/decision.css" rel="stylesheet"/>
+<link href="research.css" rel="stylesheet"/>
+</head>
+<body>
+<header class="case-header">
+<a class="case-brand" href="../../index.html"><span>WW</span> 王婉婷</a>
+<nav aria-label="案例导航">
+<a href="../../index.html#cases-title">全部项目</a>
+<a href="../../assets/resume.pdf" rel="noreferrer" target="_blank">简历</a>
+<a href="mailto:wangwanting7@outlook.com">联系我</a>
+</nav>
+</header>
+<main>
+<nav aria-label="面包屑" class="breadcrumb">
+<a href="../../index.html">首页</a><span>/</span><span>AI Research Workflow</span>
+</nav>
+<section class="case-hero">
+<div class="case-kicker">AI WORKFLOW · SKILL EVALUATION</div>
+<h1>AI Research<br/>Workflow</h1>
+<p class="case-thesis">工作流到底让研究变好，<br/>还是只让报告更像报告？</p>
+<p class="case-lead">我用同一个模型、相同任务和相同工具，对比默认研究与两套研究 Skill。结果没有证明 Skill 全面更强，却让我重新划分了探索与决策的边界，也暴露出一个更重要的问题：什么时候应该停止搜索，转向验证。</p>
+<dl class="case-facts">
+<div><dt>角色</dt><dd>独立设计与评估</dd></div>
+<div><dt>周期</dt><dd>2026.07</dd></div>
+<div><dt>方法</dt><dd>同模型对照</dd></div>
+<div><dt>状态</dt><dd>开发阶段验证</dd></div>
+</dl>
+<div class="case-note">AI 辅助研究执行与代码工作；问题定义、工作流设计、对照方案、评估规则和结果判断由我完成。本案例是开发阶段的单次对照，结论用于迭代流程，不代表这套方法普遍优于默认研究。</div>
+</section>
+<section class="case-section story-section" id="origin">
+<div class="section-label">01 · ORIGIN</div>
+<div class="section-content prose">
+<h2>一次错误假设，差点被研究成完整结论</h2>
+<p>最开始，我只是想把 NOMI 的一次独立研究整理进作品集，并试着让 AI 自己完成资料搜集、结论整理和下一步问题界定。</p>
+<p>研究一共跑了六轮。资料越来越多，报告也越来越完整，但最初检索结果里的那句“NOMI 可能缺少免唤醒能力”，差点决定后面所有搜索的方向。</p>
+<p>直到找到官方版本资料，我才修正这个判断。真正危险的不是一条资料过期，而是 AI 很容易沿着第一个合理解释继续深挖，把它写得越来越完整，却不一定会主动问：</p>
+<p><strong>有没有另一条路？</strong></p>
+<p>我于是把研究方法写成一个可复用的 Skill：什么时候先探索，什么时候比较选项，哪些结论需要直接证据，以及什么时候该停止搜索。</p>
+<p>流程看起来更完整了。但“多了一套流程”和“研究真的变好”，仍然是两回事。</p>
+<a class="context-link" href="../nomi/nomi.html">查看最初的 NOMI 独立研究 ↗</a>
+</div>
+</section>
+<section class="case-section" id="definition">
+<div class="section-label">02 · DEFINITION</div>
+<div class="section-content prose">
+<h2>先定义什么叫“变好”</h2>
+<p>如果用篇幅、表格和引用数量衡量质量，Skill 几乎天然会赢：它更容易产出一份结构完整、看起来专业的报告。</p>
+<p>但这些变化也可能只是把同一个判断写得更长，或者为了填满固定结构，过早决定问题该往哪里收敛。</p>
+<p>所以我没有把“更像报告”当成结果。我把强洞察定义为：它不仅补充背景，还能解释可能的原因，并改变产品理解或下一步行动；如果还能提出区分不同解释的测试，以及什么证据会推翻判断，才算更高一级。</p>
+<div aria-label="评估定义" class="definition-grid">
+<article><span>QUALITY</span><h3>行动价值</h3><p>是否改变产品理解、优先级或下一步行动，而不只是补充背景。</p></article>
+<article><span>DEPTH</span><h3>机制与反证</h3><p>是否解释为什么，并提出能区分不同解释的测试，以及推翻判断的条件。</p></article>
+<article><span>GATE</span><h3>事实门槛</h3><p>一旦出现事实错误、引用不支持或版本与地区错配，其他高分不能抵消。</p></article>
+</div>
+<p>评估因此不再问“哪篇更像专业报告”，而是问：它是否改变了判断，以及这个判断能否被证据检查和推翻。</p>
+</div>
+</section>
+<section class="case-section" id="failure">
+<div class="section-label">03 · FIRST FAILURE</div>
+<div class="section-content prose">
+<h2>第一轮：报告更完整，却没有发现更多</h2>
+<p>第一轮，我让同一个模型研究 AI 会议助手。两组使用相同任务和工具：一组按默认方式研究，另一组使用第一版 Decision Research Skill。</p>
+<div aria-label="AI 会议助手任务对照结果" class="metric-compare" role="table">
+<div class="metric-row metric-head" role="row"><span>指标</span><span>默认研究</span><span>第一版 Skill</span></div>
+<div class="metric-row" role="row"><strong>强洞察</strong><span>4 条</span><span>4 条</span></div>
+<div class="metric-row" role="row"><strong>耗时</strong><span>约 3 分钟</span><span>约 9 分钟</span></div>
+</div>
+<p>两组都得到 4 条强洞察，Skill 版本却用了大约三倍时间。它补充了更多反证、验证条件和更新路径，但没有带来更多发现。</p>
+<p>更关键的是，这本来是一道没有固定选项的开放研究题，Skill 却强行把它写成了决策简报。</p>
+<p><strong>流程没有服务问题，反而替问题定了方向。</strong></p>
+<p>这不是再加一条规则就能修好的细节。第一版 Skill 适合比较明确选项，却不适合自由探索。</p>
+</div>
+</section>
+<section class="case-section" id="discipline">
+<div class="section-label">04 · DISCIPLINE</div>
+<div class="section-content prose">
+<h2>第二轮：我先判了自己的实验无效</h2>
+<p>第二轮研究智能手环时，使用 Skill 的那组意外读到并修改了工作区里的已有报告。</p>
+<p>单看最终文本，它仍然可能是一篇不错的报告。但因为提前接触过一部分已有答案，这个样本已经不能与默认组公平比较。</p>
+<p>我保留了产出，但没有把它计入正式结果。后续任务全部改用互相隔离的工作区、唯一输出路径，并统一保存实际使用的提示词。</p>
+<p><strong>研究结论需要可追溯，对照过程本身也必须可审计。</strong></p>
+</div>
+</section>
+<section class="case-section" id="split">
+<div class="section-label">05 · PRODUCT DECISION</div>
+<div class="section-content prose">
+<h2>我没有继续补规则，而是承认它们是两种任务</h2>
+<p>前两轮说明，开放探索和明确选项决策需要的不是同一种流程。</p>
+<p>开放探索要先扩大问题空间，寻找其他解释和被忽略的分支；明确决策则要收敛选项，记录证据、最高风险假设，以及什么条件会改变结论。把两者塞进同一套流程，只会让开放问题过早收敛。</p>
+<div class="skill-split">
+<article>
+<span>EXPLORE-TOPIC</span>
+<h3>先扩大问题空间</h3>
+<p>先快速了解全局，再深入重点；主动寻找相邻产品、被忽略的用户、其他可能解释和相反证据。</p>
+<small>目标：扩大视角，打破第一个解释</small>
+</article>
+<i aria-hidden="true">≠</i>
+<article>
+<span>DECISION-RESEARCH</span>
+<h3>再收敛成可更新决策</h3>
+<p>比较明确选项，记录每项判断的依据、最大风险、什么证据会改变结论，以及什么时候停止搜索。</p>
+<small>目标：让结论可以检查和更新</small>
+</article>
+</div>
+<p><strong>这不是同一工具的基础版和专业版，而是一次产品边界的重新划分。</strong></p>
+</div>
+</section>
+<section class="case-section" id="discovery-result">
+<div class="section-label">06 · DISCOVERY</div>
+<div class="section-content prose">
+<h2>探索型 Skill 没让观点变多，却让一个关键问题出现了</h2>
+<p>拆分之后，我用同一组具身智能开放研究题，比较默认研究、Decision Research 和 Explore Topic。</p>
+<p>三份报告都找到了相似的主干：真实工位、异常运营、数据闭环和形态选择。Explore Topic 真正增加或明显强化的是 2–3 个分支，其中最关键的一条是：先证明什么时候不该使用人形机器人，再决定产品形态。</p>
+<p>它没有赢在观点数量，而是改变了提问顺序——先判断形态是否必要，再讨论如何实现。</p>
+<p>这说明它值得继续测试，但一次开发任务仍不足以证明它稳定优于默认研究。</p>
+</div>
+</section>
+<section class="case-section" id="decision-result">
+<div class="section-label">07 · DECISION</div>
+<div class="section-content prose">
+<h2>两份报告得出相反结论，反而暴露了真正的下一步</h2>
+<p>最后一轮是一道实际决策题：一家 15 人的中国团队，要为面向欧盟市场的英德语会议助手，在云端优先、端侧优先和混合架构之间选择 MVP 默认方案。</p>
+<p>评分前，我隐藏了两份报告使用的研究方式，再进行盲审。结果几乎持平，Skill 版本只在“结论能否随新证据更新”这一项多出 1 分；代价是报告更长、耗时更高。</p>
+<p>但两份报告给出了相反推荐：一份选择受控的 EU 云端优先，另一份选择端侧优先。</p>
+<p>这个分歧暴露了公开资料无法回答的关键变量：目标硬件上的英德语效果、真实会议声学、客户采购政策，以及客户是否接受原始音频离开设备。</p>
+<p><strong>此时继续搜索不是在逼近答案，而是在延迟验证。</strong></p>
+<p>真正的下一步不是再找几篇报告，而是设计能够区分两种判断的测试：目标硬件实测、真实会议环境测试，以及对客户采购与数据政策的验证。</p>
+</div>
+</section>
+<section class="case-section" id="limits">
+<div class="section-label">08 · LIMITS</div>
+<div class="section-content prose">
+<h2>这次没有证明 Skill 更强，但证明了该怎么继续</h2>
+<div class="boundary-grid">
+<article>
+<span>目前支持</span>
+<h3>两个早期信号</h3>
+<ul>
+<li>Decision Research 的主要价值，是让结论可以检查、质疑和更新，而不是在开放题中发现更多。</li>
+<li>Explore Topic 在一个开发任务中改变了问题展开顺序，并强化了原本容易忽略的探索分支。</li>
+</ul>
+</article>
+<article class="boundary-muted">
+<span>目前不支持</span>
+<h3>普遍优于默认研究</h3>
+<ul>
+<li>所有任务都参与过流程设计，属于开发数据。</li>
+<li>每种方式只运行了一次，也没有完整记录 token、成本和人工审阅时间。</li>
+<li>NOMI 尚未使用同一模型和新版 Skill 重跑，不能声称研究质量因此提升。</li>
+</ul>
+</article>
+</div>
+<h3 class="next-heading">下一轮不再润色流程，而是验证它</h3>
+<ol class="next-list">
+<li><span>01</span><div><strong>换成未见行业任务</strong><p>把开发流程的题目和正式评估题目分开，降低针对题目优化 Skill 的风险。</p></div></li>
+<li><span>02</span><div><strong>每个条件至少运行三次</strong><p>先观察结果是否稳定，再讨论平均收益和失败模式。</p></div></li>
+<li><span>03</span><div><strong>加入小模型对照</strong><p>检验合适的流程能否让更小模型以更低成本，接近大模型默认研究的可靠性和行动价值。</p></div></li>
+</ol>
+<p class="closing-line">这个项目最终没有给我一个“更强的研究 Skill”。它给了我一套更可用的判断：开放题先扩大问题，明确决策再收敛；当公开信息已经无法区分结论时，停止搜索，转向验证。</p>
+</div>
+</section>
+<nav aria-label="下一项目" class="case-next">
+<span>回到更接近真实使用的项目</span>
+<a href="../renovation-followup/index.html"><strong>FollowUp Copilot</strong><i>→</i></a>
+</nav>
+</main>
+<footer class="case-footer">
+<span>王婉婷 · AI Product Portfolio</span>
+<a href="mailto:wangwanting7@outlook.com">wangwanting7@outlook.com</a>
+</footer>
+</body>
+</html>

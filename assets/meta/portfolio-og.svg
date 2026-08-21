@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#FAFAF8"/>
+
+  <g font-family="'Microsoft YaHei','PingFang SC','Segoe UI',Arial,sans-serif">
+    <text x="76" y="82" fill="#385247" font-family="Consolas,monospace" font-size="18" font-weight="700" letter-spacing="2">
+      WANG WANTING · AI PRODUCT
+    </text>
+
+    <text x="76" y="214" fill="#1A1A1A" font-size="78" font-weight="700" letter-spacing="-3">王婉婷</text>
+    <text x="76" y="312" fill="#1A1A1A" font-size="60" font-weight="700" letter-spacing="-2">AI 产品经理作品集</text>
+    <text x="80" y="382" fill="#5A5A5A" font-size="26">产品实践 · AI 工作流 · 独立研究</text>
+
+    <line x1="76" y1="516" x2="684" y2="516" stroke="#E6E6E0" stroke-width="2"/>
+    <text x="76" y="560" fill="#74746F" font-family="Consolas,monospace" font-size="19" letter-spacing="1">
+      wren-works.github.io
+    </text>
+
+    <rect x="758" y="72" width="366" height="486" rx="28" fill="#F5F5F1" stroke="#E6E6E0" stroke-width="2"/>
+
+    <circle cx="820" cy="138" r="32" fill="#1A1A1A"/>
+    <path
+      d="M802 122 810 151 820 131 830 151 838 122"
+      fill="none"
+      stroke="#FAFAF8"
+      stroke-width="4"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+    <text x="870" y="145" fill="#1A1A1A" font-size="24" font-weight="700">个人实验室</text>
+
+    <line x1="796" y1="194" x2="1086" y2="194" stroke="#E6E6E0" stroke-width="2"/>
+
+    <circle cx="812" cy="252" r="7" fill="#315B4C"/>
+    <text x="840" y="259" fill="#1A1A1A" font-family="Consolas,monospace" font-size="19" font-weight="700">FOLLOWUP COPILOT</text>
+    <text x="840" y="286" fill="#74746F" font-size="16">真实业务试用</text>
+
+    <circle cx="812" cy="354" r="7" fill="#1A3B5C"/>
+    <text x="840" y="361" fill="#1A1A1A" font-family="Consolas,monospace" font-size="19" font-weight="700">DECISIONHELP</text>
+    <text x="840" y="388" fill="#74746F" font-size="16">可运行原型</text>
+
+    <circle cx="812" cy="456" r="7" fill="#385247"/>
+    <text x="840" y="463" fill="#1A1A1A" font-family="Consolas,monospace" font-size="19" font-weight="700">AI RESEARCH WORKFLOW</text>
+    <text x="840" y="490" fill="#74746F" font-size="16">研究工作流实验</text>
+  </g>
+</svg>

@@ -1,0 +1,7 @@
+interface:
+  display_name: "Portfolio Case Copy Review"
+  short_description: "审查或改写作品集案例，保留事实、判断与人的表达节奏"
+  default_prompt: "使用 $case-expression-skill 审查或局部改写这个作品集案例，按我的请求决定是否直接编辑，并保留事实和原有语气。"
+
+policy:
+  allow_implicit_invocation: false
