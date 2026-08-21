@@ -1,4 +1,4 @@
-# 王婉婷 · AI Product Portfolio
+# Wren · AI Product Portfolio
 
 面向 AI 产品经理 / 产品经理岗位的个人作品集。网站使用原生 HTML、CSS 和 JavaScript，适合直接发布到 GitHub Pages。
 
