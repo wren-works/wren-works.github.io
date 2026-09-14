@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#f4f2ed">
+<meta name="description" content="FollowUp：为一家小型装修公司设计的内部运营台，把微信里的客户、工地与账目状态整理进同一个工作流。">
+<title>FollowUp · 把散在微信里的业务状态，收到工作台里 · Wren</title>
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="demo-styles-new.css">
+<link rel="stylesheet" href="demo-adjustments.css">
+<link rel="stylesheet" href="../case-shared/case-shell.css">
+</head>
+<body>
+<header class="site-header"><div class="wrap header-inner">
+  <a class="brand" href="#top"><span class="brand-mark">WR</span><b>Wren</b><span class="brand-divider"></span><span class="brand-note">项目手记</span></a>
+  <nav class="top-nav" aria-label="页面导航"><a class="active" href="#top">CASE</a><a href="#input">INPUT</a><a href="#output">OUTPUT</a><a href="#site">SITE</a></nav>
+  <a class="portfolio-link" href="../../index.html">作品集 <span aria-hidden="true">↗</span></a>
+</div><div class="reading-progress"><span id="progress"></span></div></header>
+<main id="top">
+<section class="wrap hero">
+  <div>
+    <div class="eyebrow"><span class="square-dot"></span><span>CASE 01 / REAL-WORLD OPERATIONS TOOL</span></div>
+    <div class="project-name">FollowUp <span>/ 装修业务运营台</span></div>
+    <h1>把<span class="hero-accent">散落</span>的业务状态，<br>收到工作台里。</h1>
+    <p class="hero-lead">一家小装修公司没有成百上千个客户，<br>但一单会持续几个月。<br><br>FollowUp 在专用电脑上只读同步微信，<br>把客户、工地和账目整理进同一个运营入口，<br>再把今天该处理的事情送回来。</p>
+    <p class="hero-note">负责人仍然决定怎么跟进和回复。<br>系统负责减少反复翻聊天、重新恢复上下文的时间。</p>
+  </div>
+  <figure class="hero-board hero-today" aria-label="FollowUp 今日运营台脱敏重构">
+    <div class="board-top"><span class="micro">TODAY / LOCAL OPERATIONS</span><span class="board-status micro"><i class="pulse-dot"></i>摘要已更新</span></div>
+    <div class="today-app-head"><div><small>装修运营台</small><h3>今天需要处理</h3></div><span>今日</span></div>
+    <div class="hero-counts"><div><strong>6</strong><span>个进行中工地</span></div><div><strong>10</strong><span>个客户待跟进</span></div></div>
+    <div class="hero-today-list">
+      <article><small>到期客户</small><b>张隆 · 确认方案反馈</b><span>打开客户详情 →</span></article>
+      <article><small>微信待回复</small><b>朱朱推荐 · 回到原聊天核对</b><span>近 7 天业务会话 →</span></article>
+      <article><small>工地事项</small><b>建发书香府 · 现浇阶段</b><span>查看工地备注 →</span></article>
+    </div>
+    <figcaption>客户、工地和微信摘要读取同一份本地数据</figcaption>
+  </figure>
+  <dl class="hero-meta">
+    <div><dt>我的角色</dt><dd>产品设计与实现</dd></div><div><dt>使用者</dt><dd>装修公司负责人</dd></div><div><dt>项目周期</dt><dd>2026.07 — 现在</dd></div><div><dt>当前形态</dt><dd>私有 Web App / 专用主机运行</dd></div>
+  </dl>
+</section>
+
+<section class="wrap section">
+  <div class="section-head"><div><div class="section-label">01 / THE ACTUAL PROBLEM</div><h2 class="section-title">客户不算多，<br>事情却很容易散掉。</h2></div><p class="section-aside">一次装修合作会从需求、量房、方案和报价一路延续到施工、工人和款项。信息不是找不到，只是一直散在聊天与负责人的记忆里。</p></div>
+  <div class="problem-grid">
+    <div class="body-copy"><p>真正反复发生的动作不是“写一句更好的回复”，而是隔几天再回来时，要重新判断：上次聊到哪里、谁在等谁、这个工地卡在哪、最近有没有先垫出去一笔钱。</p><p>所以这页不从“做一套 CRM”开始，而从一个更现实的问题开始：<strong>怎么让状态自己留下来，而不是每次重新找回来。</strong></p><div class="origin-note"><b>第一版很小：</b>聊天截图 → 信息提取 → 回复草稿。后来发现消息发完，业务状态并没有留下，于是核心对象从“一次聊天分析”改成“持续更新的客户与工地”。</div></div>
+    <div class="memory-load">
+      <div class="memory-row"><span>01</span><b>微信业务会话</b><em>需求 / 报价 / 反馈</em></div>
+      <div class="memory-row"><span>02</span><b>客户跟进</b><em>阶段 / 下一步 / 提醒</em></div>
+      <div class="memory-row"><span>03</span><b>工地进度</b><em>环节 / 状态 / 备注</em></div>
+      <div class="memory-row"><span>04</span><b>工地账目</b><em>垫账 / 实际支出</em></div>
+    </div>
+  </div>
+</section>
+
+<section class="constraint-band section" id="input">
+<div class="wrap">
+  <div class="section-head"><div><div class="section-label">02 / INPUT</div><h2 class="section-title">如果需要负责人认真维护，<br><em>它就不会被长期使用。</em></h2></div><p class="section-aside">早期版本已经能存客户状态，但逐个建档、粘聊天、补字段、设提醒，只是把“记住事情”换成了“维护系统”。于是输入被拆成两种：第一次靠理解，之后靠增量。</p></div>
+  <div class="input-demo" data-input-mode="ongoing">
+    <aside class="input-mode-rail" aria-label="输入方式">
+      <button type="button" data-input-mode="first" aria-pressed="false"><span>01</span><b>第一次建库</b><small>从零散材料建立客户卡</small></button>
+      <button type="button" data-input-mode="ongoing" aria-pressed="true"><span>02</span><b>后续更新</b><small>只处理微信新增消息</small></button>
+    </aside>
+    <div class="input-stage">
+      <header><span class="micro" id="input-kicker">ONGOING / INCREMENTAL UPDATE</span><h3 id="input-title">之后更新，只处理新出现的内容。</h3><p id="input-copy">微信出现新消息后，系统只读检查新增内容，按消息编号合并成业务会话摘要，再由负责人确认分类或关联对象。</p></header>
+      <ol class="input-path" id="input-path" aria-label="后续更新流程"></ol>
+      <article class="input-step-detail" id="input-step-detail"><span class="micro" id="input-step-kicker">IMPLEMENTATION / 01</span><h4 id="input-step-title">检查本机微信数据变化</h4><p id="input-step-copy">Windows 定时任务调用只读同步脚本，先比较微信数据库文件的更新时间；源数据没有变化时，不重复解密和跑 ETL。</p></article>
+      <div class="sync-boundary"><b>边界</b><span>只读同步和自动发微信是两件事。当前版本不控制微信客户端，不替负责人回复，也不会自动承诺价格和工期。</span></div>
+      <p class="deployment-note">当前部署频率：每 30 分钟检查一次变化。</p>
+    </div>
+  </div>
+</div>
+</section>
+
+<section class="output-section section" id="output">
+<div class="wrap">
+  <div class="section-head"><div><div class="section-label">03 / OUTPUT</div><h2 class="section-title">让需要被处理的东西，<br>自己出现。</h2></div><p class="section-aside">信息进来以后，如果还要专门打开一套系统寻找待办，负担并没有真正消失。FollowUp 用“今日页 + 晨间日报”把同一份本地状态变成两个很轻的出口。</p></div>
+  <div class="output-switch" aria-label="输出方式"><button type="button" data-output-view="today" aria-pressed="true">今日页</button><button type="button" class="output-coming-soon" disabled aria-disabled="true" title="暂不展示">晨间日报 · 暂不展示</button></div>
+  <div class="output-stage"><div class="output-board" data-view="today">
+    <aside class="filter-panel"><span class="micro">TODAY / ACTUAL CASES</span><p>按事项查看今天实际需要处理的情况。</p><div class="filter-list">
+      <button class="filter-btn" aria-pressed="true" data-filter="client"><span class="filter-index">01</span><b>到期客户</b><span class="filter-count">DUE</span></button>
+      <button class="filter-btn" aria-pressed="false" data-filter="reply"><span class="filter-index">02</span><b>微信待回复</b><span class="filter-count">7D</span></button>
+      <button class="filter-btn" aria-pressed="false" data-filter="site"><span class="filter-index">03</span><b>进行中工地</b><span class="filter-count">LIVE</span></button>
+      <button class="filter-btn" aria-pressed="false" data-filter="review"><span class="filter-index">04</span><b>待复核分类</b><span class="filter-count">CHECK</span></button>
+    </div></aside>
+    <div class="task-panel" id="task-panel">
+      <div class="today-view">
+        <div class="task-head"><div><span class="micro">TODAY / 到期客户</span><h3 id="task-title">方案与预算比较中</h3><p class="task-desc" id="task-desc">提醒日期已到，需要确认客户最在意的预算差距。</p></div><span class="today-badge" id="task-badge">今天</span></div>
+        <article class="actual-case-card" id="actual-case-card">
+          <div><small>当前状态</small><b id="case-status">方案与预算比较中</b><span class="case-row-arrow">↗</span></div>
+          <div><small>下一步</small><b id="case-action">确认对方最在意的预算差距</b><span class="case-row-arrow">↗</span></div>
+          <div><small>快捷入口</small><b id="case-entry">打开客户详情 / 回到原聊天</b><span class="case-row-arrow">↗</span></div>
+        </article>
+      </div>
+
+    </div>
+  </div></div>
+  <p class="output-rule-note">今日清单按负责人预先设定的日期和状态规则生成。模型可以整理聊天，但不临时决定今天该跟谁。</p>
+</div>
+</section>
+
+<section class="wrap section site-section" id="site">
+  <div class="section-head"><div><div class="section-label">04 / AFTER SIGNING</div><h2 class="section-title">签约之后，<br>业务只是换了组问题。</h2></div><p class="section-aside">客户进入施工阶段后，重点从“下次什么时候联系”变成“现在施工到哪、有什么问题、最近垫了什么钱”。这里没有做完整项目管理，只保留负责人每天真的会看的状态。</p></div>
+  <article class="site-case-card" id="site-case-card">
+    <div class="site-card-summary">
+      <div><span class="micro">ACTIVE SITE</span><h3>建发书香府</h3><p>当前阶段和账目都留在同一个工地对象里。</p></div>
+      <span class="site-status">进行中</span>
+    </div>
+    <div class="site-detail-grid">
+      <section class="site-progress-detail"><div class="card-top"><span class="micro">SITE PROGRESS / 18 STEPS</span></div><h4>施工进度</h4><div class="stage-ruler" id="stage-ruler"></div><div class="stage-detail"><div><div class="stage-num" id="stage-num">02</div><div class="micro muted">OF 18</div></div><div class="stage-fields"><div class="field-line"><span>当前施工环节</span><b id="stage-label">现浇</b></div><div class="field-line"><span>工地状态</span><b>进行中</b></div><div class="field-line"><span>下一步</span><b>确认现浇完成情况</b></div></div></div></section>
+      <section class="site-ledger-detail"><div class="card-top"><span class="micro">SITE LEDGER / LIGHTWEIGHT</span></div><h4>工地账本</h4><div class="ledger-tabs"><button class="ledger-tab" aria-pressed="true" data-ledger="advance">垫账</button><button class="ledger-tab" aria-pressed="false" data-ledger="expense">实际支出</button></div><div class="ledger-sheet" id="ledger-sheet"><div class="ledger-entry"><span>09.12</span><b>材料款先行垫付</b><em>示意金额</em></div><div class="ledger-entry"><span>09.10</span><b>工人阶段结算</b><em>示意金额</em></div><div class="ledger-total"><span>垫账汇总</span><b>按分类单独查看</b></div></div><p class="ledger-note">台子只负责简易记录。客户回款、垫账核销、应收应付和利润核算等精细核对，还是专事专办，交给财务。</p></section>
+    </div>
+  </article>
+</section>
+
+<section class="ai-section section">
+<div class="wrap">
+  <div class="section-head"><div><div class="section-label">05 / AI'S PLACE</div><h2 class="section-title">项目继续运行后，<br>模型负责的事情反而少了。</h2></div><p class="section-aside">非结构化输入需要理解；重复、稳定、可验证的更新则不该每次都重新问模型。这里的变化不是“去 AI 化”，而是把模型留在更适合它的位置。</p></div>
+  <div class="ai-scroll-story" id="ai-section-progress">
+    <div class="ai-story-copy">
+      <article class="ai-story-step" data-ai-stage="first"><span>01 / 第一次建库</span><h3>输入不规整，模型承担更多理解工作。</h3><p>截图和临时补充先被整理成客户卡。金额、日期、姓名等高影响字段仍由负责人确认。</p></article>
+      <article class="ai-story-step" data-ai-stage="ongoing"><span>02 / 进入日常之后</span><h3>稳定的搬运和提醒，交回脚本与规则。</h3><p>模型按需处理新截图、零散文字和回复草稿；微信同步、到期判断与日报不必每次重新问模型。</p></article>
+    </div>
+    <aside class="ai-sticky" id="ai-sticky" data-stage="first">
+      <div class="ai-sticky-head"><span class="micro" id="ai-stage-label">FIRST SETUP / 第一次建库</span><h3 id="ai-stage-title">先理解，再由人确认。</h3></div>
+      <div class="responsibility-list">
+        <div class="responsibility" data-role="ai" data-level="major"><span>AI</span><div class="responsibility-track"><i></i></div><b>主要负责</b><small>截图、文字理解、客户卡整理</small></div>
+        <div class="responsibility" data-role="script" data-level="minor"><span>增量脚本</span><div class="responsibility-track"><i></i></div><b>少量参与</b><small>尚未进入持续更新</small></div>
+        <div class="responsibility" data-role="rules" data-level="minor"><span>固定规则</span><div class="responsibility-track"><i></i></div><b>少量参与</b><small>校验基础结构</small></div>
+        <div class="responsibility human" data-role="human" data-level="confirm"><span>负责人</span><div class="responsibility-track"><i></i></div><b>最终确认</b><small>高影响字段与保存</small></div>
+      </div>
+      <p>职责变化示意，不代表工作量统计。</p>
+    </aside>
+  </div>
+</div>
+</section>
+
+<section class="wrap section" id="current">
+  <div class="section-head"><div><div class="section-label">06 / CURRENT STATE</div><h2 class="section-title">它已经进入日常工作，<br>也还在继续长。</h2></div><p class="section-aside">当前版本只服务一个负责人，没有急着做成通用 CRM。重点仍然是把真实业务里的记录与提醒跑顺，再决定下一步应该长什么。</p></div>
+  <div class="current-grid">
+    <div class="fact-list"><div class="fact-row"><span>01</span><b>运行环境</b><p>负责人专用 Windows 主机，通过私有网络访问。</p></div><div class="fact-row"><span>02</span><b>同步节奏</b><p>微信只读同步任务每 30 分钟检查一次变化。</p></div><div class="fact-row"><span>03</span><b>共享状态</b><p>今日页、客户、工地和晨间日报读取同一份本地数据。</p></div><div class="fact-row"><span>04</span><b>当前范围</b><p>单负责人；多人权限、完整财务核销和施工协同尚未加入。</p></div></div>
+    <div class="boundary-card"><span class="micro">WHAT IS NEXT / NOT YET PRODUCT</span><h3>下一步更值得验证的，不是再加一排字段。</h3><p>目前更想继续看两件事：完整话术怎样在本地处理，以及客户与工地积累下来的材料，怎样变成之后还能再次使用的业务知识。</p><div class="boundary-points"><div class="boundary-point"><b>NOW</b>记录、同步、提醒和轻量工地状态</div><div class="boundary-point"><b>NEXT</b>本地话术处理与可复用业务知识</div><div class="boundary-point"><b>NOT YET</b>多人协作、完整财务、施工协同</div></div></div>
+  </div>
+</section>
+
+<nav class="case-handoff" aria-label="下一个项目">
+  <small>NEXT CASE · PAPER INVESTING</small>
+  <a href="../paper-lab-source/paper-lab/index.html">
+    <span><b class="case-handoff-title">Portfolio Lab / 纸面交易实验台</b><i class="case-handoff-note">让模型提出交易假设，让确定性系统负责校验、撮合和记账。</i></span>
+    <b class="case-handoff-arrow" aria-hidden="true">↗</b>
+  </a>
+</nav>
+</main>
+<script src="../hmc-v2/vendor/lenis.min.js"></script>
+<script src="../case-shared/case-shell.js"></script>
+<script src="app.js"></script>
+</body></html>

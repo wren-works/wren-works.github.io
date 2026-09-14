@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="一个本地运行的 A 股盘中纸面撮合实验台。让模型提出判断，让确定性系统负责校验、模拟成交与记账。">
+  <meta name="theme-color" content="#f7f6f1">
+  <title>纸面交易实验台 · Wren</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="../../case-shared/case-shell.css">
+</head>
+<body id="top">
+<a class="skip-link" href="#main">跳到正文</a>
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="#top" aria-label="Wren，回到页首"><span class="brand-mark">WR</span><b>Wren</b><span class="brand-divider"></span><span class="brand-note">项目手记</span></a>
+    <nav class="top-nav" aria-label="页面导航"><a href="#why">为什么做</a><a href="#flow">怎么运行</a><a href="#rules">交易约束</a><a href="#outcome">实际收获</a></nav>
+    <a class="portfolio-link" href="../../../index.html">作品集 <span aria-hidden="true">↗</span></a>
+  </div>
+  <div class="reading-progress" aria-hidden="true"><span id="reading-progress"></span></div>
+</header>
+<main id="main">
+  <section class="hero wrap" aria-labelledby="hero-title">
+    <div class="hero-copy">
+      <div class="eyebrow"><span class="square-dot"></span> PERSONAL EXPERIMENT <span class="eyebrow-divider">/</span> A-SHARE PAPER TRADING</div>
+      <p class="project-name">纸面交易实验台</p>
+      <h1 id="hero-title">让模型做判断，<br>让确定性系统负责<br><em>模拟执行与记账。</em></h1>
+      <p class="hero-lead">AI 根据收盘数据给出的预测，<br class="desktop-break">放进真实的交易约束里，到底有没有参考价值？</p>
+      <p class="hero-support">我搭了一套本地运行的纸面环境，<br>把交易假设交给模型，把后面的校验、模拟成交和记账交给规则。</p>
+      <a href="#flow" class="text-link hero-cta">看一条预测如何落地 <span aria-hidden="true">↘</span></a>
+    </div>
+    <figure class="handoff-figure" aria-labelledby="handoff-caption">
+      <figcaption id="handoff-caption"><span>THE HANDOFF / 责任交接</span><span class="figure-caption-tag">机制示意</span></figcaption>
+      <div class="handoff-body">
+        <div class="model-sheet">
+          <div class="sheet-head"><span class="micro">01 / WEB MODEL</span><span class="model-icon" aria-hidden="true">✳</span></div>
+          <h2>提出交易假设</h2>
+          <div class="hypothesis-fields"><span>入场条件</span><span>失效点</span><span>目标位</span><span>失效原因</span></div>
+          <div class="sheet-foot"><code>prediction.v1</code><span>纯 JSON <span aria-hidden="true">↓</span></span></div>
+        </div>
+        <div class="handoff-channel" aria-hidden="true"><div class="channel-line"></div><span class="channel-label">模型的工作，到这里结束。</span><span class="packet"></span></div>
+        <div class="system-sheet">
+          <div class="sheet-head"><span class="micro">02 / LOCAL SYSTEM</span><span class="local-badge"><span></span> 确定性规则</span></div>
+          <h2>让市场来验证。</h2>
+          <div class="system-stages"><span><i>01</i>校验</span><b aria-hidden="true">→</b><span><i>02</i>撮合</span><b aria-hidden="true">→</b><span><i>03</i>记账</span></div>
+          <div class="system-files"><span>state.json</span><span>events.jsonl</span><span class="file-check" aria-hidden="true">✓</span></div>
+        </div>
+      </div>
+      <div class="handoff-bottom"><p><span aria-hidden="true">↳</span> 判断可以不同，执行使用同一套规则。</p><button type="button" class="icon-button" id="replay-handoff" aria-label="播放责任交接动画" title="播放交接"><span aria-hidden="true">↻</span></button></div>
+    </figure>
+    <dl class="hero-meta">
+      <div><dt>研究问题</dt><dd>模型预测，有没有参考价值？</dd></div>
+      <div><dt>实验形式</dt><dd>本地运行 · 真实行情数据 · 纸面撮合</dd></div>
+      <div><dt>当前状态</dt><dd><span class="status-dot"></span>持续使用，边跑边改</dd></div>
+      <div><dt>先说清楚</dt><dd>不是自动实盘交易</dd></div>
+    </dl>
+  </section>
+
+  <section class="section why-section" id="why" aria-labelledby="why-title">
+    <div class="wrap">
+      <div class="section-label"><span>01</span> / WHY THIS EXPERIMENT</div>
+      <div class="intro-grid">
+        <h2 id="why-title" class="section-title">先别比谁赚得多。<br>先让比较<em>公平一点。</em></h2>
+        <div class="body-copy"><p>我平时会记录自己的投资账户，也想看看个人判断和 AI 的纸面策略放在一起，能决出什么高下。</p><p>但真要比较，先遇到的不是“预测准不准”，而是怎么算才公平。交易计划不是一句“看涨”或“建议买入”就结束了。</p></div>
+      </div>
+      <div class="comparison-strip">
+        <div class="opinion-side"><span class="micro">一句判断</span><p>“我看涨。”</p><span class="muted">然后呢？</span></div>
+        <div class="comparison-sign" aria-hidden="true">≠</div>
+        <div class="plan-side"><span class="micro">一份可以被检验的计划</span><div class="question-grid"><div><span>01</span><p>什么价格、<br>什么条件下入场？</p></div><div><span>02</span><p>什么时候<br>承认判断失效？</p></div><div><span>03</span><p>用的是当时<br>已经出现的行情吗？</p></div><div><span>04</span><p>费用和交易限制，<br>真的算进去了吗？</p></div></div></div>
+      </div>
+      <p class="margin-note"><span aria-hidden="true">↳</span> 很显然，我不能天天人工校验这堆东西。所以，把判断后面的工作规则化。</p>
+    </div>
+  </section>
+
+  <section class="section division-section" id="division" aria-labelledby="division-title">
+    <div class="wrap">
+      <div class="section-label"><span>02</span> / DIVISION OF RESPONSIBILITY</div>
+      <div class="section-heading-row"><h2 id="division-title" class="section-title">模型负责想。<br>系统负责<em>照规则做。</em></h2><p class="section-aside">不是把整套交易交给 AI。<br>而是为它划出一个可以被检验的工作范围。</p></div>
+      <div class="division-grid">
+        <article class="role-panel model-role">
+          <div class="role-top"><span class="micro">WEB MODEL</span><span class="role-number">01</span></div>
+          <h3>提出交易假设</h3>
+          <p>收盘后，模型根据自己的策略拿到一份最多包含 12 只候选标的的特征数据包。它也可以自行查询资料，抄人的作业。</p>
+          <div class="role-art model-art" aria-hidden="true"><span class="role-art-input">特征数据包</span><span class="role-art-arrow">→</span><span class="role-art-main">交易假设</span></div>
+          <div class="role-rule"><span class="tiny-label">交付物</span><p><code>prediction.v1</code> 格式的纯 JSON，写明入场条件、失效点、目标位和失效原因。</p></div>
+          <div class="role-bottom">到这里，模型的工作就结束了。<span aria-hidden="true">↘</span></div>
+        </article>
+        <article class="role-panel system-role">
+          <div class="role-top"><span class="micro">LOCAL SYSTEM</span><span class="role-number">02</span></div>
+          <h3>校验、撮合和记账</h3>
+          <p>本地系统读取只读行情，检查结构和价格关系。通过校验的预测才进入纸面撮合，成交时执行交易限制和费用规则。</p>
+          <div class="role-art system-art" aria-hidden="true"><span>校验</span><i>→</i><span>撮合</span><i>→</i><span>记账</span></div>
+          <div class="role-rule"><span class="tiny-label">留下记录</span><p>持仓变化写入 <code>state.json</code>，事件流水追加到 <code>events.jsonl</code>。</p></div>
+          <div class="role-bottom">少字段、价格关系不成立，就拒绝。<span aria-hidden="true">✓</span></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section flow-section" id="flow" aria-labelledby="flow-title">
+    <div class="wrap">
+      <div class="section-label inverse"><span>03</span> / FROM PREDICTION TO RECORD</div>
+      <div class="section-heading-row"><h2 id="flow-title" class="section-title">从收盘后的预测，<br>到盘中的<em>一笔记录。</em></h2><p class="section-aside">点一个节点，看它做了什么。<br>也可以播放完整流程，随时暂停。</p></div>
+      <div class="interactive-note"><span class="small-cross" aria-hidden="true">＋</span> 以下为机制演示，不接入行情，也不运行真实策略。</div>
+      <div class="flow-board">
+        <div class="flow-toolbar"><div class="flow-readout"><span class="status-dot light"></span><span id="flow-count">01 / 08</span><span class="flow-toolbar-label" id="flow-phase">收盘后</span></div><div class="flow-controls"><button id="flow-play" class="control-button primary-control" type="button" aria-pressed="false"><span id="flow-play-icon" aria-hidden="true">▶</span><span id="flow-play-label">自动播放</span></button><button id="flow-prev" class="control-button square-control" type="button" aria-label="上一步" disabled>←</button><button id="flow-next" class="control-button square-control" type="button" aria-label="下一步">→</button></div></div>
+        <div class="flow-content">
+          <ol class="flow-steps" aria-label="预测到记账的八个步骤">
+            <li><button type="button" data-step="0" aria-current="step" aria-controls="flow-detail"><span class="step-number">01</span><span><b>提取日线与粗筛</b><small>多个行情源</small></span><span class="step-arrow" aria-hidden="true">↗</span></button></li>
+            <li><button type="button" data-step="1" aria-controls="flow-detail"><span class="step-number">02</span><span><b>生成特征数据包</b><small>最多 12 只候选标的</small></span><span class="step-arrow" aria-hidden="true">↗</span></button></li>
+            <li><button type="button" data-step="2" aria-controls="flow-detail"><span class="step-number">03</span><span><b>模型提出交易假设</b><small>prediction.v1</small></span><span class="step-arrow" aria-hidden="true">↗</span></button></li>
+            <li><button type="button" data-step="3" aria-controls="flow-detail"><span class="step-number">04</span><span><b>校验结构与价格关系</b><small>通过后标记 accepted</small></span><span class="step-arrow" aria-hidden="true">↗</span></button></li>
+            <li><button type="button" data-step="4" aria-controls="flow-detail"><span class="step-number">05</span><span><b>读取行情，纸面撮合</b><small>Paper Broker · 每分钟</small></span><span class="step-arrow" aria-hidden="true">↗</span></button></li>
+            <li><button type="button" data-step="5" aria-controls="flow-detail"><span class="step-number">06</span><span><b>执行交易规则</b><small>T+1 · 佣金 · 印花税</small></span><span class="step-arrow" aria-hidden="true">↗</span></button></li>
+            <li><button type="button" data-step="6" aria-controls="flow-detail"><span class="step-number">07</span><span><b>写入状态与事件流水</b><small>当前持仓 + 追加式记录</small></span><span class="step-arrow" aria-hidden="true">↗</span></button></li>
+            <li><button type="button" data-step="7" aria-controls="flow-detail"><span class="step-number">08</span><span><b>使用统一口径比较</b><small>实际持仓 / 纸面 / 模型 / 基准</small></span><span class="step-arrow" aria-hidden="true">↗</span></button></li>
+          </ol>
+          <div class="flow-detail" id="flow-detail" role="region" aria-label="当前步骤说明">
+            <div class="detail-top"><span id="detail-kicker">MARKET DATA / 行情输入</span><span id="detail-index">01</span></div>
+            <h3 id="detail-title">先拿到收盘后的日线数据。</h3>
+            <p id="detail-description">从多个行情源提取日线数据并做粗筛。不是让模型凭空选股，而是先准备这一轮判断可以使用的输入。</p>
+            <div id="flow-visual" class="flow-visual"><div class="data-sources"><span>多个行情源</span><div class="visual-arrow">↓</div><div class="source-stack"><span>日线数据</span><span>日线数据</span><span>日线数据</span></div><div class="visual-arrow">↓</div><strong class="visual-result">粗筛后的候选集合</strong></div></div>
+            <div class="detail-bottom"><span class="micro" id="detail-foot-label">异常处理</span><p id="detail-foot">数据缺失会记录降级，或停止发布，而不是假装输入完整。</p></div>
+          </div>
+        </div>
+        <div class="flow-loop"><span class="loop-icon" aria-hidden="true">↳</span><p>具体持仓与收益再次打包成收盘包，交给模型，进入下一轮。</p><span class="micro">NEXT CYCLE ↺</span></div>
+      </div>
+      <noscript><p class="noscript-notice">当前 JavaScript 未启用，交互演示不可用。上方八个步骤仍按实际流程顺序展示；所有核心文案与规则可正常阅读。</p></noscript>
+    </div>
+  </section>
+
+  <section class="section rules-section" id="rules" aria-labelledby="rules-title">
+    <div class="wrap">
+      <div class="section-label"><span>04</span> / RULES BEFORE RETURNS</div>
+      <div class="section-heading-row"><h2 id="rules-title" class="section-title">不让真实账户，<br><em>不明不白地输给模拟盘。</em></h2><p class="section-aside">手续费和交易限制当然也得算上。<br>下面是这个实验台写死的规则，不是券商报价。</p></div>
+      <div class="rule-explorer">
+        <div class="rule-tabs" role="tablist" aria-label="切换交易规则演示">
+          <button type="button" role="tab" id="tab-lock" aria-controls="rule-panel" aria-selected="true" data-rule="lock"><span>01</span> 当天买，不能当天卖 <span class="tab-arrow" aria-hidden="true">↗</span></button>
+          <button type="button" role="tab" id="tab-gap" aria-controls="rule-panel" aria-selected="false" tabindex="-1" data-rule="gap"><span>02</span> 跳空不能按旧价格买 <span class="tab-arrow" aria-hidden="true">↗</span></button>
+          <button type="button" role="tab" id="tab-conflict" aria-controls="rule-panel" aria-selected="false" tabindex="-1" data-rule="conflict"><span>03</span> 不知道先后，就保守点 <span class="tab-arrow" aria-hidden="true">↗</span></button>
+        </div>
+        <div id="rule-panel" class="rule-panel" role="tabpanel" aria-labelledby="tab-lock" tabindex="0">
+          <div class="rule-explanation"><div class="micro" id="rule-code">T+1 / HOLDING LOCK</div><h3 id="rule-title">止损线到了，<br>也不代表今天就能卖。</h3><p id="rule-description">买入当天锁仓，下一交易日才能止损、止盈或按收盘条件退出。不能在模拟盘里，偷偷给模型一次实盘没有的逃跑机会。</p><button type="button" class="demo-action" id="rule-action"><span id="rule-action-label">到下一交易日</span><span aria-hidden="true">→</span></button><p class="demo-disclaimer" id="rule-disclaimer">示意情境，不对应真实持仓或历史成交。</p></div>
+          <div class="rule-stage" id="rule-stage" data-rule="lock" data-state="0">
+            <div class="rule-stage-top"><span>SCENARIO / 撮合示意</span><span id="scenario-badge">买入当日</span></div>
+            <div id="rule-drawing" class="rule-drawing"><div class="lock-visual"><div class="lock-timeline"><div class="day-node selected"><span>D</span><small>买入当日</small></div><div class="day-link" aria-hidden="true"></div><div class="day-node"><span>D+1</span><small>下一交易日</small></div></div><div class="lock-ticket"><div class="lock-symbol" aria-hidden="true"></div><div><b>持仓锁定</b><small>即使触及失效点，当日也不能卖</small></div></div></div></div>
+            <div class="rule-verdict" aria-live="polite" aria-atomic="true"><span class="verdict-icon" id="verdict-icon" aria-hidden="true">—</span><div><b id="verdict-title">已触及失效点，但持仓仍被锁定</b><p id="verdict-detail">当日不卖出，不提前记一笔“成功止损”。</p></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="rule-ledger" aria-label="实验台的六项固定模拟规则">
+        <article><span class="rule-value">T+1</span><div><h3>当日买入，下一交易日才能退出</h3><p>买入当天锁仓，下一交易日才能止损、止盈或按收盘条件退出。</p></div></article>
+        <article><span class="rule-value">¥5<span class="value-suffix"> / 笔</span></span><div><h3>买卖都有成本</h3><p>实验台按每笔 5 元计入佣金；卖出时另计 0.05% 印花税。</p></div></article>
+        <article><span class="rule-value">100<span class="value-suffix"> 股</span></span><div><h3>按整手交易</h3><p>实验台统一按 100 股整手撮合，避免随意切出理想仓位。</p></div></article>
+        <article><span class="rule-value">1%<span class="value-suffix"> / 20%</span></span><div><h3>限制风险，也限制集中度</h3><p>单笔风险不超过总权益的 1%；单只标的不超过总净值的 20%。</p></div></article>
+        <article><span class="rule-value formula-value">max(entry,<br>open)</span><div><h3>突破买入，不占跳空的便宜</h3><p>成交价取入场价 entry 与开盘价中的较高值。</p></div></article>
+        <article><span class="rule-value text-value">止损优先</span><div><h3>同一分钟内，按更保守的结果</h3><p>同一根分钟 K 线同时触及止盈和止损时，按止损处理。</p></div></article>
+      </div>
+      <p class="margin-note"><span aria-hidden="true">↳</span> 这些规则未必能还原真实市场的所有细节，但至少让比赛环境大致公平了。</p>
+    </div>
+  </section>
+
+  <section class="section outcome-section" id="outcome" aria-labelledby="outcome-title">
+    <div class="wrap">
+      <div class="section-label"><span>05</span> / RUNNING, LEARNING, REPAIRING</div>
+      <div class="section-heading-row"><h2 id="outcome-title" class="section-title">实际跑起来，<br>才知道还要<em>改什么。</em></h2><p class="section-aside">系统已经能用真实行情数据运行纸面模拟。<br>不接真实下单，也不代表真实成交。</p></div>
+      <div class="outcome-grid">
+        <div class="outcome-quote"><span class="quote-mark" aria-hidden="true">“</span><blockquote>最直接的收获是<br>我玩得挺开心，<br>也补了一些交易知识。</blockquote><p>开始之前，我甚至都不会算 R。<br>原本只是想比比谁赚得多。</p><div class="comparison-labels" aria-label="记录的四类结果"><span>实际持仓</span><span>个人纸面</span><span>模型策略</span><span>基准</span></div></div>
+        <div class="running-notes">
+          <article><span class="note-number">01</span><div><h3>收盘包出过几次问题</h3><p>我因此调整了收盘数据的来源和回退方式。盘中撮合暂时没有一起换，仍保留 Sina 优先、Eastmoney 备用。</p></div></article>
+          <article><span class="note-number">02</span><div><h3>纸面撮合也修了一批 Bug</h3><p>测试和修复主要由模型完成。这个项目仍然在边用边改，运行本身也在不断暴露需要处理的细节。</p></div></article>
+          <article><span class="note-number">03</span><div><h3>当前短观察期内，模型纸面结果暂时领先</h3><p>样本还在积累，也不清楚有多少来自模型，又有多少是被我的对话上下文带出来的。</p><span class="observation-tag">阶段观察 ≠ 策略有效证明</span></div></article>
+        </div>
+      </div>
+      <div class="next-question"><span class="micro">THE NEXT QUESTION</span><p>换个模型，或者去掉我的个人上下文，<br>它还会做出同样的判断吗？</p><span aria-hidden="true">↗</span></div>
+    </div>
+  </section>
+
+  <section class="section limits-section" id="limits" aria-labelledby="limits-title">
+    <div class="wrap limits-layout">
+      <div><div class="section-label"><span>06</span> / CURRENT BOUNDARIES</div><h2 id="limits-title" class="section-title">值得继续观察。<br><em>还不足以下结论。</em></h2><p class="limits-intro">当前短观察期内暂时领先，和策略被证明有效，<br>是两件不同的事。</p></div>
+      <div class="limits-list">
+        <article><span>01</span><div><h3>样本还在积累</h3><p>这段时间的表现不能证明模型能稳定盈利，也不能证明它能长期跑赢市场。</p></div></article>
+        <article><span>02</span><div><h3>纸面成交不等于真实成交</h3><p>一分钟行情无法完整还原挂单、排队、撤单及涨跌停时的流动性。即使计入费用与限制，纸面收益也不能直接当成实盘收益。</p></div></article>
+        <article><span>03</span><div><h3>交易日历仍不完整</h3><p>目前仍主要按工作日和固定时段校验，这是实验台还没有补齐的边界。</p></div></article>
+      </div>
+    </div>
+  </section>
+</main>
+<nav class="case-handoff" aria-label="下一个项目">
+  <small>NEXT CASE · SHARED AGENT CONTEXT</small>
+  <a href="../../hmc-case-source/hmc-case/index.html">
+    <span><b class="case-handoff-title">HMC</b><i class="case-handoff-note">让不同 Agent 读取同一份明确的当前状态，同时保留可追溯的完整记录。</i></span>
+    <b class="case-handoff-arrow" aria-hidden="true">↗</b>
+  </a>
+</nav>
+<script src="../../hmc-v2/vendor/lenis.min.js"></script>
+<script src="../../case-shared/case-shell.js"></script>
+<script src="page-data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

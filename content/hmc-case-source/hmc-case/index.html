@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#f7f6f1">
+  <meta name="description" content="HMC 项目手记：给 Hermes、Codex 与网页端 Agent 一份可追溯、可确认、能接着工作的当前状态。">
+  <title>HMC · 换一个 Agent，也能接着做 · Wren</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="../../case-shared/case-shell.css">
+</head>
+<body>
+<a class="skip-link" href="#main">跳到正文</a>
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="#top" aria-label="Wren · 返回页首"><span class="brand-mark">WR</span><b>Wren</b><span class="brand-divider"></span><span class="brand-note">项目手记</span></a>
+    <nav class="top-nav" aria-label="章节导航"><a href="#why">为什么做</a><a href="#layers">留下什么</a><a href="#flow">怎么交接</a><a href="#reliability">怎样不出错</a></nav>
+    <a class="contact-link" href="../../../index.html">作品集 <span aria-hidden="true">↗</span></a>
+  </div>
+  <div class="reading-progress" aria-hidden="true"><span id="reading-progress"></span></div>
+</header>
+<main id="main">
+<section class="hero wrap" id="top" aria-labelledby="hero-title">
+  <div class="hero-copy">
+    <p class="eyebrow"><span class="square-dot"></span> CASE 03 <span class="eyebrow-divider">/</span> PERSONAL AGENT INFRASTRUCTURE</p>
+    <p class="project-name">HMC <span>／ 共享工作状态</span></p>
+    <h1 id="hero-title">换一个 Agent，<br><em>也能接着做。</em></h1>
+    <p class="hero-lead">不用把「现在做到哪了」<br>重新讲一遍。</p>
+    <p class="hero-support">我给 Hermes、Codex 和网页端 Agent 做了一层共享状态。<br class="desktop-br">每次更新有出处，历史完整留下；下一次接手时，<br class="desktop-br">先看同一份 Current Context。</p>
+    <a class="text-link hero-cta" href="#flow">看一次状态如何被接纳 <span aria-hidden="true">↘</span></a>
+  </div>
+  <figure class="handoff-figure" id="handoff-figure">
+    <figcaption><span class="micro">THE SAME NOW / 同一份现在</span><span class="figure-caption-tag">交接示意</span></figcaption>
+    <div class="agent-picker" role="group" aria-label="切换接手的 Agent">
+      <button type="button" class="agent-button" data-agent="0" aria-pressed="true"><span class="agent-symbol" aria-hidden="true">H</span><span>Hermes</span><small>LOCAL</small></button>
+      <button type="button" class="agent-button" data-agent="1" aria-pressed="false"><span class="agent-symbol" aria-hidden="true">C</span><span>Codex</span><small>LOCAL</small></button>
+      <button type="button" class="agent-button" data-agent="2" aria-pressed="false"><span class="agent-symbol" aria-hidden="true">W</span><span>Web Chat</span><small>CLOUD</small></button>
+    </div>
+    <div class="handoff-connect" aria-hidden="true"><span class="connector-arm"></span><span class="connector-arm"></span><span class="connector-arm"></span><i id="hero-packet"></i><span class="connector-trunk"></span><span class="connector-caption">接手者变了，现状不用重新讲。</span></div>
+    <article class="context-sheet">
+      <div class="sheet-top"><span class="micro">CURRENT CONTEXT</span><span class="context-version">AS OF #128</span></div>
+      <h2>现在的情况。</h2>
+      <p class="context-summary">Portfolio Lab 已进入纸面评测阶段，下一步继续积累 A 股样本。</p>
+      <div class="context-item"><span class="item-index">01</span><div><b>完善纸面券商评测</b><p>检查下一轮预测同步与评分结果</p></div><span class="item-status">进行中</span></div>
+      <div class="context-item idea-item"><span class="item-index">02</span><div><b>比较个人判断与模型策略</b><p>先记着，不自动升级为执行任务</p></div><span class="item-status">点子</span></div>
+      <div class="sheet-foot"><span class="micro">DEMO DATA · REAL STRUCTURE</span><span aria-hidden="true">↳</span></div>
+    </article>
+    <div class="handoff-bottom"><p id="handoff-reader" aria-live="polite"><span class="status-dot"></span>Hermes 接手 · 读取同一份现状</p><button type="button" id="handoff-next" class="icon-button" aria-label="换下一个 Agent 接手"><span aria-hidden="true">↻</span></button></div>
+  </figure>
+  <dl class="hero-meta">
+    <div><dt>我的角色</dt><dd>独立产品设计与实现</dd></div>
+    <div><dt>项目起点</dt><dd>2026.08</dd></div>
+    <div><dt>产品形态</dt><dd>本地 Web App + API</dd></div>
+    <div><dt>先说清楚</dt><dd>不是所有聊天的自动长期记忆</dd></div>
+  </dl>
+</section>
+
+<section class="section why-section" id="why" aria-labelledby="why-title">
+  <div class="wrap">
+    <p class="section-label"><span>01</span> / A VERY PERSONAL PROBLEM</p>
+    <div class="intro-grid">
+      <div><h2 class="section-title" id="why-title">起点其实很简单。<br><em>我不想再同步一遍了。</em></h2><blockquote class="motivation-quote">“我懒得在切换 Agent 时<br>反复手动同步上下文。”</blockquote></div>
+      <div class="body-copy"><p>Hermes、Codex、网页端 Agent，我都在用。切换的时候，我想带过去的不是整段聊天记录，而是：现在做到哪，什么仍然有效，下一步是什么。</p><p>于是我做了 HMC。Agent 可以留下结构化更新，系统把它们整理成一份能继续工作的现状。想查某个判断从哪里来，再回到历史里看。</p><p>不是让它什么都记住。<strong>先把“现在”说清楚，就已经很有用了。</strong></p></div>
+    </div>
+    <div class="question-comparison">
+      <div><span class="micro">不是这次的重点</span><p>过去有什么，<br>可能和这件事有关？</p><small>从历史中检索相关内容</small></div>
+      <span class="comparison-arrow" aria-hidden="true">→</span>
+      <div class="selected-question"><span class="micro">HMC 要回答的</span><p>我现在应该按什么状态，<br><em>接着往下做？</em></p><small>明确的当前事项、活跃点子和摘要</small></div>
+    </div>
+  </div>
+</section>
+
+<section class="section layers-section" id="layers" aria-labelledby="layers-title">
+  <div class="wrap">
+    <p class="section-label"><span>02</span> / HISTORY IS NOT THE PRESENT</p>
+    <div class="section-heading-row"><h2 class="section-title" id="layers-title">发生过的事，<br>和现在要做的事，<em>分开放。</em></h2><p class="section-aside">Records 留下完整历史，<br>Current Context 给出工作起点。<br>它们不是两份随意改写的摘要。</p></div>
+    <div class="layers-map">
+      <article class="layer-card record-layer"><div class="layer-top"><span class="micro">01 / ARCHIVE</span><span aria-hidden="true">≡</span></div><h3>Records</h3><p>更新来自谁、发生在什么时候、原始内容是什么，都留下来。</p><div class="record-stack" aria-label="历史以追加方式保留"><div><span>001</span><b>原始更新</b><small>保留</small></div><div><span>002</span><b>后续补充</b><small>保留</small></div><div><span>003</span><b>新增修正</b><small>追加</small></div></div><footer>过去不被静默改写。<span class="micro">APPEND ONLY</span></footer></article>
+      <div class="layer-connector" aria-hidden="true"><span>投影</span><b>→</b><small>不是覆盖</small></div>
+      <article class="layer-card current-layer"><div class="layer-top"><span class="micro">02 / WORKING STATE</span><span aria-hidden="true">↳</span></div><h3>Current Context</h3><p>从历史中整理出此刻仍有效的内容。新 Agent 先看这里，再继续工作。</p><div class="current-contents"><div><span>01</span><b>当前事项</b><small>做到哪了</small></div><div><span>02</span><b>活跃点子</b><small>先留着，不等于执行</small></div><div><span>03</span><b>一句摘要</b><small>快速进入状态</small></div></div><footer>读的是现状，也能回头查来源。<span class="micro">PROJECTED VIEW</span></footer></article>
+    </div>
+    <div class="human-strip"><span class="human-icon" aria-hidden="true">◎</span><div><span class="micro">03 / HUMAN VIEW</span><h3>人不需要埋进原始记录里。</h3></div><p>界面把当前状态、时间线和待确认候选分开。<br>既能检查来源，也保留最后确认权。</p><span class="human-abilities">看现状 <i>·</i> 查来源 <i>·</i> 确认候选</span></div>
+  </div>
+</section>
+
+<section class="section flow-section" id="flow" aria-labelledby="flow-title">
+  <div class="wrap">
+    <p class="section-label inverse"><span>03</span> / ONE RECORD, END TO END</p>
+    <div class="section-heading-row"><h2 class="section-title" id="flow-title">“先记着”，<br><em>不等于“现在就做”。</em></h2><p class="section-aside">自动记录器可以提议，<br>但不能替我决定什么已经算数。<br>让一条候选走一遍，就能看见这道边界。</p></div>
+    <p class="interactive-note"><span aria-hidden="true">✳</span> 本段是自动记录器路径的交互演示；Agent 也可以主动同步。示例沿用原页的脱敏内容，不代表真实个人状态。</p>
+    <div class="flow-board" id="flow-board">
+      <div class="flow-toolbar"><div class="flow-readout"><span class="status-dot light"></span><span id="flow-counter" class="micro">01 / 05</span><span class="flow-mode" id="flow-mode">尚未写入正式状态</span></div><div class="flow-controls"><button type="button" id="flow-play" class="control-button"><span id="flow-play-icon" aria-hidden="true">▶</span><span id="flow-play-label">播放到确认环节</span></button><button type="button" id="flow-reset" class="control-button square-control" aria-label="重置这次交接演示">↺</button></div></div>
+      <div class="flow-content">
+        <ol class="flow-steps" aria-label="记录的五个阶段">
+          <li><button type="button" data-step="0" aria-current="step"><span class="step-number">01</span><span><b>一句对话</b><small>Conversation signal</small></span><i aria-hidden="true">↗</i></button></li>
+          <li><button type="button" data-step="1"><span class="step-number">02</span><span><b>整理候选</b><small>Candidate proposed</small></span><i aria-hidden="true">↗</i></button></li>
+          <li><button type="button" data-step="2"><span class="step-number">03</span><span><b>人工确认</b><small>Human approval</small></span><i aria-hidden="true">↗</i></button></li>
+          <li><button type="button" data-step="3" disabled><span class="step-number">04</span><span><b>追加记录</b><small>Record accepted</small></span><i aria-hidden="true">↗</i></button></li>
+          <li><button type="button" data-step="4" disabled><span class="step-number">05</span><span><b>更新现状</b><small>Context projected</small></span><i aria-hidden="true">↗</i></button></li>
+        </ol>
+        <div class="flow-stage" id="flow-stage" role="region" aria-label="交接过程示意">
+          <div class="stage-top"><span class="micro" id="flow-kicker">CONVERSATION SIGNAL</span><span id="flow-time" class="micro">14:07:12</span></div>
+          <h3 id="flow-stage-title">先是一句“以后再说”。</h3>
+          <p class="stage-description" id="flow-description">对话里出现一个可能值得跨会话保留的变化。它是一个想法，还不是现在就要执行的任务。</p>
+          <div id="flow-visual" class="flow-visual"><div class="conversation-demo"><span class="micro">一段对话 / 脱敏示例</span><blockquote>“之后可以比较我自己的判断和模型策略，但先记着，不一定现在做。”</blockquote><p><span>可能值得保留</span><span>还不是任务</span></p></div></div>
+          <div class="flow-actions" id="flow-actions"><button type="button" class="light-action" id="flow-continue">看看它会被记成什么 <span aria-hidden="true">→</span></button></div>
+        </div>
+      </div>
+      <div class="flow-ledger" aria-label="这次演示对正式状态的影响"><div><span class="micro">RECORDS</span><b id="flow-record-state">没有新增记录</b></div><span aria-hidden="true">→</span><div><span class="micro">CURRENT CONTEXT</span><b id="flow-context-state">保持原样</b></div><p id="flow-status" role="status" aria-live="polite" aria-atomic="true">正式状态不会因为一句对话就改变。</p></div>
+    </div>
+    <noscript><p class="noscript-notice">交互需要 JavaScript。完整流程为：对话信号 → 候选 → 人工确认 → 追加 Records → 更新 Current Context。忽略候选时，正式记录和当前状态都不改变；采用时，示例仍是点子，不会自动升级为执行任务。</p></noscript>
+    <p class="flow-footnote">确认的是内容和范围，不只是点一下“同意”。<span>这个示例采用后仍然是 <code>idea</code>，不是任务。</span></p>
+  </div>
+</section>
+
+<section class="section architecture-section" id="architecture" aria-labelledby="architecture-title">
+  <div class="wrap">
+    <p class="section-label"><span>04</span> / DIFFERENT DOORS, SAME RULES</p>
+    <div class="section-heading-row"><h2 class="section-title" id="architecture-title">入口可以不同，<br><em>写进来的规矩得一样。</em></h2><p class="section-aside">本地 Agent 与网页端的可达范围不同。<br>不强行打通权限，而是把更新<br>带回同一套 Agent Sync 记录语义。</p></div>
+    <div class="architecture-board">
+      <div class="source-column"><p class="micro board-label">01 / 选择输入源</p><div role="tablist" class="source-tabs" aria-label="选择写入路径" aria-orientation="vertical"><button type="button" role="tab" id="route-hermes" aria-controls="route-panel" aria-selected="false" tabindex="-1" data-route="hermes"><span><small>LOCAL</small><b>Hermes</b></span><span aria-hidden="true">↗</span></button><button type="button" role="tab" id="route-codex" aria-controls="route-panel" aria-selected="false" tabindex="-1" data-route="codex"><span><small>LOCAL</small><b>Codex</b></span><span aria-hidden="true">↗</span></button><button type="button" role="tab" id="route-web" aria-controls="route-panel" aria-selected="true" data-route="web"><span><small>CLOUD</small><b>Web Chat</b></span><span aria-hidden="true">↗</span></button></div></div>
+      <div class="route-panel" id="route-panel" role="tabpanel" aria-labelledby="route-web" tabindex="0">
+        <p class="micro board-label">02 / HOW IT GETS HOME</p><div class="route-tags"><span id="route-channel">PRIVATE GITHUB BRIDGE</span><span>只传结构化更新</span></div><h3 id="route-title">云端不能直连本机，<br>就走受限的桥。</h3><div class="route-path" id="route-path"><span>私有仓库 Inbox</span><i aria-hidden="true">→</i><span>本地导入器</span></div><p id="route-description">网页端把短 JSON 放进私有仓库 Inbox。本地导入器取回后，固定来源并校验，再进入统一的记录流程。</p><div class="sync-gate"><span aria-hidden="true">↓</span><b>Agent Sync</b><span class="micro">VALIDATE · IDENTIFY · DEDUPLICATE</span></div>
+      </div>
+      <div class="output-column"><p class="micro board-label">03 / SAME OUTPUT</p><div class="output-card"><small class="micro">完整历史</small><b>Records</b><span>追加，不覆盖</span></div><div class="output-arrow" aria-hidden="true">↓ <small>投影</small></div><div class="output-card selected"><small class="micro">当前工作状态</small><b>Context</b><span>接手时先读这里</span></div></div>
+    </div>
+    <details class="protocol-details"><summary><span><span class="micro">OPEN THE ENVELOPE</span><b>这条结构化更新，里面到底装了什么？</b></span><span class="details-icon" aria-hidden="true"></span></summary><div class="protocol-body"><p>以网页端的一条点子为例。来源、权限与字段校验通过后，才会进入 Records。以下是原页展示的封装字段，不是可直接提交的 API 请求。</p><dl class="protocol-fields"><div><dt>source</dt><dd>web-chat</dd></div><div><dt>source_record_id</dt><dd>web-chat-20260908-0142</dd></div><div><dt>record_type</dt><dd>idea</dd></div><div><dt>occurred_at</dt><dd>2026-09-08T14:07:12+08:00</dd></div><div><dt>external_id</dt><dd>compare-human-model</dd></div><div><dt>payload</dt><dd>{ content, probe, status }</dd></div></dl></div></details>
+    <div class="identity-pair"><div><span class="micro">source_record_id</span><h3>这是哪一次写入？</h3><p>用来识别重试。同一条更新再送一次，不应该多记一遍。</p></div><span class="not-equal" aria-hidden="true">≠</span><div><span class="micro">external_id</span><h3>它在更新哪个对象？</h3><p>事项或点子会持续变化，需要一个可以沿用的对象编号。</p></div></div>
+  </div>
+</section>
+
+<section class="section reliability-section" id="reliability" aria-labelledby="reliability-title">
+  <div class="wrap">
+    <p class="section-label"><span>05</span> / WHEN THINGS ARRIVE WRONG</p>
+    <div class="section-heading-row"><h2 class="section-title" id="reliability-title">同步不能<br><em>“差不多对”。</em></h2><p class="section-aside">重复、迟到、坏文件，都要有明确结果。<br>下面三组是规则示意，<br>不会连接真实 HMC，也不会写入个人数据。</p></div>
+    <div class="rule-explorer">
+      <div class="rule-tabs" role="tablist" aria-label="切换可靠性规则">
+        <button type="button" role="tab" id="rule-tab-retry" aria-controls="rule-panel" aria-selected="true" data-rule="retry"><span class="micro">01</span><b>同一条，再送一次</b><span aria-hidden="true">↗</span></button>
+        <button type="button" role="tab" id="rule-tab-late" aria-controls="rule-panel" aria-selected="false" tabindex="-1" data-rule="late"><span class="micro">02</span><b>旧消息，晚到了</b><span aria-hidden="true">↗</span></button>
+        <button type="button" role="tab" id="rule-tab-batch" aria-controls="rule-panel" aria-selected="false" tabindex="-1" data-rule="batch"><span class="micro">03</span><b>一批里，有个坏文件</b><span aria-hidden="true">↗</span></button>
+      </div>
+      <div class="rule-panel" id="rule-panel" role="tabpanel" aria-labelledby="rule-tab-retry" tabindex="0">
+        <div class="rule-explanation"><span class="micro" id="rule-code">IDEMPOTENCY / 幂等</span><h3 id="rule-title">送了两次，<br>也只能算一次。</h3><p id="rule-description">同来源、同记录编号、同内容，返回 duplicate；编号相同却换了内容，就报冲突，不能顺手覆盖。</p><button type="button" class="demo-action" id="rule-action"><span id="rule-action-label">重发相同内容</span><span aria-hidden="true">→</span></button><button type="button" class="secondary-action" id="rule-alternate">试试同编号、不同内容</button><p class="demo-disclaimer">演示编号、时刻与条目只用于解释规则。</p></div>
+        <div class="rule-stage"><div class="rule-stage-top"><span class="micro">SCENARIO / 规则示意</span><span id="rule-badge">等待重试</span></div><div id="rule-visual" class="rule-visual"><div class="retry-row"><span class="file-token">01</span><div><b>已保存的记录</b><small>来源 web-chat · 编号 0142</small></div><span class="mini-tag">已写入</span></div><div class="retry-row incoming"><span class="file-token">01</span><div><b>同一条更新</b><small>同来源 · 同编号 · 同内容</small></div><span class="mini-tag">待重发</span></div><div class="record-count"><span>正式记录数</span><b>1 <small>条</small></b><span>不会因重试多一条</span></div></div><div class="rule-verdict" role="status" aria-live="polite" aria-atomic="true"><span id="verdict-icon" aria-hidden="true">↳</span><div><b id="verdict-title">先有一条已写入的记录。</b><p id="verdict-detail">点击重发，看看系统该怎么处理。</p></div></div></div>
+      </div>
+    </div>
+    <noscript><p class="noscript-notice">另两项规则：迟到的旧记录仍进入历史，但不让同一对象的新状态或投影游标倒退。Inbox 中失败条目单独回滚并进入 rejected，保留原因，后续文件继续处理。</p></noscript>
+    <div class="source-identity"><span class="micro">还有一道边界</span><h3>同名，也不一定是同一个对象。</h3><p>对象内部按 <code>分组 + 来源 + external_id</code> 区分。不同 Agent 的同名对象不会被误并成一条；共享读取视图，不等于抹掉来源。</p></div>
+  </div>
+</section>
+
+<section class="section boundaries-section" id="boundaries" aria-labelledby="boundaries-title">
+  <div class="wrap">
+    <p class="section-label"><span>06</span> / WHAT EXISTS, WHAT DOESN’T</p>
+    <div class="section-heading-row"><h2 class="section-title" id="boundaries-title">能继续工作的现状，<br><em>也包括清楚的边界。</em></h2><p class="section-aside">它牺牲了一部分全自动的便利，<br>换来有来源、能检查、能明确修正的状态。<br>不是要把所有记忆问题一次解决。</p></div>
+    <div class="evidence-and-limits">
+      <aside class="test-note"><span class="micro">原项目的阶段记录</span><div class="test-number">97<span>项自动化测试</span></div><p>当时的测试覆盖 Agent API、Current Context、幂等与修正、候选审批、GitHub Inbox、提醒、镜像和页面行为。</p><small>这是该阶段的运行记录，不代表本次页面改版后重新测试。</small></aside>
+      <div class="limits-list"><article><span>01</span><div><h3>没写进来，就不能假装知道。</h3><p>正式状态来自 Agent 主动同步，或经过人工确认的候选。没有进入 Records 的内容，不算系统已知事实。</p></div></article><article><span>02</span><div><h3>先服务一个人，先在本地跑。</h3><p>当前是单用户、本地优先。公开部署前，仍需要 TLS、完整的用户边界和更可靠的共享限流。</p></div></article><article><span>03</span><div><h3>还在收敛，不急着继续加功能。</h3><p>早期模型仍留下兼容层。接下来要继续收敛数据语义，而不是让功能无限生长。</p></div></article></div>
+    </div>
+    <div class="closing-note"><span class="micro">A NOTE TO MYSELF</span><blockquote>能直接看仓库的事，<br><em>就直接看仓库。</em></blockquote><p>HMC 不必成为所有信息的中转站。<br>它把那份不好交接的“现在”留下来，就够了。</p><span class="closing-mark" aria-hidden="true">↳</span></div>
+  </div>
+</section>
+</main>
+<nav class="case-handoff" aria-label="下一个项目">
+  <small>NEXT CASE · BACK TO FIRST CASE</small>
+  <a href="../../followup-case-source/index.html">
+    <span><b class="case-handoff-title">FollowUp</b><i class="case-handoff-note">回到真实业务现场：把散落在微信里的客户、工地与账目状态收进工作台。</i></span>
+    <b class="case-handoff-arrow" aria-hidden="true">↗</b>
+  </a>
+</nav>
+<script src="../../hmc-v2/vendor/lenis.min.js"></script>
+<script src="../../case-shared/case-shell.js"></script>
+<script src="page-data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
