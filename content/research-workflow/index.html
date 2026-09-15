@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="AI Research Workflow 产品案例：用同模型对照检查研究 Skill 到底改变了什么，以及什么时候该停止搜索、转向验证。">
+  <meta name="description" content="AI Research Workflow 产品案例：用同模型对照、人工盲审与失败归因，检查研究 Skill 到底改变了什么，以及什么时候该停止搜索、转向验证。">
   <meta name="theme-color" content="#FAFAF8">
   <link rel="canonical" href="https://wren-works.github.io/content/research-workflow/">
   <link rel="icon" href="/assets/meta/favicon.svg" type="image/svg+xml">
@@ -12,7 +12,7 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Wren 的产品作品集">
   <meta property="og:title" content="AI Research Workflow · Wren">
-  <meta property="og:description" content="用同模型对照，检查研究 Skill 到底改变了什么。">
+  <meta property="og:description" content="用同模型对照与人工盲审，检查研究 Skill 到底改变了什么。">
   <meta property="og:url" content="https://wren-works.github.io/content/research-workflow/">
   <meta property="og:image" content="https://wren-works.github.io/assets/meta/portfolio-og.png">
   <meta property="og:image:type" content="image/png">
@@ -21,7 +21,7 @@
   <meta property="og:image:alt" content="Wren AI 产品经理作品集">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="AI Research Workflow · Wren">
-  <meta name="twitter:description" content="用同模型对照，检查研究 Skill 到底改变了什么。">
+  <meta name="twitter:description" content="用同模型对照与人工盲审，检查研究 Skill 到底改变了什么。">
   <meta name="twitter:image" content="https://wren-works.github.io/assets/meta/portfolio-og.png">
   <meta name="twitter:image:alt" content="Wren AI 产品经理作品集">
   <title>AI Research Workflow · Wren 的产品作品集</title>
@@ -51,10 +51,10 @@
       <dl class="case-facts">
         <div><dt>角色</dt><dd>独立设计与评估</dd></div>
         <div><dt>周期</dt><dd>2026.07</dd></div>
-        <div><dt>方法</dt><dd>同模型对照</dd></div>
-        <div><dt>状态</dt><dd>开发阶段验证</dd></div>
+        <div><dt>方法</dt><dd>同模型对照 · 人工盲审</dd></div>
+        <div><dt>状态</dt><dd>开发阶段验证 · 单次运行</dd></div>
       </dl>
-      <div class="case-note">AI 辅助研究执行和代码工作；问题怎么定义、对照怎么跑、结果怎么判，由我完成。</div>
+      <div class="case-note">AI 辅助研究执行和代码工作；问题怎么定义、对照怎么跑、规则检查与盲审怎么判，由我完成。</div>
     </section>
 
     <section class="case-section story-section" id="origin">
@@ -73,38 +73,88 @@
     </section>
 
     <section class="case-section" id="definition">
-      <div class="section-label">02 · DEFINITION</div>
+      <div class="section-label">02 · EVAL LOOP</div>
       <div class="section-content prose">
-        <h2>更像报告，不等于更有用</h2>
+        <h2>搭建可复核的 Eval Loop 与分级门槛</h2>
         <p>有了规范的 Skill 之后，研究输出很容易制造一种错觉：引用更多、表格更全、章节更完整，看上去质量也更高。</p>
         <p>但实际检查发现，它可能只是把同一个判断写得更长，也可能为了填满固定结构，过早决定问题应该往哪收敛。</p>
-        <p>所以我暂时定了一个验收标准，叫“强洞察”。至少得改变产品理解或下一步行动，还要解释为什么，事实也得站得住。</p>
-        <div class="definition-grid" aria-label="评估定义">
-          <article><span>QUALITY</span><h3>行动价值</h3><p>是否改变产品理解、优先级或下一步行动，而不只是补充背景。</p></article>
-          <article><span>DEPTH</span><h3>机制与反证</h3><p>是否解释为什么，并提出能区分不同解释的测试，以及推翻判断的条件。</p></article>
-          <article><span>GATE</span><h3>事实门槛</h3><p>一旦出现事实错误、引用不支持或版本与地区错配，其他高分不能抵消。</p></article>
+        <p>为了检验工作流的真实增益，我建立了一个端到端的评估闭环：</p>
+
+        <div class="eval-loop-wrapper" aria-label="Eval Loop 闭环机制">
+          <div class="eval-loop">
+            <article class="eval-step">
+              <span class="eval-step-num">01 · 任务与提示</span>
+              <div class="eval-step-title">统一 Prompt</div>
+              <p class="eval-step-desc">统一自然语言提问与工具权限，不预设结论，提示词在实验目录集中归档。</p>
+            </article>
+            <article class="eval-step">
+              <span class="eval-step-num">02 · 同模型方案</span>
+              <div class="eval-step-title">隔离多条件运行</div>
+              <p class="eval-step-desc">固定 <code>gpt-5.6-terra</code> (high)，在独立工作区对比默认基线、厚 Skill 与薄 Skill。</p>
+            </article>
+            <article class="eval-step">
+              <span class="eval-step-num">03 · 规则与盲审</span>
+              <div class="eval-step-title">门槛检查 + 盲审</div>
+              <p class="eval-step-desc">事实与引用一票否决；隐去条件标签，按 0–4 级标准对行动价值与反证盲评。</p>
+            </article>
+            <article class="eval-step">
+              <span class="eval-step-num">04 · 归因与清洗</span>
+              <div class="eval-step-title">Bad Case 归因</div>
+              <p class="eval-step-desc">分析模式错配与收敛过早；发现污染样本（如偷读既有报告）严格剔除不计分。</p>
+            </article>
+            <article class="eval-step">
+              <span class="eval-step-num">05 · 流程迭代</span>
+              <div class="eval-step-title">Skill 有界优化</div>
+              <p class="eval-step-desc">拆分探索与决策路由，解耦工具契约，在干净工作区运行回归验证。</p>
+            </article>
+          </div>
         </div>
-        <p>这一步让“我觉得这篇更好”，第一次变成了可以复核的问题。</p>
+
+        <p>在评分上，我把评估标准拆分为明确的 0–4 级阶梯与独立硬门槛：</p>
+        <div class="definition-grid" aria-label="评估分级标准">
+          <article>
+            <span>LEVEL 3–4 · 行动价值</span>
+            <h3>强洞察门槛</h3>
+            <p>0 级单源复述，1 级多源综合，2 级识别矛盾；达到 3 级（提出受约束机制与产品含义）或 4 级（改变下一步行动并给出判别测试）才算强洞察。</p>
+          </article>
+          <article>
+            <span>DEPTH · 机制与反证</span>
+            <h3>判别测试与推翻条件</h3>
+            <p>是否提出能区分竞争解释的验证动作，并明确记录“出现什么新证据时必须推翻当前判断”。</p>
+          </article>
+          <article>
+            <span>CRITICAL GATE · 事实一票否决</span>
+            <h3>独立事实门槛</h3>
+            <p>一旦出现关键事实错误、引用不支持、版本或地区错配，其他高分直接失效，不能用平均分掩盖。</p>
+          </article>
+        </div>
+        <p>这一步让“我觉得这篇更好”，第一次变成了可以复核的工程问题。</p>
       </div>
     </section>
 
     <section class="case-section" id="failure">
       <div class="section-label">03 · FIRST FAILURE</div>
       <div class="section-content prose">
-        <h2>报告更完整了，发现没变多</h2>
+        <h2>第一轮：报告更完整了，发现没变多</h2>
         <div class="test-context" aria-label="第一轮测试背景">
-          <span>TOPIC · AI 会议助手</span>
-          <span>默认研究 vs 第一版 Skill</span>
+          <span>TASK · AI 会议助手</span>
+          <span>模式 · 自由探索</span>
+          <span>条件 · 默认研究 vs Decision Research v0.1</span>
         </div>
-        <p>我需要先确认这套 Skill 到底有没有用，所以让同一个模型使用相同工具研究同一个选题：一次按默认方式，另一次使用第一版 Decision Research Skill。</p>
+        <p>我让同一个模型使用相同搜索工具研究同一个选题：一次按默认方式，另一次使用第一版厚流程 Decision Research Skill。</p>
         <div class="metric-compare" role="table" aria-label="第一轮 Skill 对照结果">
-          <div class="metric-row metric-head" role="row"><span>指标</span><span>默认研究</span><span>第一版 Skill</span></div>
-          <div class="metric-row" role="row"><strong>强洞察</strong><span>4 条</span><span>4 条</span></div>
-          <div class="metric-row" role="row"><strong>耗时</strong><span>约 3 分钟</span><span>约 9 分钟</span></div>
+          <div class="metric-row metric-head" role="row"><span>指标</span><span>默认研究</span><span>厚 Skill v0.1</span></div>
+          <div class="metric-row" role="row"><strong>强洞察数</strong><span>4 条 (深度 3.67)</span><span>4 条 (深度 4.00)</span></div>
+          <div class="metric-row" role="row"><strong>耗时 (人工记录)</strong><span>约 3 分钟 (206s)</span><span>约 9 分钟 (558s)</span></div>
+          <div class="metric-row" role="row"><strong>输出篇幅</strong><span>9,884 字符</span><span>12,979 字符 (+31%)</span></div>
+          <div class="metric-row" role="row"><strong>来源 URL / 域名</strong><span>19 / 10 个</span><span>11 / 7 个</span></div>
         </div>
-        <p>按前面的定义，两组都是 4 条强洞察，Skill 版本却用了大约三倍时间。报告确实更完整了，反证、验证条件和更新路径都补上了，但发现没有变多。</p>
-        <p>更要命的是，我本来让它自由研究，它却照着流程交了一份决策简报。</p>
-        <p>流程没有服务问题，反而替问题定了方向。</p>
+
+        <div class="badcase-card">
+          <div class="badcase-header"><span>BAD CASE 归因 · 模式错配与过早收敛</span></div>
+          <p>两组都产出了 4 条强洞察，但 Skill 版本耗时接近 3 倍。虽然反证与验证条件更完整，但它把一个没有负责人、选项和截止日期的自由探索题，强行包装成了一份 Decision Brief。</p>
+          <p>格式负担不仅没有增加发现，反而占用了搜索预算，让信源域名覆盖收窄。<strong>流程没有服务问题，反而替问题定了方向。</strong></p>
+        </div>
       </div>
     </section>
 
@@ -113,14 +163,23 @@
       <div class="section-content prose">
         <h2>第二轮：好报告，也可能是无效样本</h2>
         <div class="test-context" aria-label="第二轮测试背景">
-          <span>TOPIC · 智能手环</span>
-          <span>默认研究 vs 第一版 Skill</span>
+          <span>TASK · 智能手环</span>
+          <span>模式 · 自然语言隐式触发</span>
+          <span>条件 · 默认研究 vs 污染排除 vs v0.2 回归</span>
         </div>
-        <p>第二轮换成智能手环。Skill 那组意外读到了工作区里已有的报告，还修改了它。</p>
-        <p>单看结果，这仍然可能是一篇好报告。但它提前看过答案，已经没法和默认组比。</p>
-        <p>这份报告我留着，但不算进正式结果。</p>
-        <p>后面的任务改用隔离工作区。每次运行只有一个输出路径，实际提示词也统一保存。</p>
-        <p><strong>工作流本身都没法审计，报告里写再多“可追溯性”也没用。</strong></p>
+        <p>第二轮换成智能手环，测试自然语言隐式触发。运行过程中，Skill 组意外读取了当前工作区里已有的旧报告并做了修订。</p>
+        <p>单看文字结果，这仍然是一篇结构完整的报告。但因为它提前看过了答案，对比基线已经失效。</p>
+
+        <div class="badcase-card">
+          <div class="badcase-header"><span>DATA SCRUBBING · 污染样本严格剔除</span></div>
+          <p>发现数据污染后，我没有为了让“评测数据好看”而保留它，而是将其标记为 <code>excluded_contaminated</code> 排除出正式对比，并保留完整元数据供复核。</p>
+          <ul>
+            <li><strong>污染运行 (v0.1)：</strong>5,604 字符，11 个 URL —— 明确剔除，不计入正式均值。</li>
+            <li><strong>干净回归运行 (v0.2)：</strong>5,406 字符，11 个 URL，4 条强洞察，耗时约 3 分钟 —— 确认模式路由修复生效，不再虚构决策简报。</li>
+          </ul>
+        </div>
+
+        <p>此后所有评测全部执行严格纪律：独立隔离工作区、单次运行独立输出路径、实际提示词统一归档。<strong>工作流本身如果无法审计，报告里写再多“可追溯性”也没有意义。</strong></p>
       </div>
     </section>
 
@@ -128,23 +187,22 @@
       <div class="section-label">05 · PRODUCT DECISION</div>
       <div class="section-content prose">
         <h2>我没再加规则，直接把它拆成两套</h2>
-        <p>问题到这里已经很清楚了。开放探索和明确决策根本不是同一种任务。</p>
-        <p>开放探索先把问题摊开。它要找其他解释，也要找容易漏掉的分支。</p>
-        <p>明确决策正好相反。选项已经在那里，任务是收敛，并记住什么证据会改变结论。</p>
-        <p>硬塞在一起，开放问题很容易太早收敛。</p>
+        <p>两次失败让问题变得很清楚：开放探索与明确决策是两种完全不同的认知任务。</p>
+        <p>开放探索需要先把问题摊开，寻找被忽略的角色、相邻形态与相反解释，重点是<strong>防止被首个合理框架带走</strong>；明确决策正好相反，选项已知，任务是比对权衡、记录反证与推翻条件，重点是<strong>结论可检查、可更新</strong>。</p>
+        <p>硬塞在同一套厚模板里，开放题会过早收敛，决策题又显得臃肿。因此我将工作流拆解重构：</p>
         <div class="skill-split">
           <article>
-            <span>EXPLORE-TOPIC</span>
+            <span>EXPLORE-TOPIC · 薄 SKILL</span>
             <h3>先扩大问题空间</h3>
-            <p>先扫全局，再找相邻产品、被忽略的用户、其他解释和相反证据。</p>
-            <small>目标：别被第一个解释带走</small>
+            <p>先侦察后综合；生成动态视角，主动寻找相邻产品、边缘用户、替代机制与反证分支；达到网页信息边界即停。</p>
+            <small>核心目标：打破单一解释框架</small>
           </article>
           <i aria-hidden="true">≠</i>
           <article>
-            <span>DECISION-RESEARCH</span>
+            <span>DECISION-RESEARCH · 厚 SKILL</span>
             <h3>再收敛成可更新决策</h3>
-            <p>比较选项，记录判断依据、最大风险，以及什么证据会改变结论。</p>
-            <small>目标：结论可以检查，也可以改</small>
+            <p>路由至决策契约；对齐选项矩阵，记录关键证据台账、最高风险假设、翻转测试与局部更新路径。</p>
+            <small>核心目标：结论可追溯、可推翻</small>
           </article>
         </div>
       </div>
@@ -153,68 +211,259 @@
     <section class="case-section" id="discovery-result">
       <div class="section-label">06 · DISCOVERY</div>
       <div class="section-content prose">
-        <h2>观点没变多，但提问顺序变了</h2>
+        <h2>第三轮：观点没变多，但提问顺序变了</h2>
         <div class="test-context" aria-label="第三轮测试背景">
-          <span>TOPIC · 具身智能</span>
-          <span>默认研究 vs Decision Research vs Explore Topic</span>
+          <span>TASK · 具身智能 (中国产品研究)</span>
+          <span>模式 · 自由探索三向对照</span>
+          <span>条件 · 默认研究 vs 厚 Skill v0.2 vs 薄 Skill explore-topic</span>
         </div>
-        <p>我拿同一组具身智能题做对照。三种方式分别是默认研究、Decision Research 和 Explore Topic。</p>
-        <p>三份报告的主干差不多：真实工位、异常运维、数据闭环和形态选择。</p>
-        <p>Explore Topic 多带出了几个原本容易漏掉的分支。我最在意的是其中一个：</p>
+        <p>我用同一道具身智能开放题进行三向比较：默认研究、厚流程 Decision Research v0.2 与轻量化的 Explore Topic。</p>
+
+        <div class="metric-compare metric-compare-3col" role="table" aria-label="具身智能三向对比结果">
+          <div class="metric-row metric-head" role="row"><span>指标</span><span>默认研究</span><span>厚 Skill v0.2</span><span>薄 Explore Topic</span></div>
+          <div class="metric-row" role="row"><strong>耗时记录</strong><span>约 3m30s</span><span>约 4m00s</span><span>2m59s (精确)</span></div>
+          <div class="metric-row" role="row"><strong>输出篇幅</strong><span>6,895 字符</span><span>10,462 字符</span><span>8,099 字符 (-23%)</span></div>
+          <div class="metric-row" role="row"><strong>URL / 域名</strong><span>11 / 7 个</span><span>17 / 12 个</span><span>18 / 11 个</span></div>
+          <div class="metric-row" role="row"><strong>强洞察数</strong><span>5 条</span><span>4 条</span><span>5 条</span></div>
+          <div class="metric-row" role="row"><strong>视角广度 / 反证</strong><span>3/4 · 3/4</span><span>3/4 · 4/4</span><span>4/4 · 4/4</span></div>
+        </div>
+
+        <p>三份报告的主干仍然收敛在真实工位、异常运维、数据闭环和形态比较。薄 Skill 没有凭空发现 5 个全新机会，但它以更短篇幅和更低延迟，重新组织了问题空间：</p>
         <blockquote>先证明什么时候不该使用人形机器人，再决定产品形态。</blockquote>
-        <p>它不是多给了一个观点，而是把顺序倒了过来。先问形态有没有必要，再问该怎么实现。</p>
+        <p>它把人形降级为一种“环境兼容策略”，主动引入 Amazon 非人形自动化等相邻反例，并将交付同时视为异常数据采集。它改变的不是观点的字数，而是提问的顺序。</p>
       </div>
     </section>
 
     <section class="case-section" id="decision-result">
       <div class="section-label">07 · DECISION</div>
       <div class="section-content prose">
-        <h2>两份报告给出相反推荐</h2>
-        <div class="test-context" aria-label="最后一轮测试背景">
-          <span>TOPIC · 英德语会议助手 MVP</span>
-          <span>默认研究 vs Decision Research</span>
+        <h2>第四轮：两份报告给出相反推荐</h2>
+        <div class="test-context" aria-label="第四轮测试背景">
+          <span>TASK · 欧盟会议助手语音架构 MVP 决策</span>
+          <span>模式 · 双盲人工评审</span>
+          <span>条件 · Candidate Y (默认) vs Candidate X (厚 Skill v0.2)</span>
         </div>
-        <p>最后一轮，我换成一道真实决策题。</p>
-        <p>一家 15 人的中国团队，要为面向欧盟市场的英德语会议助手选择 MVP 方案。选项有三个：云端优先、端侧优先和混合架构。</p>
-        <p>评分前，我隐藏了两份报告使用的研究方式，再做盲审。</p>
-        <p>盲审总分几乎持平：Skill 版本 36/36，默认版本 35/36；唯一的差异来自可更新性。代价是耗时多 44 秒，篇幅多约 19%。</p>
-        <p>但推荐完全相反。一份选受控的 EU 云端优先，另一份选端侧优先。</p>
-        <p>真正卡住决策的，是公开资料回答不了的几件事：英德语在目标硬件上表现怎样，真实会议环境里能不能听清，客户采购有哪些限制，以及原始音频能不能离开设备。</p>
-        <p><strong>这些问题，公开网页回答不了。继续搜，也只是在拖延验证。</strong></p>
-        <p>接下来该做的是测试。测目标硬件，测真实会议，也去确认客户的采购和数据政策。</p>
+        <p>最后一轮换成明确决策题：一家 15 人的中国团队，为面向欧盟市场的英德语会议助手选择 MVP 架构（云端优先 vs 端侧优先 vs 混合架构）。</p>
+        <p>评审前，我隐去生成报告的工作流标签，由人工盲审逐项按 9 项准则打分（满分 36 分）：</p>
+
+        <div class="decision-score" aria-label="盲审得分对比">
+          <article>
+            <span>CANDIDATE Y · 默认研究</span>
+            <strong>35<small>/36</small></strong>
+            <p>耗时 3m18s · 6,727 字符 · 7 URLs<br>推荐：受控 EU 云端优先 (方案 A)</p>
+          </article>
+          <i aria-hidden="true">vs</i>
+          <article class="score-accent">
+            <span>CANDIDATE X · DECISION RESEARCH</span>
+            <strong>36<small>/36</small></strong>
+            <p>耗时 4m02s (+44s) · 8,017 字符 · 9 URLs<br>推荐：端侧优先 (方案 B)</p>
+          </article>
+        </div>
+
+        <p>两份报告都通过了关键事实与引用门槛。厚 Skill 多得 1 分，关键差距在于它提供了更明确的主张—证据台账、最高风险假设、翻转测试与局部更新路径。</p>
+        <p>更重要的是，<strong>两份报告给出了完全相反的架构推荐</strong>。这并不是评估失败，而是清晰暴露了公开资料无法决定的关键变量：目标硬件上的实际识别率、真实会议声学、客户采购合规限制，以及原始音频离端接受度。</p>
+        <p><strong>公开网页已经无法提供更多增量信息，继续搜索只是在拖延决策。</strong>此时最有价值的产出不是强行给出一个自负的确定答案，而是指出接下来必须做的 2–3 周真实硬件与客户政策测试。</p>
+      </div>
+    </section>
+
+    <section class="case-section" id="evidence-ledger">
+      <div class="section-label">08 · EVIDENCE LEDGER</div>
+      <div class="section-content prose">
+        <h2>实验与评估全景表</h2>
+        <p>以下为 4 组任务、10 次运行的真实完整记录。所有数据均来自实际运行产物与审计记录，不虚构未采集指标：</p>
+
+        <div class="evidence-ledger" aria-label="实验与评估数据全景表">
+          <table class="evidence-table">
+            <thead>
+              <tr>
+                <th>任务 ID</th>
+                <th>任务类型</th>
+                <th>运行条件</th>
+                <th>状态</th>
+                <th>耗时 (秒/分)</th>
+                <th>篇幅 (字符)</th>
+                <th>URL / 域名</th>
+                <th>强洞察 / 盲审</th>
+                <th>关键结论与归因</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>discovery-01</td>
+                <td>自由探索</td>
+                <td>默认研究</td>
+                <td><span class="badge badge-included">有效基线</span></td>
+                <td>约 3m (206s)</td>
+                <td>9,884</td>
+                <td>19 / 10</td>
+                <td>4 条 (3.67)</td>
+                <td>基线发现 4 条强洞察，搜索覆盖较宽</td>
+              </tr>
+              <tr>
+                <td>discovery-01</td>
+                <td>自由探索</td>
+                <td>厚 Skill v0.1</td>
+                <td><span class="badge badge-included">有效对比</span></td>
+                <td>约 9m (558s)</td>
+                <td>12,979</td>
+                <td>11 / 7</td>
+                <td>4 条 (4.00)</td>
+                <td>Bad Case：强行包装成决策简报，耗时长且未增多发现</td>
+              </tr>
+              <tr>
+                <td>discovery-02</td>
+                <td>自由探索</td>
+                <td>默认研究</td>
+                <td><span class="badge badge-included">有效基线</span></td>
+                <td>约 2m (172s)</td>
+                <td>6,744</td>
+                <td>13 / 11</td>
+                <td>5 条 (3.33)</td>
+                <td>自然语言隐式触发基线</td>
+              </tr>
+              <tr class="row-excluded">
+                <td>discovery-02</td>
+                <td>自由探索</td>
+                <td>厚 Skill v0.1</td>
+                <td><span class="badge badge-excluded">污染排除</span></td>
+                <td>约 4m (240s)</td>
+                <td>5,604</td>
+                <td>11 / 7</td>
+                <td>-</td>
+                <td>Bad Case：偷读工作区既有报告，严格剔除不计分</td>
+              </tr>
+              <tr class="row-regression">
+                <td>discovery-02</td>
+                <td>自由探索</td>
+                <td>厚 Skill v0.2</td>
+                <td><span class="badge badge-regression">干净回归</span></td>
+                <td>约 3m (203s)</td>
+                <td>5,406</td>
+                <td>11 / 4</td>
+                <td>4 条 (4.00)</td>
+                <td>修复模式错配，不再虚构决策简报</td>
+              </tr>
+              <tr>
+                <td>discovery-03</td>
+                <td>自由探索</td>
+                <td>默认研究</td>
+                <td><span class="badge badge-included">有效基线</span></td>
+                <td>约 3m30s (210s)</td>
+                <td>6,895</td>
+                <td>11 / 7</td>
+                <td>5 条</td>
+                <td>三向比较基线</td>
+              </tr>
+              <tr>
+                <td>discovery-03</td>
+                <td>自由探索</td>
+                <td>厚 Skill v0.2</td>
+                <td><span class="badge badge-included">有效对比</span></td>
+                <td>约 4m00s (239s)</td>
+                <td>10,462</td>
+                <td>17 / 12</td>
+                <td>4 条</td>
+                <td>厚流程篇幅最长，强化反证但探索偏重</td>
+              </tr>
+              <tr>
+                <td>discovery-03</td>
+                <td>自由探索</td>
+                <td>薄 Explore Topic</td>
+                <td><span class="badge badge-included">有效对比</span></td>
+                <td>2m59s (179s)</td>
+                <td>8,099</td>
+                <td>18 / 11</td>
+                <td>5 条</td>
+                <td>薄流程重构提问顺序，篇幅较厚 Skill 降 23%</td>
+              </tr>
+              <tr>
+                <td>decision-01</td>
+                <td>方案决策</td>
+                <td>Candidate Y (默认)</td>
+                <td><span class="badge badge-included">双盲评审</span></td>
+                <td>3m18s (198s)</td>
+                <td>6,727</td>
+                <td>7 / 5</td>
+                <td>35 / 36</td>
+                <td>盲审推荐云端 A；通过全部关键事实门槛</td>
+              </tr>
+              <tr>
+                <td>decision-01</td>
+                <td>方案决策</td>
+                <td>Candidate X (厚 v0.2)</td>
+                <td><span class="badge badge-included">双盲评审</span></td>
+                <td>4m02s (242s)</td>
+                <td>8,017</td>
+                <td>9 / 6</td>
+                <td>36 / 36</td>
+                <td>盲审推荐端侧 B；可更新性与反证台账更完整</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="csv-action-box">
+          <div class="csv-action-box-text">
+            <h4>下载完整评估元数据</h4>
+            <p>包含每个运行的任务类型、版本、状态、耗时记录方式、字数、信源数与评分细项。</p>
+          </div>
+          <a class="csv-btn" href="eval-summary.csv" download>
+            <span>↓ eval-summary.csv</span>
+          </a>
+        </div>
       </div>
     </section>
 
     <section class="case-section" id="limits">
-      <div class="section-label">08 · LIMITS</div>
+      <div class="section-label">09 · LIMITS</div>
       <div class="section-content prose">
-        <h2>现在能说什么</h2>
+        <h2>现在能说什么，与下一轮验证计划</h2>
         <div class="boundary-grid">
           <article>
-            <span>目前支持</span>
-            <h3>两个早期信号</h3>
+            <span>目前证据支持</span>
+            <h3>两个窄而明确的信号</h3>
             <ul>
-              <li>Decision Research 没有发现更多，但更方便检查和更新结论。</li>
-              <li>Explore Topic 改变了问题展开的顺序，也带出了原本容易漏掉的分支。</li>
+              <li><strong>Decision Research：</strong>在自由探索中未增加新洞察，但在决策题中显著增强了证据可审计性、反证与更新能力。</li>
+              <li><strong>Explore Topic：</strong>以更轻量篇幅打破了单一合理框架，改变了探索题的问题展开顺序。</li>
             </ul>
           </article>
           <article class="boundary-muted">
-            <span>目前不支持</span>
-            <h3>普遍优于默认研究</h3>
+            <span>目前证据不支持</span>
+            <h3>不能过度泛化为“全面胜出”</h3>
             <ul>
-              <li>这些题目都参与过流程开发，不能算完全陌生的评估题。</li>
-              <li>每种方式只运行了一次，也没有完整记录 token、成本和人工审阅时间。</li>
-              <li>NOMI 研究还没有用同一模型和新版 Skill 重跑。</li>
+              <li><strong>开发集局限：</strong>当前题目均参与过流程设计与调试，非完全陌生的 Holdout 测试集。</li>
+              <li><strong>单次运行：</strong>每种方式当前仅单次运行，无法排除随机波动，暂不能计算统计显著性。</li>
+              <li><strong>指标边界：</strong>当前未完整记录 Token 消耗与成本，因此不作质量成本比推断。</li>
             </ul>
           </article>
         </div>
-        <h3 class="next-heading">下一轮直接验证</h3>
+
+        <h3 class="next-heading">下一阶段验证规划</h3>
         <ol class="next-list">
-          <li><span>01</span><div><strong>换一批没见过的题</strong><p>开发用一组，正式评估再用另一组。</p></div></li>
-          <li><span>02</span><div><strong>每种方式至少跑三次</strong><p>先看结果稳不稳定，再谈平均收益。</p></div></li>
-          <li><span>03</span><div><strong>加一组小模型</strong><p>看看一套合适的流程，能不能用更低成本接近大模型的默认研究。</p></div></li>
+          <li>
+            <span>01</span>
+            <div>
+              <strong>跨行业 Holdout 测试集 (10–20 题)</strong>
+              <p>选取医疗器械、工业软件、出海合规等从未参与开发的陌生行业题目，检验泛化能力。</p>
+            </div>
+          </li>
+          <li>
+            <span>02</span>
+            <div>
+              <strong>多次独立运行 (N &ge; 3)</strong>
+              <p>每种方式重复 3 次以上，消除模型偶发波动，统计洞察深度均值、方差与耗时稳定性。</p>
+            </div>
+          </li>
+          <li>
+            <span>03</span>
+            <div>
+              <strong>小模型 + 工作流质量成本比</strong>
+              <p>引入参数量更小的模型条件，验证“合适的认知流程能否让更小模型以更低成本逼近大模型的默认研究质量”。</p>
+            </div>
+          </li>
         </ol>
-        <p class="closing-line">我一开始只是想把 NOMI 的研究写得更完整。现在问题变了：什么时候继续找，什么时候停下来做测试。开放题先把问题打开。选项明确后，再收敛。</p>
+
+        <p class="closing-line">我最初只是想把研究写得更完整。现在问题变成了：什么时候该继续搜索，什么时候该停下来转向验证。开放题先把问题空间打开，选项明确后，再用结构化流程收敛决策。</p>
       </div>
     </section>
 

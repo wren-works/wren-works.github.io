@@ -44,31 +44,30 @@
     </nav>
 
     <section class="case-hero">
-      <div class="case-kicker">AI SYSTEM · DETERMINISTIC SANDBOX</div>
+      <div class="case-kicker">AI SYSTEM · PAPER TRADING LAB</div>
       <h1>Portfolio Lab</h1>
-      <p class="case-thesis">让模型做判断，<br>让确定性系统负责执行与记账。</p>
-      <p class="case-lead">一个本地运行的多资产看板与 A 股盘中纸面撮合实验台。把大模型生成的交易假设限制在严格的规则系统内，验证“AI 给出的交易计划到底有没有参考价值”。</p>
+      <p class="case-thesis">让模型做判断，<br>让确定性系统负责<span class="mobile-break"><br></span>执行与记账。</p>
+      <p class="case-lead">这是一个本地运行的 A 股盘中纸面撮合实验台。主要想验证一件事：<strong>AI 根据收盘数据给出的预测，放进真实的交易约束里，到底有没有参考价值。</strong></p>
       <dl class="case-facts">
-        <div><dt>角色</dt><dd>独立产品设计与规则引擎实现</dd></div>
+        <div><dt>角色</dt><dd>独立产品设计与实验搭建</dd></div>
         <div><dt>周期</dt><dd>2026.08 — 现在</dd></div>
-        <div><dt>测试</dt><dd>69 tests 自动化测试全绿</dd></div>
+        <div><dt>对象</dt><dd>个人判断 / 模型策略 / 基准</dd></div>
         <div><dt>形态</dt><dd>本地系统 + 纸面沙盒</dd></div>
       </dl>
-      <div class="case-note">网页端模型仅产出纯 JSON 交易假设；行情获取、状态校验、撮合执行与资产记账全部由本地确定性系统硬编码保证。无真实下单接口，非自主交易 Agent。</div>
+      <div class="case-note">模型读取收盘后的特征数据并输出结构化交易假设；行情获取、规则校验、模拟成交和资产记账由本地系统完成。</div>
     </section>
 
     <!-- 01 · CONTEXT -->
     <section class="case-section" id="context">
       <div class="section-label">01 · CONTEXT</div>
       <div class="section-content">
-        <h2>为什么从“比较直觉与 AI”开始</h2>
-        <p class="section-intro">平时会记录自己的投资账户，也想比较个人判断与 AI 纸面策略的结果。但我很快发现，市面上的“AI 炒股”大多停留在生成一段分析报告，或者在历史行情里挑几段拟合得漂亮的走势。</p>
-        <p class="body-copy">如果缺少统一的复盘口径，模型给出的交易计划根本没办法客观评价：</p>
-        <div class="callout">
-          <strong>真实交易的摩擦成本，模型通常不考虑</strong>
-          <p>没有 A 股 T+1 锁仓约束，AI 就会假定买入后当天随时可以止损逃顶；没有固定佣金与印花税，高频开仓看起来笔笔都赚；没有保守的成交价格判定，回测里的每一次“突破”都会被算在最完美的极值点。</p>
-        </div>
-        <p class="body-copy">为了搞清楚“AI 给出的交易判断到底有没有参考价值”，我开始搭建一个可复核的确定性环境。核心原则只有一条：<strong>绝不让模型碰真实资金，把模型预测与执行记账彻底解耦。</strong></p>
+        <h2>为什么要做这个实验</h2>
+        <p class="section-intro">我平时会记录自己的投资账户，也想看看个人判断和 AI 的纸面策略放在一起，能决出什么高下。</p>
+        <p class="body-copy">但真要比较，先遇到的不是“预测准不准”，而是<strong>怎么算才公平</strong>。</p>
+        <p class="body-copy">现在很多“AI 炒股”基本停在两种形式：生成一段市场分析，或者拿历史行情展示几段拟合得不错的走势。</p>
+        <p class="body-copy">问题是交易计划不是一句“看涨”或“建议买入”就结束了。</p>
+        <p class="body-copy">模型当时给了什么价格？什么条件下入场？什么时候认错？如果真的照着执行，用的是不是当时已经出现的行情？交易限制有没有算进去？</p>
+        <blockquote>很显然我不能天天人工校验这堆东西。<br>所以我搭了一套统一的纸面环境，规则化判断后面的校验、成交和记账。</blockquote>
       </div>
     </section>
 
@@ -76,314 +75,124 @@
     <section class="case-section" id="boundary">
       <div class="section-label">02 · BOUNDARY</div>
       <div class="section-content">
-        <h2>安全红线与职责切分</h2>
-        <p class="section-intro">这个项目从第一天起就定下了安全边界：不做全自动交易 Agent，不接任何真实券商写接口。</p>
-        
-        <div class="boundary-compare" aria-label="大模型与确定性系统职责边界对比">
-          <article class="boundary-col">
-            <header>
-              <span>WEB LLM (PROMPT CONSUMER)</span>
-              <em>纯纸面预测</em>
-            </header>
-            <h3>网页端大模型只负责生成假设</h3>
+        <h2>产品如何分工</h2>
+        <p class="section-intro">整个系统分成两部分。</p>
+        <div class="boundary-compare" aria-label="网页端大模型与本地系统职责分工">
+          <article class="boundary-col llm-side">
+            <header><span>WEB LLM</span><em>提出假设</em></header>
+            <div class="boundary-icon" aria-hidden="true">?</div>
+            <h3>网页端大模型：提出交易假设</h3>
+            <p class="boundary-copy">收盘后，模型会根据自己的策略拿到一份特征数据包，里面最多有 12 只候选标的。模型也可以自行查询资料，抄人的作业。</p>
             <ul class="boundary-list">
-              <li><b>✓</b><p>在网页端消费收盘特征数据包（Packet）</p></li>
-              <li><b>✓</b><p>输出严格受限的结构化假设（<code>prediction.v1</code>）</p></li>
-              <li><b>✓</b><p>定义入场触发、失效点、目标位与失效原因</p></li>
-              <li class="prohibited"><b>✕</b><p>没有真实账户授权，也不能读取未写入 Packet 的账户信息</p></li>
-              <li class="prohibited"><b>✕</b><p>无法触发任何下单、撤单或划转动作</p></li>
+              <li><b>01</b><p>之后按照 <code>prediction.v1</code> 格式输出纯 JSON。</p></li>
+              <li><b>02</b><p>每条预测写明入场条件、失效点、目标位和失效原因。</p></li>
             </ul>
+            <p class="boundary-end">到这里，模型的工作就结束了。<br><strong>市场会来验证。</strong></p>
           </article>
-
           <article class="boundary-col strict">
-            <header>
-              <span>LOCAL DETERMINISTIC SYSTEM</span>
-              <em>确定性执行</em>
-            </header>
-            <h3>本地系统全权负责执行与记账</h3>
+            <header><span>LOCAL SYSTEM</span><em>确定性执行</em></header>
+            <div class="boundary-icon" aria-hidden="true">✓</div>
+            <h3>本地系统：校验、撮合和记账</h3>
+            <p class="boundary-copy">本地系统先读取只读行情，检查 JSON 结构和价格关系。</p>
             <ul class="boundary-list">
-              <li><b>✓</b><p>只读 API：OKX 仅开启 Read 权限读取 BTC 永续快照</p></li>
-              <li><b>✓</b><p>硬编码 Schema 与价格逻辑校验（Entry/SL/TP 顺序）</p></li>
-              <li><b>✓</b><p>分钟级行情定时轮询与保守模拟撮合（simulated_fill）</p></li>
-              <li><b>✓</b><p>A 股 T+1 锁仓、佣金、印花税硬规则扣除</p></li>
-              <li><b>✓</b><p>状态机持久化（<code>state.json</code> 与 <code>events.jsonl</code>）</p></li>
+              <li><b>01</b><p>预测通过校验后，会进入纸面模拟撮合。系统根据分钟行情判断是否成交，同时执行 T+1、佣金和印花税等规则。</p></li>
+              <li><b>02</b><p>最后，持仓变化和事件流水都会写入本地状态。</p></li>
             </ul>
+            <p class="boundary-end">字段缺失或价格关系不成立，<br><strong>预测会被拒绝。</strong></p>
           </article>
         </div>
-
-        <p class="body-copy">这种划分让整个实验变得极其安全：即便大模型在网页端产生了幻觉、输出了离谱的价格，本地校验层也会直接拒绝接收，绝不会影响底层的账本与持仓状态。</p>
+        <div class="loop-note"><span>DAY +1</span>次日，具体持仓以及收益情况会一并打包成收盘包，丢给模型，循环往复。</div>
       </div>
     </section>
 
-    <!-- 03 · ARCHITECTURE -->
-    <section class="case-section" id="architecture">
-      <div class="section-label">03 · ARCHITECTURE</div>
+    <!-- 03 · FLOW -->
+    <section class="case-section" id="flow">
+      <div class="section-label">03 · FLOW</div>
       <div class="section-content">
-        <h2>从收盘预测到盘中撮合的端到端管道</h2>
-        <p class="section-intro">整个系统由“收盘特征生成 → 网页模型推理 → 本地 Schema 校验 → 盘中分钟级撮合 → 积分榜结算”五段确定性管道组成。</p>
-
-        <div class="pipeline-flow" aria-label="Portfolio Lab 数据与执行管道">
-          <div class="pipeline-step">
-            <span class="pipeline-phase">STAGE 01</span>
-            <div class="pipeline-title">
-              <strong>收盘特征提取与粗筛</strong>
-              <span>AKShare + Sina + Local</span>
-            </div>
-            <div class="pipeline-desc">
-              收盘后自动运行粗筛脚本。排除 ST、退市、停牌与流动性不足个股，结合 <code>liquid_strength</code> 与 <code>vesper_retest</code> 双筛选池，生成最多 12 只候选的不可变数据包（Packet）。
-            </div>
-          </div>
-
-          <div class="pipeline-step highlight">
-            <span class="pipeline-phase">STAGE 02</span>
-            <div class="pipeline-title">
-              <strong>结构化预测协议</strong>
-              <span>prediction.v1</span>
-            </div>
-            <div class="pipeline-desc">
-              网页端模型读取 Packet 并输出纯 JSON 预测。协议固定 decision、bias、entry、invalidation、target 与 wake_conditions 等字段，禁止把解释文字混进结构外。
-            </div>
-          </div>
-
-          <div class="pipeline-step">
-            <span class="pipeline-phase">STAGE 03</span>
-            <div class="pipeline-title">
-              <strong>本地 Schema 与价格逻辑校验</strong>
-              <span>Process Pending Script</span>
-            </div>
-            <div class="pipeline-desc">
-              校验价格合理性（如多头 entry 必须高于 invalidation 且低于 target）。校验通过后转入 <code>accepted</code> 状态并派生 <code>planned_r</code>。
-            </div>
-          </div>
-
-          <div class="pipeline-step">
-            <span class="pipeline-phase">STAGE 04</span>
-            <div class="pipeline-title">
-              <strong>盘中 1 分钟行情轮询与纸面撮合</strong>
-              <span>Paper Broker Engine</span>
-            </div>
-            <div class="pipeline-desc">
-              交易时段每分钟轮询 AKShare 1 分钟 OHLC。根据保守语义进行模拟成交（simulated_fill），执行 T+1 锁仓、买卖佣金与卖出印花税扣除。
-            </div>
-          </div>
-
-          <div class="pipeline-step">
-            <span class="pipeline-phase">STAGE 05</span>
-            <div class="pipeline-title">
-              <strong>账本持久化与积分榜结算</strong>
-              <span>State / Events / Scoreboard</span>
-            </div>
-            <div class="pipeline-desc">
-              写入 <code>state.json</code> 与追加式流水 <code>events.jsonl</code>。统一按 R 口径结算实际持仓、个人纸面、模型策略与基准的累计收益。
-            </div>
-          </div>
-        </div>
-
-        <div class="schema-block" aria-label="prediction.v1 协议结构示例">
-          <div class="schema-header">
-            <span>PROTOCOL SCHEMA · PREDICTION.V1 (JSON)</span>
-            <em>STRUCTURED &amp; AUDITABLE</em>
-          </div>
-          <pre class="schema-content"><code>{
-  <span class="key">"schema_version"</span>: <span class="val">"prediction.v1"</span>,
-  <span class="key">"symbol"</span>: <span class="val">"000630.SZ"</span>,
-  <span class="key">"decision"</span>: <span class="val">"watch"</span>,              <span class="comment">// watch | no_signal | avoid</span>
-  <span class="key">"bias"</span>: <span class="val">"bullish"</span>,                <span class="comment">// 普通现金账户只执行多头</span>
-  <span class="key">"entry"</span>: {
-    <span class="key">"type"</span>: <span class="val">"breakout"</span>,             <span class="comment">// breakout | pullback | market</span>
-    <span class="key">"price"</span>: <span class="val">6.83</span>,
-    <span class="key">"confirmation"</span>: <span class="val">"突破平台上沿"</span>
-  },
-  <span class="key">"invalidation"</span>: { <span class="key">"type"</span>: <span class="val">"daily_close_below"</span>, <span class="key">"price"</span>: <span class="val">6.58</span> },
-  <span class="key">"target"</span>: { <span class="key">"price"</span>: <span class="val">7.35</span> },
-  <span class="key">"wake_conditions"</span>: [{ <span class="key">"field"</span>: <span class="val">"price"</span>, <span class="key">"operator"</span>: <span class="val">">="</span>, <span class="key">"value"</span>: <span class="val">6.83</span>, <span class="key">"action"</span>: <span class="val">"reevaluate"</span> }]
-}</code></pre>
+        <h2>从收盘预测到盘中撮合</h2>
+        <p class="section-intro">从数据进入，到模拟成交与下一轮反馈，所有节点都留下明确状态。</p>
+        <ol class="flow-track" aria-label="从收盘预测到盘中撮合的完整流程">
+          <li><span class="flow-index">01</span><div><strong>行情提取与粗筛</strong><small>多个行情源 · 日线数据</small><p>从多个行情源提取日线数据并做粗筛。</p></div></li>
+          <li><span class="flow-index">02</span><div><strong>生成候选数据包</strong><small>最多 12 只 · data quality</small><p>生成特征数据包，同时记录数据质量。</p></div></li>
+          <li class="model-node"><span class="flow-index">03</span><div><strong>模型输出预测</strong><small>prediction.v1 · JSON</small><p>网页端模型读取数据包，提出结构化交易假设。</p></div></li>
+          <li><span class="flow-index">04</span><div><strong>字段与价格校验</strong><small>accepted / rejected</small><p>本地系统校验，通过后标记为 accepted。</p></div></li>
+          <li><span class="flow-index">05</span><div><strong>盘中分钟撮合</strong><small>Paper Broker · 1 min</small><p>交易时段每分钟读取行情，按规则模拟成交。</p></div></li>
+          <li><span class="flow-index">06</span><div><strong>执行交易约束</strong><small>T+1 · fee · tax</small><p>成交时执行锁仓、佣金、印花税和仓位限制。</p></div></li>
+          <li><span class="flow-index">07</span><div><strong>写入状态与流水</strong><small>state.json · events.jsonl</small><p>所有变化进入当前状态与追加式事件流水。</p></div></li>
+          <li class="result-node"><span class="flow-index">08</span><div><strong>统一口径比较</strong><small>R · SCOREBOARD</small><p>比较实际持仓、个人纸面、模型策略和基准。</p></div></li>
+        </ol>
+        <div class="flow-footnotes" aria-label="流程异常说明">
+          <span>数据缺失会记录降级或停止发布</span>
+          <span>重复轮询不会造成重复成交</span>
         </div>
       </div>
     </section>
 
-    <!-- 04 · PRODUCT DECISIONS -->
-    <section class="case-section" id="decisions">
-      <div class="section-label">04 · PRODUCT DECISIONS</div>
+    <!-- 04 · RULES -->
+    <section class="case-section" id="rules">
+      <div class="section-label">04 · RULES</div>
       <div class="section-content">
-        <h2>确定性规则引擎的设计细节</h2>
-        <p class="section-intro">如果模拟盘不贴近真实市场的摩擦与约束，评估结果就是自欺欺人。我在 Paper Broker 中硬编码了五项关键业务规则：</p>
-
-        <div class="decisions-grid" aria-label="规则引擎核心设计">
-          <article class="decision-card">
-            <span>RULE 01 · SETTLEMENT</span>
-            <h3>A 股 T+1 强制锁仓</h3>
-            <p>买入当日（Day T）在 <code>state.json</code> 中强制标记锁定，当天无论行情如何波动均禁止平仓；次交易日（T+1）及之后才允许触发止损、止盈或收盘失效。</p>
-            <div class="decision-rule">
-              <strong>硬约束：</strong><code>is_t_plus_one_unlocked(pos, current_date)</code>
-            </div>
-          </article>
-
-          <article class="decision-card">
-            <span>RULE 02 · FRICTION</span>
-            <h3>固定佣金与单向印花税</h3>
-            <p>每笔买卖订单固定计收 5 元佣金；仅在卖出平仓时单向计收 0.05% 印花税（买入不收）。杜绝零交易费用的虚假高频收益。</p>
-            <div class="decision-rule">
-              <strong>硬约束：</strong><code>commission = 5.0, stamp_duty = sell_amount * 0.0005</code>
-            </div>
-          </article>
-
-          <article class="decision-card">
-            <span>RULE 03 · CONSERVATIVE FILL</span>
-            <h3>保守成交价与止损优先</h3>
-            <p>突破买入取 <code>max(entry, open)</code>，绝不占便宜；同一根 1 分钟 K 线内若高低点同时触及止盈与止损，一律<strong>止损优先触发</strong>，宁可多算亏损。</p>
-            <div class="decision-rule">
-              <strong>硬约束：</strong><code>same_bar_conflict -> trigger stop_loss first</code>
-            </div>
-          </article>
-
-          <article class="decision-card">
-            <span>RULE 04 · RISK MANAGEMENT</span>
-            <h3>整手交易与双重风控</h3>
-            <p>严格按 100 股整手建仓；单笔风险控制在总权益 1%（<code>risk_per_trade: 0.01</code>），且单只标的资金占用上限不超过总净值 20%。</p>
-            <div class="decision-rule">
-              <strong>硬约束：</strong><code>lot_size: 100, max_position_fraction: 0.20</code>
-            </div>
-          </article>
+        <h2>为什么交易规则要写死</h2>
+        <p class="section-intro">为了不让我的真实账户不明不白地输给模拟盘，手续费和交易限制当然也得算上。</p>
+        <div class="rules-board" aria-label="Paper Broker 固定交易规则">
+          <article><span>01</span><strong>T+1 锁仓</strong><p>买入当天锁仓，下一交易日才能止损、止盈或按收盘条件退出。</p></article>
+          <article><span>02</span><strong>交易费用</strong><p>每笔买卖固定收取 5 元佣金，卖出时另收 0.05% 印花税。</p></article>
+          <article><span>03</span><strong>100 股整手</strong><p>所有建仓严格按 100 股整手交易。</p></article>
+          <article><span>04</span><strong>双重仓位限制</strong><p>单笔风险不超过总权益的 1%，单只标的不超过总净值的 20%。</p></article>
+          <article><span>05</span><strong>保守成交</strong><p>突破买入时，成交价取 entry 和开盘价中的较高值。</p></article>
+          <article><span>06</span><strong>止损优先</strong><p>同一根分钟 K 线同时触及止盈和止损时，按止损处理。</p></article>
         </div>
-
-        <div class="callout" style="margin-top: 16px;">
-          <strong>异常降级与幂等记账</strong>
-          <p>当 AKShare 接口超时、网络断开或行情数据缺失时，撮合引擎保持持仓与账本不变，不猜测成交；预测 ID 与已处理分钟写入状态文件，重复运行同一根 bar 不会重复成交或重复扣费。</p>
-        </div>
+        <p class="rules-conclusion">这些规则未必能还原真实市场的所有细节。<br><strong>但至少让我们的比赛环境大致公平了。</strong></p>
       </div>
     </section>
 
-    <!-- 05 · TIME-TRAVEL BUG -->
-    <section class="case-section" id="failure">
-      <div class="section-label">05 · TIME-TRAVEL BUG</div>
+    <!-- 05 · IN USE -->
+    <section class="case-section" id="in-use">
+      <div class="section-label">05 · IN USE</div>
       <div class="section-content">
-        <h2>差点让回测“未卜先知”的时间穿越</h2>
-        <p class="section-intro">在规则引擎的开发过程中，自动化测试抓出了一个隐蔽但极其致命的逻辑漏洞：时间穿越（Look-ahead Bias）。</p>
-        <p class="body-copy">由于 AKShare 返回的是包含当天历史全部记录的 1 分钟 K 线列表，在盘中轮询撮合时，如果直接把行情数组丢给撮合函数，系统就会拿过去的行情来撮合刚刚生成的预测：</p>
-
-        <div class="bug-breakdown" aria-label="时间穿越 Bug 对比与修复">
-          <div class="bug-header">
-            <span>CRITICAL FAILURE CAUGHT IN AUTOMATED TESTS</span>
-            <em>时间锚定失效导致的虚假成交</em>
-          </div>
-          <div class="bug-comparison">
-            <div class="bug-col">
-              <h4><span>[ BUG ]</span> 历史与未来 K 线泄漏</h4>
-              <p>模型在 <strong>09:40</strong> 刚刚生成的买入预测，撮合循环遍历历史行情时，竟然在 <strong>09:35</strong> 已经发生的高点上触发了“突破买入”；更糟的是，若行情列表中混入了未来时间的 bar，系统甚至会“预知未来”提前平仓。</p>
-            </div>
-            <div class="bug-col">
-              <h4><span>[ FIX ]</span> 双向严格时间窗口截断</h4>
-              <p>在撮合循环前增加双重硬过滤：<br>
-              1. 严格丢弃所有早于预测生成时间 <code>generated_at</code> 的历史分钟线；<br>
-              2. 严格丢弃所有晚于当前轮询时间 <code>current_time</code> 的未来分钟线。<br>
-              用专用测试用例锁定此逻辑，杜绝任何“未卜先知”。</p>
-            </div>
-          </div>
+        <h2>实际跑起来以后</h2>
+        <p class="section-intro">系统已经能在本地使用真实行情跑纸面模拟，分别记录实际持仓、个人纸面策略、模型策略和基准的结果。</p>
+        <div class="run-story">
+          <p>运行过程中，收盘包出过几次问题，我也因此调整了收盘数据的来源和回退方式。盘中撮合暂时没有一起换，仍然保留 Sina 优先、Eastmoney 备用。</p>
+          <p>纸面撮合也陆续修了一批 Bug，测试和修复主要由模型完成。这个项目还在边用边改，并不是搭完就能放着不管了。</p>
+          <p>最直接的收获是我玩得挺开心，也补了一些交易知识。开始之前，我甚至都不会算 R（风险收益比）。</p>
         </div>
-
-        <p class="body-copy">这种问题不会直接报错，界面甚至还能生成一条看似合理的成交记录。但只要预测使用了生成前或当前时间之后的行情，后面的胜率和收益都失去意义。时间边界必须由测试锁死。</p>
-      </div>
-    </section>
-
-    <!-- 06 · CURRENT EVIDENCE -->
-    <section class="case-section" id="evidence">
-      <div class="section-label">06 · CURRENT EVIDENCE</div>
-      <div class="section-content">
-        <h2>当前运行事实与真实界面</h2>
-        <p class="section-intro">系统当前已在本地跑通，完成真实 A 股行情 dry-run 与全套测试验证：</p>
-
-        <dl class="evidence-metrics" aria-label="Portfolio Lab 关键事实指标">
-          <div class="evidence-card">
-            <dt>AUTOMATED TESTS</dt>
-            <dd class="metric-num">69</dd>
-            <dd class="metric-sub">单元与集成测试全绿，覆盖撮合、T+1、风控与防穿越</dd>
-          </div>
-          <div class="evidence-card">
-            <dt>MARKET FEED</dt>
-            <dd class="metric-num">1-min</dd>
-            <dd class="metric-sub">基于 AKShare 盘中 1 分钟 OHLC 行情轮询</dd>
-          </div>
-          <div class="evidence-card">
-            <dt>INITIAL PAPER CASH</dt>
-            <dd class="metric-num">¥15,000</dd>
-            <dd class="metric-sub">与个人真实实验资金规模 1:1 对齐，绝不虚构百万本金</dd>
-          </div>
-          <div class="evidence-card">
-            <dt>SCOREBOARD TRACKS</dt>
-            <dd class="metric-num">4</dd>
-            <dd class="metric-sub">实际持仓 / 个人纸面 / 模型策略 / 基准 独立记账</dd>
-          </div>
-        </dl>
-
         <div class="real-shot-pair">
           <figure class="real-shot">
-            <div class="real-shot-frame">
-              <img src="assets/overview-dashboard.png" alt="Portfolio Lab 多资产趋势看板真实界面，包含总资产、日K走势与买卖节点">
-            </div>
-            <figcaption>
-              <span>REAL INTERFACE · ASSET OVERVIEW</span>
-              <strong>多资产趋势看板</strong>
-              <p>接入 OKX 只读数据查看 BTC 永续仓位与历史成交点，纳指 QQQ 与黄金 XAU/USD 代理日 K 自由缩放。</p>
-            </figcaption>
+            <div class="real-shot-frame"><img src="assets/overview-dashboard.png" alt="Portfolio Lab 多资产趋势看板真实界面"></div>
+            <figcaption><span>REAL INTERFACE · ASSET OVERVIEW</span><strong>多资产趋势看板</strong><p>把持仓、走势与历史节点放在同一页查看。</p></figcaption>
           </figure>
-
           <figure class="real-shot">
-            <div class="real-shot-frame">
-              <img src="assets/a-share-scoreboard.png" alt="Portfolio Lab A 股实验仓积分榜真实界面，展示多策略 R 口径对比与触发状态">
-            </div>
-            <figcaption>
-              <span>REAL INTERFACE · A-SHARE SCOREBOARD</span>
-              <strong>A 股纸面撮合积分榜</strong>
-              <p>用统一的 R 口径比较各模型与个人策略，收益曲线仅读取已结算轮次，观察计划不提前计入盈利。</p>
-            </figcaption>
+            <div class="real-shot-frame"><img src="assets/a-share-scoreboard.png" alt="Portfolio Lab A 股实验仓积分榜真实界面"></div>
+            <figcaption><span>REAL INTERFACE · A-SHARE SCOREBOARD</span><strong>A 股纸面撮合积分榜</strong><p>实际持仓、个人纸面、模型策略与基准分开记账。</p></figcaption>
           </figure>
+        </div>
+        <div class="observation-card">
+          <span>CURRENT OBSERVATION</span>
+          <p>就目前这段记录看，模型的纸面收益比我好，给出的计划看起来也偏稳妥。只不过不清楚有多少来自模型，又有多少是被我的对话上下文带出来的。</p>
+          <strong>原本只是想比比谁赚得多，现在也开始好奇：换个模型，或者去掉我的个人上下文，它还会做出同样的判断吗？</strong>
         </div>
       </div>
     </section>
 
-    <!-- 07 · LIMITS -->
+    <!-- 06 · LIMITS -->
     <section class="case-section" id="limits">
-      <div class="section-label">07 · LIMITS</div>
+      <div class="section-label">06 · LIMITS</div>
       <div class="section-content">
-        <h2>局限与不做的事情</h2>
-        <p class="section-intro">诚实记录当前系统的不足与边界，不把探索项目伪装成金融级商业终端：</p>
-
+        <h2>当前边界</h2>
         <ul class="limits-list">
-          <li>
-            <span>01</span>
-            <div>
-              <h3>策略结果尚在积累，绝不声称策略有效</h3>
-              <p>虽然系统架构、撮合状态机与自动化测试已完整跑通，但 A 股纸面撮合上线运行时间尚短，样本量仍在持续积累中。目前绝对没有任何数据能够证明大模型的交易假设能够稳定盈利或跑赢大盘。</p>
-            </div>
-          </li>
-          <li>
-            <span>02</span>
-            <div>
-              <h3>法定节假日交易日历待完善</h3>
-              <p>当前交易时段校验主要覆盖了周一至周五 09:30-11:30、13:00-15:00 的基础时段，对国内股市复杂的调休周末与法定节假日尚未接入自动化交易日历同步，仍需后续补充外部日历服务。</p>
-            </div>
-          </li>
-          <li>
-            <span>03</span>
-            <div>
-              <h3>1 分钟 OHLC 无法完全还原真实盘口</h3>
-              <p>纸面撮合基于 1 分钟 K 线的开高低收模拟，无法还原真实盘口的 Level-2 挂单深度、排队撤单情况以及涨跌停板流动性封死时的极端流动性缺失。</p>
-            </div>
-          </li>
+          <li><span>01</span><div><h3>样本还在积累</h3><p>这段时间的表现不能证明模型能稳定盈利，也不能证明它能长期跑赢市场。</p></div></li>
+          <li><span>02</span><div><h3>一分钟行情不是实盘</h3><p>无法完整还原挂单、排队撤单，以及涨跌停时的流动性情况。纸面收益不能直接当成实盘收益。</p></div></li>
+          <li><span>03</span><div><h3>交易日历还不完整</h3><p>目前仍主要按工作日和固定时段校验，尚未覆盖完整的国内交易日历。</p></div></li>
         </ul>
-
-        <div class="callout" style="margin-top: 36px;">
-          <strong>项目结论</strong>
-          <p>别让大模型直接碰交易，让它在只读和严格确定的规则沙盒里老老实实跑纸面测试。</p>
-        </div>
+        <div class="final-line"><span>FOR NOW</span><strong>总之模型目前领先这件事值得继续观察。</strong></div>
       </div>
     </section>
 
     <!-- NAVIGATION NEXT -->
     <nav class="case-next" aria-label="下一项目">
       <span>下一个项目</span>
-      <a href="../research-workflow/index.html"><strong>AI Research Workflow</strong><i>→</i></a>
+      <a href="../hmc-v2/index.html"><strong>HMC</strong><i>→</i></a>
     </nav>
   </main>
 
@@ -391,5 +200,6 @@
     <span>Wren · AI Product Portfolio</span>
     <a href="mailto:wangwanting7@outlook.com">wangwanting7@outlook.com</a>
   </footer>
+  <script src="portfolio-lab.js"></script>
 </body>
 </html>

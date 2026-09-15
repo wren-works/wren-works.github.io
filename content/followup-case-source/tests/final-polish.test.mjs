@@ -1,0 +1,12 @@
+import test from "node:test";
+import assert from "node:assert/strict";
+import {readFileSync} from "node:fs";
+import path from "node:path";
+import {fileURLToPath} from "node:url";
+const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),"..");
+const html=readFileSync(path.join(root,"index.html"),"utf8");
+const css=readFileSync(path.join(root,"demo-adjustments.css"),"utf8");
+test("hero emphasizes scattered",()=>assert.match(html,/把<span class="hero-accent">散落<\/span>的业务状态/));
+test("problem copy aligns main text to top and origin note to bottom",()=>{assert.match(css,/\.problem-grid\{[^}]*align-items:stretch/);assert.match(css,/\.body-copy\{[^}]*display:flex[^}]*flex-direction:column/);assert.match(css,/\.origin-note\{[^}]*margin-top:auto/)});
+test("selected input step has no pale box fill",()=>{assert.match(css,/\.input-path button\[aria-current=step\]\{[^}]*background:transparent/);assert.doesNotMatch(css,/\.input-path button\[aria-current=step\]\{[^}]*rgba/)});
+test("unfinished morning brief is disabled instead of exposing a dead demo",()=>{assert.match(html,/output-coming-soon/);assert.match(html,/晨间日报 · 暂不展示/);assert.match(html,/disabled aria-disabled="true"/);assert.doesNotMatch(html,/brief-placeholder|brief-lines|brief-line/)});
