@@ -3,161 +3,182 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Wren 的 AI 产品经理作品集：记录产品项目、实验和思考。">
-  <meta name="theme-color" content="#FAFAF8">
-  <link rel="canonical" href="https://wren-works.github.io/">
-  <link rel="icon" href="/assets/meta/favicon.svg" type="image/svg+xml">
-  <link rel="icon" href="/assets/meta/favicon-32.png" type="image/png" sizes="32x32">
-  <meta property="og:locale" content="zh_CN">
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="Wren 的产品作品集">
-  <meta property="og:title" content="Wren · AI 产品经理作品集">
-  <meta property="og:description" content="记录产品项目、实验和思考的个人实验室。">
-  <meta property="og:url" content="https://wren-works.github.io/">
-  <meta property="og:image" content="https://wren-works.github.io/assets/meta/portfolio-og.png">
-  <meta property="og:image:type" content="image/png">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Wren AI 产品经理作品集">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Wren · AI 产品经理作品集">
-  <meta name="twitter:description" content="记录产品项目、实验和思考的个人实验室。">
-  <meta name="twitter:image" content="https://wren-works.github.io/assets/meta/portfolio-og.png">
-  <meta name="twitter:image:alt" content="Wren AI 产品经理作品集">
-  <title>Wren · AI 产品经理作品集</title>
-  <link rel="stylesheet" href="src/style.css">
+  <meta name="description" content="Wren 的 AI 产品作品集首页蓝色科技方向视觉方案。">
+  <title>Wren · Clean Tech Home Study</title>
+  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="./media.css">
 </head>
 <body>
+  <header class="topbar">
+    <a class="wordmark" href="#top" aria-label="返回顶部">WREN<span>®</span></a>
+    <nav aria-label="页面导航">
+      <a href="#work">Projects</a>
+      <a href="mailto:wangwanting7@outlook.com">Contact</a>
+    </nav>
+  </header>
 
-  <button class="sidebar-toggle" id="sidebar-toggle" aria-label="打开导航" aria-expanded="false" aria-controls="sidebar">
-    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
-      <line x1="3" y1="5" x2="17" y2="5"/>
-      <line x1="3" y1="10" x2="17" y2="10"/>
-      <line x1="3" y1="15" x2="17" y2="15"/>
-    </svg>
-  </button>
-
-  <div class="sidebar-overlay" id="sidebar-overlay"></div>
-
-  <aside class="sidebar" id="sidebar" aria-label="站点导航">
-    <div class="sidebar-inner">
-      <div class="sidebar-brand">
-        <a href="./index.html">personal lab</a>
+  <main id="top">
+    <section class="poster" aria-labelledby="poster-title">
+      <div class="poster-index" aria-hidden="true">
+        <span>PRODUCT SYSTEMS</span>
+        <span>PORTFOLIO / 2026</span>
       </div>
-      <nav class="sidebar-nav">
-        <a href="./index.html" class="sidebar-link active">Home</a>
-        <span class="sidebar-label">Cases</span>
-        <a href="content/followup-case-source/index.html" class="sidebar-link">FollowUp</a>
-        <a href="content/paper-lab-source/paper-lab/index.html" class="sidebar-link">Portfolio Lab</a>
-        <a href="content/hmc-case-source/hmc-case/index.html" class="sidebar-link">HMC</a>
-        <span class="sidebar-label">Contact</span>
-        <a href="mailto:wangwanting7@outlook.com" class="sidebar-link">Email</a>
-        <a href="assets/resume.pdf" target="_blank" rel="noreferrer" class="sidebar-link">简历 ↗</a>
-        <a href="https://github.com/wren-works" target="_blank" rel="noreferrer" class="sidebar-link">GitHub ↗</a>
-      </nav>
-    </div>
-  </aside>
 
-  <main class="main-content">
-    <section class="hero" aria-labelledby="hero-title">
-      <p class="hero-identity">Wren · AI 产品经理 / 产品经理 · 上海</p>
-      <h1 id="hero-title">一个记录项目、<br>实验和产品思考的个人实验室</h1>
-      <p class="hero-desc">
-        我关注 AI 如何进入真实工作流。<br>
-        从问题定义、产品决策到原型构建与实现验证，<br>
-        探索技术能力和用户控制感之间的平衡。
-      </p>
-      <div class="hero-links" aria-label="个人链接">
-        <a href="mailto:wangwanting7@outlook.com">Email</a>
-        <a href="assets/resume.pdf" target="_blank" rel="noreferrer">简历 ↗</a>
-        <a href="https://github.com/wren-works" target="_blank" rel="noreferrer">GitHub ↗</a>
+      <div class="poster-copy">
+        <p class="poster-kicker">Designing reliable AI products</p>
+        <h1 id="poster-title">
+          <span>AI IN</span>
+          <span class="outline">REAL</span>
+          <span>WORKFLOWS</span>
+        </h1>
       </div>
-    </section>
 
-    <section class="cases" aria-labelledby="cases-title">
-      <h2 class="section-title" id="cases-title">Selected Projects</h2>
-      <div class="cases-inner">
+      <div class="poster-stage" aria-label="三个项目的界面元素组合预览">
+        <div class="stage-grid" aria-hidden="true"></div>
 
-        <article class="case-card">
-          <div class="case-meta">
-            <span class="case-tag">AI Product</span>
-            <span class="case-company">私有真实试用 · Web App</span>
+        <div class="ui-window window-followup">
+          <div class="ui-bar"><span></span><span>FOLLOWUP / CUSTOMER 024</span><b>•••</b></div>
+          <div class="followup-layout">
+            <div class="rail"><i></i><i></i><i></i><i></i></div>
+            <div class="followup-main">
+              <div class="tiny-label">NEXT ACTION</div>
+              <strong>确认方案后的回访</strong>
+              <div class="progress"><span></span></div>
+              <div class="event"><em>09.14</em><p>客户已查看报价，等待确认。</p></div>
+              <div class="event muted"><em>09.11</em><p>发送第二版平面方案。</p></div>
+            </div>
           </div>
-          <h3 class="case-name">
-            <a href="content/followup-case-source/index.html">FollowUp</a>
-          </h3>
-          <p class="case-desc">
-            从聊天整理和回复建议出发，逐步变成持续记录状态、主动提醒下一步的低维护装修潜客跟进系统。
-          </p>
-          <p class="case-detail">问题重构 · 产品迭代 · 低维护设计 · AI 工作流 · 真实使用</p>
-          <div class="case-footer">
-            <span class="case-time">阅读时间：8 min</span>
-            <a href="content/followup-case-source/index.html" class="case-link">View Case →</a>
-          </div>
-        </article>
+        </div>
 
-        <article class="case-card">
-          <div class="case-meta">
-            <span class="case-tag">AI Product</span>
-            <span class="case-company">独立实验 · Web App</span>
+        <div class="ui-window window-lab">
+          <div class="ui-bar dark"><span></span><span>PORTFOLIO LAB / PAPER BROKER</span><b>LIVE</b></div>
+          <div class="lab-body">
+            <div class="metric"><small>NET VALUE</small><strong>1,023,480</strong><span>+2.34%</span></div>
+            <div class="chart" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+            <div class="lab-rule"><span>MODEL</span><b>proposes</b><span>RULES</span><b>execute</b></div>
           </div>
-          <h3 class="case-name">
-            <a href="content/paper-lab-source/paper-lab/index.html">Portfolio Lab</a>
-          </h3>
-          <p class="case-desc">
-            把网页模型生成的交易假设放进确定性纸面沙盒，用 A 股交易约束、分钟行情和严格账本持续检验判断，而不接触真实资金。
-          </p>
-          <p class="case-detail">AI / 规则边界 · 状态机 · 纸面撮合 · 自动化测试</p>
-          <div class="case-footer">
-            <span class="case-time">阅读时间：8 min</span>
-            <a href="content/paper-lab-source/paper-lab/index.html" class="case-link">View Case →</a>
-          </div>
-        </article>
+        </div>
 
-        <article class="case-card">
-          <div class="case-meta">
-            <span class="case-tag">Agent System</span>
-            <span class="case-company">个人基础设施 · Web App</span>
+        <div class="ui-window window-hmc">
+          <div class="ui-bar"><span></span><span>HMC / CURRENT CONTEXT</span><b>CONFIRMED</b></div>
+          <div class="hmc-body">
+            <div class="context-line long"></div>
+            <div class="context-line"></div>
+            <div class="context-line mid"></div>
+            <div class="context-block">
+              <small>STATE PROJECTION</small>
+              <div><span>source</span><b>complete record</b></div>
+              <div><span>view</span><b>current context</b></div>
+            </div>
           </div>
-          <h3 class="case-name">
-            <a href="content/hmc-case-source/hmc-case/index.html">HMC</a>
-          </h3>
-          <p class="case-desc">
-            给多个 Agent 增加统一的外部状态层：保留完整记录，生成可继续工作的 Current Context，并把自动抽取限制在人工确认之前。
-          </p>
-          <p class="case-detail">多 Agent 状态同步 · 数据投影 · 人工确认 · 可靠性设计</p>
-          <div class="case-footer">
-            <span class="case-time">阅读时间：8 min</span>
-            <a href="content/hmc-case-source/hmc-case/index.html" class="case-link">View Case →</a>
-          </div>
-        </article>
+        </div>
 
+        <div class="stage-note note-one">01 / REAL WORKFLOW</div>
+        <div class="stage-note note-two">02 / DETERMINISTIC SYSTEM</div>
+        <svg class="stage-line" viewBox="0 0 480 320" aria-hidden="true">
+          <path d="M54 264 C 142 210, 170 242, 246 174 S 352 90, 444 70"/>
+          <circle cx="54" cy="264" r="4"/><circle cx="246" cy="174" r="4"/><circle cx="444" cy="70" r="4"/>
+        </svg>
+      </div>
+
+      <div class="poster-footer">
+        <a href="#work">03 SELECTED PROJECTS <span>↓</span></a>
+        <p>WREN · AI PRODUCT / SHANGHAI</p>
       </div>
     </section>
 
+    <section class="quiet-intro" aria-label="个人简介">
+      <span>ABOUT / 00</span>
+      <p>Wren · AI 产品 / 产品经理 · 上海</p>
+      <p class="quiet-placeholder">关注真实工作流中的判断、控制与验证。</p>
+    </section>
+
+    <section class="projects" id="work" aria-label="Selected projects">
+      <article class="project project-followup">
+        <a class="project-link" href="content/followup-case-source/index.html" aria-label="查看 FollowUp 项目"></a>
+        <div class="project-copy">
+          <div class="project-number">01</div>
+          <div>
+            <p class="project-type">AI PRODUCT · REAL BUSINESS</p>
+            <h3>FollowUp</h3>
+            <p class="project-label">装修业务运营台</p>
+            <p class="project-summary">从聊天整理工具，逐步变成持续记录状态并提醒下一步的装修潜客跟进系统。</p>
+          </div>
+          <div class="project-bottom">
+            <p>问题重构 · 产品迭代 · 低维护设计</p>
+            <span>VIEW CASE ↗</span>
+          </div>
+        </div>
+        <div class="project-visual screenshot-visual followup-visual" aria-hidden="true">
+          <div class="glass-shot followup-shot">
+            <img src="./assets/followup-dashboard-demo.webp" alt="" loading="lazy">
+          </div>
+        </div>
+      </article>
+
+      <article class="project project-lab">
+        <a class="project-link" href="content/paper-lab-source/paper-lab/index.html" aria-label="查看 Portfolio Lab 项目"></a>
+        <div class="project-copy">
+          <div class="project-number">02</div>
+          <div>
+            <p class="project-type">AI EXPERIMENT · PAPER BROKER</p>
+            <h3>Portfolio Lab</h3>
+            <p class="project-label">纸面交易实验台</p>
+            <p class="project-summary">把模型生成的交易假设放进真实市场约束中，用确定性撮合和账本持续检验。</p>
+          </div>
+          <div class="project-bottom">
+            <p>AI / 规则边界 · 状态机 · 自动化测试</p>
+            <span>VIEW CASE ↗</span>
+          </div>
+        </div>
+        <div class="project-visual screenshot-visual lab-visual" aria-hidden="true">
+          <div class="glass-shot lab-shot">
+            <img src="./assets/portfolio-lab-rules.webp" alt="" loading="lazy">
+          </div>
+        </div>
+      </article>
+
+      <article class="project project-hmc">
+        <a class="project-link" href="content/hmc-case-source/hmc-case/index.html" aria-label="查看 HMC 项目"></a>
+        <div class="project-copy">
+          <div class="project-number">03</div>
+          <div>
+            <p class="project-type">AGENT SYSTEM · PERSONAL INFRASTRUCTURE</p>
+            <h3>HMC</h3>
+            <p class="project-label">多 Agent 共享工作状态</p>
+            <p class="project-summary">为多个 Agent 建立统一的外部状态层，让完整记录与可继续工作的当前上下文同时存在。</p>
+          </div>
+          <div class="project-bottom">
+            <p>状态同步 · 数据投影 · 人工确认</p>
+            <span>VIEW CASE ↗</span>
+          </div>
+        </div>
+        <div class="project-visual hmc-visual" aria-hidden="true">
+          <div class="visual-caption"><span>THE SAME NOW / 同一份现在</span><span>DEMO DATA · REAL STRUCTURE</span></div>
+          <div class="handoff-demo">
+            <div class="agent-row">
+              <div><i>H</i><b>Hermes</b><small>LOCAL</small></div>
+              <div><i>C</i><b>Codex</b><small>LOCAL</small></div>
+              <div><i>W</i><b>Web Chat</b><small>CLOUD</small></div>
+            </div>
+            <div class="handoff-route"><i></i><i></i><i></i><span></span><small>接手者变了，现状不用重新讲。</small></div>
+            <div class="context-card">
+              <div><small>CURRENT CONTEXT</small><span>AS OF #128</span></div>
+              <h4>现在的情况。</h4>
+              <p>Portfolio Lab 已进入纸面评测阶段，下一步继续积累 A 股样本。</p>
+              <div class="context-row"><span>01</span><b>完善纸面券商评测</b><em>进行中</em></div>
+              <div class="context-row"><span>02</span><b>比较个人判断与模型策略</b><em>点子</em></div>
+            </div>
+            <p class="handoff-state"><i></i> Hermes 接手 · 读取同一份现状</p>
+          </div>
+        </div>
+      </article>
+    </section>
   </main>
 
-  <footer class="footer">
-    <p>Wren · 上海 · <a href="mailto:wangwanting7@outlook.com">wangwanting7@outlook.com</a></p>
+  <footer>
+    <a href="#top">WREN / 2026</a>
+    <div><a href="mailto:wangwanting7@outlook.com">EMAIL</a><a href="https://github.com/wren-works" target="_blank" rel="noreferrer">GITHUB ↗</a></div>
   </footer>
-
-  <script>
-    const toggle = document.getElementById('sidebar-toggle');
-    const sidebar = document.getElementById('sidebar');
-    const overlay = document.getElementById('sidebar-overlay');
-
-    function setSidebar(open) {
-      sidebar.classList.toggle('open', open);
-      overlay.classList.toggle('open', open);
-      toggle.setAttribute('aria-expanded', String(open));
-      toggle.setAttribute('aria-label', open ? '关闭导航' : '打开导航');
-    }
-
-    toggle.addEventListener('click', () => setSidebar(!sidebar.classList.contains('open')));
-    overlay.addEventListener('click', () => setSidebar(false));
-    document.addEventListener('keydown', event => {
-      if (event.key === 'Escape') setSidebar(false);
-    });
-  </script>
 </body>
 </html>

@@ -1,0 +1,11 @@
+task_id,task_type,condition,skill_version,status,model,reasoning_effort,elapsed,output_chars,urls_domains,strong_insights,blind_score,key_observation
+discovery-01-ai-meeting-assistants,自由探索,默认研究,none,有效基线,gpt-5.6-terra,high,约 3m (206s),9884,19 / 10,4 / 5,未盲审,基线发现 4 条强洞察，搜索覆盖较宽
+discovery-01-ai-meeting-assistants,自由探索,Decision Research,v0.1,有效对比,gpt-5.6-terra,high,约 9m (558s),12979,11 / 7,4 / 4,未盲审,Bad Case：未增多洞察，强行包装成决策简报且耗时长
+discovery-02-smart-band,自由探索,默认研究,none,有效基线,gpt-5.6-terra,high,约 2m (172s),6744,13 / 11,5 / 5,未盲审,自然语言隐式触发基线
+discovery-02-smart-band,自由探索,Decision Research,v0.1,明确排除 (污染样本),gpt-5.6-terra,high,约 4m (240s),5604,11 / 7,-,-,Bad Case：意外读取并修改工作区已有产出，直接剔除不计分
+discovery-02-smart-band,自由探索,Decision Research,v0.2,有效回归,gpt-5.6-terra,high,约 3m (203s),5406,11 / 4,4 / 4,未盲审,v0.2 干净回归：修复模式错配，不再虚构决策简报
+discovery-03-embodied-intelligence,自由探索,默认研究,none,有效基线,gpt-5.6-terra,high,约 3m30s (210s),6895,11 / 7,5 / 5,未盲审,三向比较基线
+discovery-03-embodied-intelligence,自由探索,Decision Research,v0.2,有效对比 (厚流程),gpt-5.6-terra,high,约 4m00s (239s),10462,17 / 12,4 / 4,未盲审,篇幅最长，强化反证但自由探索较重
+discovery-03-embodied-intelligence,自由探索,Explore Topic,thin-v0.1,有效对比 (薄流程),gpt-5.6-terra,high,2m59s (179s),8099,18 / 11,5 / 5,未盲审,薄 Skill 重构提问顺序，篇幅比厚 Skill 降低 23%
+decision-01-eu-voice-architecture,方案决策,默认研究 (Alpha),none,有效基线,gpt-5.6-terra,high,3m18s (198s),6727,7 / 5,-,35 / 36,盲审 Candidate Y：推荐受控云端 A，通过全部关键门槛
+decision-01-eu-voice-architecture,方案决策,Decision Research (Beta),v0.2,有效对比,gpt-5.6-terra,high,4m02s (242s),8017,9 / 6,-,36 / 36,盲审 Candidate X：推荐端侧优先 B，因更强的可更新性与反证得满分

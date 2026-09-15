@@ -87,7 +87,7 @@
   <div class="wrap">
     <p class="section-label inverse"><span>03</span> / ONE RECORD, END TO END</p>
     <div class="section-heading-row"><h2 class="section-title" id="flow-title">“先记着”，<br><em>不等于“现在就做”。</em></h2><p class="section-aside">自动记录器可以提议，<br>但不能替我决定什么已经算数。<br>让一条候选走一遍，就能看见这道边界。</p></div>
-    <p class="interactive-note"><span aria-hidden="true">✳</span> 本段是自动记录器路径的交互演示；Agent 也可以主动同步。示例沿用原页的脱敏内容，不代表真实个人状态。</p>
+    <p class="interactive-note"><span aria-hidden="true">✳</span> 自动记录器可以提出候选；Agent 也可以主动同步。示例为脱敏数据，不代表真实个人状态。</p>
     <div class="flow-board" id="flow-board">
       <div class="flow-toolbar"><div class="flow-readout"><span class="status-dot light"></span><span id="flow-counter" class="micro">01 / 05</span><span class="flow-mode" id="flow-mode">尚未写入正式状态</span></div><div class="flow-controls"><button type="button" id="flow-play" class="control-button"><span id="flow-play-icon" aria-hidden="true">▶</span><span id="flow-play-label">播放到确认环节</span></button><button type="button" id="flow-reset" class="control-button square-control" aria-label="重置这次交接演示">↺</button></div></div>
       <div class="flow-content">
@@ -154,7 +154,7 @@
     <p class="section-label"><span>06</span> / WHAT EXISTS, WHAT DOESN’T</p>
     <div class="section-heading-row"><h2 class="section-title" id="boundaries-title">能继续工作的现状，<br><em>也包括清楚的边界。</em></h2><p class="section-aside">它牺牲了一部分全自动的便利，<br>换来有来源、能检查、能明确修正的状态。<br>不是要把所有记忆问题一次解决。</p></div>
     <div class="evidence-and-limits">
-      <aside class="test-note"><span class="micro">原项目的阶段记录</span><div class="test-number">97<span>项自动化测试</span></div><p>当时的测试覆盖 Agent API、Current Context、幂等与修正、候选审批、GitHub Inbox、提醒、镜像和页面行为。</p><small>这是该阶段的运行记录，不代表本次页面改版后重新测试。</small></aside>
+      <aside class="test-note"><span class="micro">VERIFICATION</span><div class="test-number">97<span>项自动化测试</span></div><p>覆盖 Agent API、Current Context、幂等与修正、候选审批、GitHub Inbox、提醒、镜像和页面行为。</p><small>记录对应项目实现阶段，页面交互另行验收。</small></aside>
       <div class="limits-list"><article><span>01</span><div><h3>没写进来，就不能假装知道。</h3><p>正式状态来自 Agent 主动同步，或经过人工确认的候选。没有进入 Records 的内容，不算系统已知事实。</p></div></article><article><span>02</span><div><h3>先服务一个人，先在本地跑。</h3><p>当前是单用户、本地优先。公开部署前，仍需要 TLS、完整的用户边界和更可靠的共享限流。</p></div></article><article><span>03</span><div><h3>还在收敛，不急着继续加功能。</h3><p>早期模型仍留下兼容层。接下来要继续收敛数据语义，而不是让功能无限生长。</p></div></article></div>
     </div>
     <div class="closing-note"><span class="micro">A NOTE TO MYSELF</span><blockquote>能直接看仓库的事，<br><em>就直接看仓库。</em></blockquote><p>HMC 不必成为所有信息的中转站。<br>它把那份不好交接的“现在”留下来，就够了。</p><span class="closing-mark" aria-hidden="true">↳</span></div>
