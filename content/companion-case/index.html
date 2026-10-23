@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<meta content="#f7f9fc" name="theme-color"/>
+<meta content="个人 Agent 工作台：用 Android App、小组件和 Core，把聊天中的想法接成任务与复盘；Windows 桌宠提供桌面陪伴。" name="description"/>
+<title>个人 Agent 工作台 · 聊过的事，接着做 · Wren</title>
+<link href="styles.css" rel="stylesheet"/>
+<link href="../case-shared/case-shell.css" rel="stylesheet"/><link href="shell.css" rel="stylesheet"/><link href='data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"%3E%3Ctext y="24" font-size="24"%3EW%3C/text%3E%3C/svg%3E' rel="icon"/><link href="evidence.css" rel="stylesheet"/><link href="pet-demo.css" rel="stylesheet"/></head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+<header class="site-header">
+<div class="wrap header-inner">
+<a aria-label="回到本页开头" class="brand" href="#top"><span class="mark">WR</span><b>Wren</b><span class="brand-sep"></span><span class="brand-note">项目手记</span></a>
+<nav aria-label="章节导航" class="nav"><a href="#tasks">怎么接着做</a><a href="#review">如何回看</a><a href="#system">怎么实现</a><a href="#companion">桌面陪伴</a></nav>
+<a class="portfolio-link" href="../../index.html">作品集 <span aria-hidden="true">↗</span></a>
+</div>
+<div aria-hidden="true" class="progress"><span id="reading-progress"></span></div>
+</header>
+<noscript><p class="nojs wrap">正文与默认图解可以直接阅读；启用 JavaScript 后可操作机制演示。</p></noscript>
+<main id="main">
+<section aria-labelledby="hero-title" class="hero wrap" id="top">
+<div>
+<div class="eyebrow"><span class="dot"></span><span>CASE 03 / A PERSONAL AGENT WORKSPACE</span></div>
+<p class="project-name">个人 Agent 工作台 <span>／ 从 HMC 到日常入口</span></p>
+<h1 id="hero-title"><span class="line">聊过的事，</span><em class="line">接着做。</em></h1>
+<p class="hero-lead">给自己的 AI 搭档做一套日常入口。<br/>不只聊完，也留下能继续的事。</p>
+<p class="hero-support">Android App 把聊天、任务、收藏和复盘放在一起，Core 负责保存与连接 Agent。小组件让投递更顺手，Windows 桌宠则把陪伴留在屏幕边缘。</p>
+<a class="text-link" href="#tasks">看一件事怎样留下来 <span aria-hidden="true">↘</span></a>
+</div>
+<figure class="hero-figure entry-showcase" id="hero-figure">
+<figcaption class="figure-label"><span>ONE COMPANION / 三个日常入口</span><span class="tag">实机与角色素材</span></figcaption>
+<div aria-label="查看日常入口" class="hero-stops js-only" role="group"><button aria-pressed="true" class="hero-stop" data-hero="0">App<small>处理事情</small></button><button aria-pressed="false" class="hero-stop" data-hero="1">小组件<small>随手投递</small></button><button aria-pressed="false" class="hero-stop" data-hero="2">桌宠<small>安静在场</small></button></div>
+<div class="entry-scenes">
+<div class="entry-scene scene-app" data-scene="0"><img alt="本人手机今天页实机，显示已完成与待开始任务，私人内容已遮挡" src="assets/today-tasks-phone.png"/><div class="scene-note"><span class="micro">ANDROID / 实机</span><b>打开日常入口</b><span>聊天 · 任务 · 收藏 · 复盘</span><small>真实任务与操作入口。<br/>私人标题与说明已遮挡。</small></div></div>
+<div class="entry-scene scene-widget" data-scene="1" hidden=""><img alt="本人手机的随手投递小组件，点开就写" src="assets/widget-phone-capture-rounded.png"/><span class="micro">ANDROID WIDGET / 实机裁切</span></div>
+<div class="entry-scene scene-pet" data-scene="2" hidden=""><span class="micro">WINDOWS COMPANION / 原生角色素材</span><div class="pet-edge"><img alt="雪饼桌宠贴底探头姿势，透明原生角色素材，非运行截图" src="assets/pet-bottom.png"/></div><small>桌宠表现已做 · 任务与回执桥接仍为后续</small></div>
+</div>
+<div aria-live="polite" class="entry-summary"><div class="sheet-head"><h3 id="hero-entry-title">把日常操作放在一起</h3><span class="tag fill" id="hero-tag">手机实机</span></div><p id="hero-desc">App 承接聊天、任务、收藏和复盘。需要做事时，不必先翻回一段聊天。</p></div>
+<div class="hero-foot"><span id="hero-foot">本人手机实机 · 2026-10-23 · 私人内容已遮挡</span><button aria-label="回到 App 入口" class="round-btn js-only" id="hero-reset">↺</button></div>
+</figure>
+<dl class="hero-meta">
+<div><dt>项目性质</dt><dd>独立个人项目 · 持续自用</dd></div>
+<div><dt>我的工作</dt><dd>产品规则、信息架构、交互<br/>AI 协作开发与验收</dd></div>
+<div><dt>主要产物</dt><dd>Android App / 小组件<br/>Windows 桌宠 / Core</dd></div>
+<div><dt>从哪里长出来</dt><dd>HMC 保留历史档案<br/>App 与 Core 承接日常操作</dd></div>
+</dl>
+</section>
+<div class="origin wrap">
+<blockquote><span class="micro">A SMALL, REAL FRICTION</span>“真正要做事时，<br/>我不想又从翻聊天开始。”</blockquote>
+<p>以前的 HMC 主要记录不同 Agent 的工作状态。使用重心转到手机后，我更需要打开就能操作的任务卡、随手保存的入口，以及一天结束后能找回的结果。于是，记录层留在后台，日常动作被搬到了 App 里。</p>
+</div>
+<section aria-labelledby="tasks-title" class="section wrap rule" id="tasks">
+<div class="section-head">
+<div><div class="section-label">01 / FROM AN IDEA TO A COMMITMENT</div><h2 class="section-title" id="tasks-title"><span class="line">想做的先放着，</span><span class="line">今天的自己选。</span></h2></div>
+<p class="section-aside">项目池保留未排期的事；今天页只看当天安排。开始、卡住、完成都来自操作与确认，不再靠一次聊天结束时猜任务进展。</p>
+</div>
+<div class="task-lab" id="task-lab">
+<div class="lab-toolbar"><span class="micro">ONE TASK / 从项目池到复盘</span><div class="btn-row js-only"><button aria-pressed="false" class="btn" id="task-play">播放流程</button><button class="btn" disabled="" id="task-back">上一步</button><button class="btn ghost" id="task-reset">重置 ↺</button></div></div>
+<ol aria-label="任务流程" class="task-track" id="task-track">
+<li aria-current="step" class="current"><small>01 / POOL</small>项目池</li><li><small>02 / TODAY</small>今天</li><li><small>03 / DOING</small>进行中</li><li><small>04 / DONE</small>完成</li><li><small>05 / REVIEW</small>复盘</li>
+</ol>
+<div class="task-stage">
+<div class="task-card" id="task-card">
+<div class="sheet-head"><span class="micro task-id">TASK / DEMO-01</span><span class="tag fill" id="task-badge">未排期</span></div>
+<h3>整理项目截图</h3><p>挑选能说明任务操作的界面，整理到项目页。</p>
+<div class="task-values">
+<div class="value-row"><span>计划日期</span><span id="task-plan">未设置</span></div>
+<div class="value-row"><span>实际完成</span><span id="task-completed">尚未完成</span></div>
+<div class="value-row"><span>补充说明</span><span id="task-note">先存着，之后再做</span></div>
+</div>
+</div>
+<div aria-live="polite" class="task-view">
+<span class="view-caption" id="task-caption">PROJECT POOL / 还没有进入今天</span>
+<h3 class="view-title" id="task-view-title">先记住，不急着承诺。</h3>
+<p class="view-copy" id="task-view-copy">未排日期的任务留在项目池。真正决定今天处理时，再排日期；它不会因为在聊天里被提到，就自动挤进今天的清单。</p>
+<div class="decision">
+<span class="state-flag" id="task-gate">等你决定是否排期</span>
+<p class="decision-note" id="task-decision-note">演示会停在需要确认的地方，不替你把想法变成当天承诺。</p>
+<div class="btn-row js-only"><button class="btn primary" id="task-action">安排到周二</button><button class="btn" id="task-alt">先放着</button></div>
+</div>
+</div>
+</div>
+<div class="lab-bottom"><span>演示日期：周二计划 → 周三完成。不是实际任务流水。</span><span>一张卡 · 一个身份 · 多个查看位置</span></div>
+</div>
+<div class="inbox-strip">
+<div class="inbox-copy"><h3>收藏资料，是另一件事。</h3><p>手机小组件可以直接打开投递入口，先存一段话或一个链接。保存只是把资料留下；要采取行动时，再明确做什么、是否排日期。</p><figure class="widget-evidence"><div><button aria-label="放大随手投递小组件" class="media-zoom"><img alt="随手投递小组件实机裁切" loading="lazy" src="assets/widget-phone-capture-rounded.png"/></button><button aria-label="放大今日计划小组件" class="media-zoom"><img alt="今日计划小组件实机裁切" loading="lazy" src="assets/widget-phone-plan-rounded.png"/></button></div><figcaption>本人手机小组件实机裁切 · 未包含其他桌面应用</figcaption></figure></div>
+<figure aria-label="小组件投递内容先作为素材保存，不会自动变成任务" class="inbox-diagram">
+<div class="material-paper"><small class="micro">WIDGET → INBOX</small><b>一段话 / 一个链接</b><p>先投递，不强迫立即选项目。</p></div><span aria-hidden="true" class="inbox-arrow">→</span>
+<div class="inbox-output"><p><strong>素材留下来</strong></p><p>今天的任务不增加。</p><small>决定后续动作 ≠ 保存资料</small></div>
+<figcaption class="explicit-note">素材与任务分开保存。项目关联已有后端基础，顺手的资料回用流程仍在继续接。</figcaption>
+</figure>
+</div>
+</section>
+<section aria-labelledby="review-title" class="section review-section" id="review">
+<div class="wrap">
+<div class="section-head"><div><div class="section-label">02 / PLAN IS NOT THE RESULT</div><h2 class="section-title" id="review-title"><span class="line">做完在哪天，</span><span class="line">就在哪天找。</span></h2></div><p class="section-aside">周二计划的事，可能周三才做完。计划日期保留原来的安排，实际完成日期决定成果从哪里回看；不再为了补一天的记录，复制另一张任务卡。</p></div>
+<div class="review-grid">
+<figure class="calendar">
+<div class="calendar-head"><strong>同一张卡，两种日期。</strong><span class="micro accent">DEMO-01</span></div>
+<div aria-label="选择日历查看口径" class="tab-strip js-only" role="group"><button aria-pressed="false" class="tab" data-calendar="plan">看原计划</button><button aria-pressed="true" class="tab" data-calendar="done">按实际完成回看</button></div>
+<div class="calendar-body"><div class="calendar-days">
+<div class="day"><small>周一</small><p class="day-empty">没有这张卡</p></div>
+<div class="day" id="day-plan"><small>周二</small><p class="day-empty" id="plan-empty">原计划留在字段里</p></div>
+<div class="day" id="day-done"><small>周三</small><div class="calendar-ticket" id="calendar-ticket"><code>DEMO-01 / 同一个任务</code>整理项目截图<br/><span id="ticket-detail">实际完成 · 周三</span></div><p class="day-empty" hidden="" id="done-empty">按计划看时不在这里</p></div>
+</div></div>
+<figcaption aria-live="polite" class="calendar-message" id="calendar-message">按实际完成日回看：成果在周三。原计划“周二”仍保留，没有新增第二条记录。</figcaption>
+</figure>
+<div class="review-notes">
+<h3>复盘不只看“完成”。</h3>
+<p>完成、有推进、卡住和待处理放在一起，才知道今天发生了什么。下一天先是一份可修改的草案，昨天没做完的事不会直接变成今天的新债。</p>
+<div class="small-list"><div><span>01</span><div><b>结果与原计划一起看</b><small>不丢掉当时要做什么。</small></div></div><div><span>02</span><div><b>继续、改期还是搁置</b><small>由我确认，不自动顺延。</small></div></div><div><span>03</span><div><b>成果说明独立保存</b><small>后端已支持，App 中的呈现继续打磨。</small></div></div></div>
+<figure class="footprint"><div class="footprint-label"><b>设备足迹只是线索</b><span class="micro muted">示意 / 非真实数据</span></div><div aria-label="电脑和手机的使用时段可能重叠，不能直接解释为工作时长" class="time-lanes"><div class="time-row"><span>电脑</span><div class="time-bar a"><i></i></div></div><div class="time-row"><span>手机</span><div class="time-bar b"><i></i></div></div></div><figcaption><p>有使用记录 ≠ 在工作。重叠与未知时段仍需结合具体事情判断。</p></figcaption></figure>
+</div>
+</div>
+<div class="evidence-row">
+<figure class="evidence"><!--MEDIA:today--><div class="media-slot" data-media="today"><button aria-label="放大查看：本人手机今天页实机，真实任务，私人内容已遮挡" class="media-zoom" type="button"><img alt="本人手机今天页实机，已完成与待开始卡片，私人标题和说明已遮挡" decoding="async" loading="lazy" src="assets/today-tasks-phone.png"/></button></div><!--/MEDIA:today--><figcaption><h4><span class="line">今天页，</span><span class="line">直接处理任务。</span></h4><p>本人手机的真实任务卡，显示已完成与待开始状态，以及任务操作和本机计时入口。私人标题与说明已遮挡；未为截图新增或改写任务。</p><span class="micro">ANDROID / TODAY · 2026-10-23 · 已脱敏</span></figcaption></figure>
+<figure class="evidence"><!--MEDIA:week--><div class="media-slot" data-media="week"><button aria-label="放大查看：本人手机周计划局部，同卡保留原计划与实际完成日期" class="media-zoom" type="button"><img alt="周计划实机局部：任务原计划10月13日，实际完成10月20日，显示在20日分组，私人标题已遮挡" decoding="async" loading="lazy" src="assets/week-completed-phone.png"/></button></div><!--/MEDIA:week--><figcaption><h4><span class="line">完成之后，</span><span class="line">按实际日期回看。</span></h4><p>真实周计划局部：原计划 10 月 13 日、实际完成 10 月 20 日的同一张卡，出现在 20 日下，原计划仍保留。私人标题已遮挡；上方周二到周三为独立机制示意。</p><span class="micro">ANDROID / PLANNER · 2026-10-23 · 已脱敏局部</span></figcaption></figure>
+</div>
+</div>
+</section>
+<section aria-labelledby="system-title" class="section dark" id="system">
+<div class="wrap">
+<div class="section-head"><div><div class="section-label">03 / HOW IT IS CONNECTED</div><h2 class="section-title" id="system-title"><span class="line">手机负责好用，</span><em class="line">后台负责接上。</em></h2></div><p class="section-aside">Core 是中间服务：统一保存任务、素材与执行记录，再连接现有 Agent 能力。HMC 继续保留历史与完成档案，逐渐退出日常计划管理。</p></div>
+<div class="architecture" id="architecture">
+<div aria-label="查看系统链路" class="tab-strip js-only" role="group"><button aria-pressed="true" class="tab" data-route="task">任务与档案</button><button aria-pressed="false" class="tab" data-route="agent">调用 Agent</button><button aria-pressed="false" class="tab" data-route="pet">桌宠接入 · 后续</button></div>
+<figure aria-label="App 和小组件连接 Core；Core 连接 Agent 与 HMC。桌宠接入 Core 是后续计划，以虚线表示。" class="map">
+<svg aria-hidden="true" class="map-connect" preserveaspectratio="none" viewbox="0 0 1000 374">
+<defs><marker id="arrow-map" markerheight="6" markerwidth="6" orient="auto-start-reverse" refx="5" refy="3" viewbox="0 0 6 6"><path class="arrow" d="M0 0L6 3L0 6Z"></path></marker></defs>
+<path class="active" d="M268 78H324V155H370" id="path-app" marker-end="url(#arrow-map)"></path>
+<path d="M268 183H370" id="path-widget" marker-end="url(#arrow-map)"></path>
+<path class="future" d="M268 290H324V222H370" id="path-pet" marker-end="url(#arrow-map)"></path>
+<path d="M630 155H680V130H732" id="path-agent" marker-end="url(#arrow-map)" marker-start="url(#arrow-map)"></path>
+<path class="active" d="M630 222H680V245H732" id="path-archive" marker-end="url(#arrow-map)"></path>
+</svg>
+<div class="map-left">
+<div class="map-node active" id="node-app"><b>Android App <em>IN USE</em></b><small>聊天 / 任务操作 / 回顾</small></div>
+<div class="map-node" id="node-widget"><b>手机小组件 <em>IN USE</em></b><small>投递入口 / 打开计划</small></div>
+<div class="map-node planned" id="node-pet"><b>Windows 桌宠 <em>NEXT</em></b><small>表现已做 · 任务与回执待桥接</small></div>
+</div>
+<div class="core"><h3>Core</h3><p>统一保存，连接运行</p><div class="core-objects"><span>任务</span><span>素材</span><span>执行记录</span></div><span class="micro">记录身份 / 状态 / 对应结果</span></div>
+<div class="map-right">
+<div class="map-node" id="node-agent"><b>现有 Agent 框架</b><small>调用与回复 · 运行结果可回查</small></div>
+<div class="map-node active" id="node-archive"><b>HMC</b><small>历史记录 / 完成档案</small></div>
+</div>
+</figure>
+<div aria-live="polite" class="map-explain"><strong id="route-title">任务完成 ≠ 档案确认</strong><p id="route-copy">任务由 App 操作并交给 Core 保存；完成档案继续留在 HMC。一次完成操作与后续档案确认分别反馈，不把它们混成一个状态。</p></div>
+<div class="map-key"><span><i></i>当前连接</span><span><i class="dashed"></i>后续接入</span><span>职责示意，非部署拓扑</span></div>
+</div>
+<div class="receipt-area" id="receipt-area">
+<div class="receipt-intro"><h3><span class="line">同步失败，</span><span class="line">不等于白做了。</span></h3><p>任务已完成，档案确认却可能还没回来。两者分开显示；失败时保留身份与状态，重试仍沿用原记录，不让一次操作变成多份任务。</p></div>
+<div class="receipt-demo">
+<div class="figure-label"><span>RETRY / 完成与确认分开</span><span>机制示意</span></div>
+<div class="receipt-states"><div><small>任务状态</small><b>已完成 ✓</b></div><span aria-hidden="true" class="receipt-separator">→</span><div><small>档案确认</small><b id="receipt-state">已确认</b></div></div>
+<div class="receipt-count"><span>原任务：<code>DEMO-01</code></span><span>任务数量：<b id="receipt-count">1</b></span></div>
+<div class="btn-row js-only"><button class="btn" id="receipt-fail">模拟确认失败</button><button class="btn primary" disabled="" id="receipt-retry">沿用原记录重试</button><button class="btn ghost" id="receipt-reset">重置</button></div>
+<p aria-live="polite" class="receipt-status" id="receipt-status">失败演示只改变档案确认状态，左侧任务不会变回“未完成”。</p>
+</div>
+</div>
+<div class="implementation-notes">
+<details><summary>实现到哪一步了？</summary><p>手机经 Core 调用 Agent 并取回回复、保留运行身份、重新打开 App 后回查结果，这条基础链路已经跑通。继续整理的是更自然的委托与运行页：主聊天继续，独立工作会话推进，再接回有来源的结果。</p></details>
+<details><summary>我具体负责什么？</summary><p>先确定使用场景、对象与交互规则，再借助 AI Agent 推进开发、部署和验收。除了测试结果，还结合代码、接口读回与真机操作，检查旧记录、草稿和任务在升级后是否保留。</p></details>
+</div>
+</div>
+</section>
+<section aria-labelledby="companion-title" class="section wrap" id="companion">
+<div class="section-head"><div><div class="section-label">04 / A PRESENCE, NOT ANOTHER WINDOW</div><h2 class="section-title" id="companion-title"><span class="line">工具之外，</span><span class="line">还想有个搭档。</span></h2></div><p class="section-aside">我给这个搭档取名“雪饼”。Windows 桌宠可以贴边、被戳、拎起、放下和摸摸，也有行走、睡觉与免打扰状态。不打开完整界面，它也能在场。</p></div>
+<div class="pet-grid">
+<div>
+<figure class="desktop" data-state="edge" id="desktop">
+<figcaption class="desktop-top"><span class="micro">WINDOWS COMPANION / 网页交互示意</span><span aria-hidden="true" class="dots"><i></i><i></i><i></i></span></figcaption>
+<div class="desktop-space"><div aria-hidden="true" class="desktop-window"><span>日常工作，继续进行。</span><div class="window-line"></div><div class="window-line"></div><div class="window-line"></div></div><span aria-hidden="true" class="lift-mark">↙ 被拎起</span><div class="pet-position"><button class="pet-poke" type="button" aria-label="戳戳雪饼"><img class="pet-pose" data-pose="edge" src="assets/pet-bottom.png" alt="雪饼贴边探头，点一下可以戳戳"/><img class="pet-pose" data-pose="lift" src="assets/pet-drag.png" alt="雪饼被拎起的原版姿势" hidden/><img class="pet-pose" data-pose="sleep" src="assets/pet-sleep.png" alt="雪饼睡觉的原版姿势" hidden/></button><b id="pet-mark" hidden>贴边</b><small id="pet-label" hidden>AT THE EDGE</small></div><span class="dnd-mark">DO NOT DISTURB / 安静在场</span></div>
+<div aria-hidden="true" class="desktop-taskbar"><i></i><i></i><i></i><i></i><i></i></div>
+</figure>
+<div aria-label="查看桌宠位置与状态" class="pet-controls js-only" role="group"><button aria-pressed="true" class="btn" data-pet="edge">贴边待机</button><button aria-pressed="false" class="btn" data-pet="lift">拎起 / 放下</button><button aria-pressed="false" class="btn" data-pet="sleep">睡觉 / 免打扰</button></div>
+<p aria-live="polite" class="pet-description" id="pet-description">贴在屏幕边缘，不占一个新的工作窗口。点一下雪饼，试试戳戳。</p><p class="poke-status">网页交互示意 · 使用原生角色素材，非 Windows 运行截图</p>
+</div>
+<div class="pet-copy"><h3>先让角色在场，<br/>再接真正的工作状态。</h3><p>这部分保留了工具之外的使用理由：我希望电脑上不只是多一个待办窗口，也有一个愿意靠近、又不会一直打断我的小角色。</p>
+<p class="pet-material-note">左侧使用桌宠原生角色素材，演示贴边、位置切换与轻触反馈；不是 Windows 实机运行画面。</p>
+<p class="bridge-note"><span class="tag future">后续接入</span> 通过桥接层把 Core 的任务与执行回执转成轻提醒或角色反馈；有效期、重复播放和免打扰规则沿用已有协议。</p>
+</div>
+</div>
+</section>
+<section aria-labelledby="next-title" class="section next-section wrap rule" id="status">
+<div class="next-grid">
+<div class="next-copy"><div class="section-label">05 / WHAT COMES NEXT</div><h2 class="section-title" id="next-title"><span class="line">工作另开会话，</span><span class="line">聊天不用等。</span></h2><span class="tag future">下一轮交互 · 尚未作为完整流程实现</span><p>手机调用 Agent、保留运行身份和查询结果的基础链路已经打通。下一步是在同一个聊天框里明确委托，由独立工作会话继续跑；主聊天继续，运行页查看过程，再把带来源的结果接回来。</p></div>
+<figure class="fork"><div class="figure-label"><span>DELEGATION / 基础与下一步</span><span>流程示意</span></div>
+<div class="fork-row"><b>已有链路</b><div class="fork-flow"><span>手机调用</span><i>→</i><span>Agent 运行</span><i>→</i><span>查询结果</span></div></div>
+<div class="fork-row"><b>下一轮</b><div class="fork-flow"><span>明确委托</span><i>→</i><span>主聊天继续</span><i>→</i><span>接回结果</span></div></div>
+<div class="fork-branch"><span>独立工作会话 · 运行页查看与补充要求</span><div class="fork-flow"><span>后台推进</span><i>→</i><span>有来源的回执</span><i>↗</i></div></div>
+<figcaption class="next-caption">讨论、收藏和“以后再说”仍按各自的意思保留，不一律变成委托。</figcaption>
+</figure>
+</div>
+<div aria-label="当前状态与下一轮计划" class="current-table">
+<div class="current-row"><span>正在使用</span><p>任务卡、今天与项目池、完成回看、收藏、复盘，以及桌宠表现与交互。</p><small>个人自用，不代表通用产品验证。</small></div>
+<div class="current-row"><span>基础已具备</span><p>Core 统一记录、Agent 调用与结果回查；独立成果字段；项目关联与查询。</p><small>后端基础不等于全部前端流程已接好。</small></div>
+<div class="current-row"><span>继续接入</span><p>成果补充、素材回用、独立工作会话、桌宠工作反馈，以及精简的近期上下文。</p><small>长期记忆、项目资料和任务继续分开保存。</small></div>
+</div>
+</section>
+<div class="wrap ending"><blockquote>少解释一遍，<br/>多留下一点能继续的东西。</blockquote></div>
+</main>
+<nav aria-label="下一个项目" class="case-handoff"><small>NEXT CASE · PAPER INVESTING</small><a href="../paper-lab-source/paper-lab/index.html"><span><span class="case-handoff-title">Portfolio Lab / 纸面交易实验台</span><span class="case-handoff-note">让模型提出交易假设，让确定性系统负责校验、撮合和记账。</span></span><span aria-hidden="true" class="case-handoff-arrow">↗</span></a></nav>
+<script src="../hmc-v2/vendor/lenis.min.js"></script><script src="../case-shared/case-shell.js"></script><script src="page-data.js"></script>
+<script src="app.js"></script>
+<script src="shell.js"></script><dialog aria-label="素材原图" class="media-dialog"><button class="btn" data-close-media="" type="button">关闭 ×</button><img alt=""/><p></p></dialog><script src="evidence.js"></script><script src="pet-demo.js"></script></body>
+</html>
